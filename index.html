@@ -947,6 +947,7 @@
                 <div class="form-group">
                     <label>Imagem do Produto (URL)</label>
                     <input type="url" id="new-product-image" placeholder="https://exemplo.com/imagem.jpg">
+                    <small style="color: #666;">Use imagens quadradas (1:1) para melhor visualização</small>
                 </div>
                 <button class="btn btn-primary" onclick="addNewProduct()">
                     <i class="fas fa-save"></i> Adicionar Produto
@@ -1084,8 +1085,16 @@
                         <i class="fas fa-user-plus"></i> Criar Conta
                     </button>
                 </div>
-                <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
-                    <a href="#" onclick="showAdminAccess()" style="color: #666; font-size: 12px;">Acesso Administrativo</a>
+                
+                <!-- ÁREA ADMINISTRATIVA - MEJORADA Y VISIBLE -->
+                <div style="text-align: center; margin-top: 25px; padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e0e0e0;">
+                    <h5 style="margin-bottom: 10px; color: #333;">🔧 Área do Administrador</h5>
+                    <p style="font-size: 12px; color: #666; margin-bottom: 12px;">
+                        Acesso exclusivo para gestão de produtos e pedidos
+                    </p>
+                    <button class="btn btn-primary" onclick="showAdminAccess()" style="padding: 10px 20px; font-size: 14px;">
+                        <i class="fas fa-cog"></i> Acesso Administrativo
+                    </button>
                 </div>
             </div>
 
@@ -1322,7 +1331,7 @@
                     originalPrice: 249.90,
                     category: "vibradores",
                     stock: 15,
-                    image: "linear-gradient(45deg, #e91e63, #9c27b0)",
+                    image: "https://images.unsplash.com/photo-1585849834901-94c5915d4c3f?w=500&h=500&fit=crop",
                     tags: ["frete-gratis", "mais-vendido", "oferta"],
                     rating: 4.8,
                     reviews: 127
@@ -1335,7 +1344,7 @@
                     originalPrice: 299.90,
                     category: "sugadores",
                     stock: 12,
-                    image: "linear-gradient(45deg, #ff4081, #ad1457)",
+                    image: "https://images.unsplash.com/photo-1585849834901-94c5915d4c3f?w=500&h=500&fit=crop",
                     tags: ["frete-gratis", "novo"],
                     rating: 4.9,
                     reviews: 89
@@ -1348,7 +1357,7 @@
                     originalPrice: 399.90,
                     category: "kits",
                     stock: 8,
-                    image: "linear-gradient(45deg, #9c27b0, #6a1b9a)",
+                    image: "https://images.unsplash.com/photo-1585849834901-94c5915d4c3f?w=500&h=500&fit=crop",
                     tags: ["frete-gratis", "kit"],
                     rating: 4.7,
                     reviews: 64
@@ -1361,7 +1370,7 @@
                     originalPrice: 34.90,
                     category: "lubrificantes",
                     stock: 50,
-                    image: "linear-gradient(45deg, #2196f3, #0d47a1)",
+                    image: "https://images.unsplash.com/photo-1585849834901-94c5915d4c3f?w=500&h=500&fit=crop",
                     tags: ["oferta"],
                     rating: 4.5,
                     reviews: 203
@@ -1374,7 +1383,7 @@
                     originalPrice: 49.90,
                     category: "acessorios",
                     stock: 25,
-                    image: "linear-gradient(45deg, #ff9800, #f57c00)",
+                    image: "https://images.unsplash.com/photo-1585849834901-94c5915d4c3f?w=500&h=500&fit=crop",
                     tags: ["novo"],
                     rating: 4.6,
                     reviews: 45
@@ -1527,8 +1536,8 @@
                 <div class="product-badges">
                     ${badges.join('')}
                 </div>
-                <div class="product-image" style="background: ${product.image}">
-                    <i class="fas fa-venus" style="font-size: 48px; color: white; opacity: 0.8;"></i>
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://images.unsplash.com/photo-1585849834901-94c5915d4c3f?w=500&h=500&fit=crop'">
                 </div>
                 <div class="product-info">
                     <div class="brand">VIBRAÇÕES ÍNTIMAS</div>
@@ -1702,8 +1711,8 @@
                     cartItem.className = 'cart-item';
                     cartItem.innerHTML = `
                         <div style="display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid #f0f0f0;">
-                            <div style="width: 60px; height: 60px; background: ${item.image}; border-radius: 8px; margin-right: 15px; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-venus" style="color: white; font-size: 20px;"></i>
+                            <div style="width: 60px; height: 60px; border-radius: 8px; margin-right: 15px; overflow: hidden;">
+                                <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
                             <div style="flex-grow: 1;">
                                 <div style="font-weight: 600; margin-bottom: 5px; font-size: 14px;">${item.name}</div>
@@ -1780,7 +1789,9 @@
 
             upsellingProducts.innerHTML = randomProducts.map(product => `
                 <div style="display: flex; align-items: center; padding: 10px; background: white; border-radius: 8px; margin-bottom: 10px; border: 1px solid #eee;">
-                    <div style="width: 40px; height: 40px; background: ${product.image}; border-radius: 6px; margin-right: 10px;"></div>
+                    <div style="width: 40px; height: 40px; border-radius: 6px; margin-right: 10px; overflow: hidden;">
+                        <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
                     <div style="flex-grow: 1;">
                         <div style="font-size: 12px; font-weight: 600;">${product.name}</div>
                         <div style="font-size: 11px; color: var(--primary); font-weight: 700;">R$ ${product.price.toFixed(2)}</div>
@@ -1968,6 +1979,7 @@
                 const product = products.find(p => p.id === cartItem.id);
                 if (product) {
                     product.stock -= cartItem.quantity;
+                    showToast(`Estoque atualizado: ${product.name} - ${product.stock} unidades restantes`, 'info');
                 }
             });
 
@@ -2339,7 +2351,7 @@
                 originalPrice: originalPrice,
                 category: category,
                 stock: stock,
-                image: image || `linear-gradient(45deg, #${Math.floor(Math.random()*16777215).toString(16)}, #${Math.floor(Math.random()*16777215).toString(16)})`,
+                image: image || 'https://images.unsplash.com/photo-1585849834901-94c5915d4c3f?w=500&h=500&fit=crop',
                 tags: tags,
                 rating: 0,
                 reviews: 0,
@@ -2662,9 +2674,36 @@
         }
 
         // Additional placeholder functions for future implementation
-        function showUserManagement() { showToast('Gestão de usuários em desenvolvimento', 'info'); }
-        function showOrdersPanel() { showToast('Painel de pedidos em desenvolvimento', 'info'); }
-        function showReports() { showToast('Relatórios em desenvolvimento', 'info'); }
+        function showUserManagement() { 
+            document.getElementById('add-product-form').style.display = 'none';
+            document.getElementById('user-management').style.display = 'block';
+            document.getElementById('orders-panel').style.display = 'none';
+            document.getElementById('reports-panel').style.display = 'none';
+            
+            const usersList = document.getElementById('users-list');
+            usersList.innerHTML = '<p>Gestão de usuários em desenvolvimento</p>';
+        }
+        
+        function showOrdersPanel() { 
+            document.getElementById('add-product-form').style.display = 'none';
+            document.getElementById('user-management').style.display = 'none';
+            document.getElementById('orders-panel').style.display = 'block';
+            document.getElementById('reports-panel').style.display = 'none';
+            
+            const ordersList = document.getElementById('orders-list');
+            ordersList.innerHTML = '<p>Painel de pedidos em desenvolvimento</p>';
+        }
+        
+        function showReports() { 
+            document.getElementById('add-product-form').style.display = 'none';
+            document.getElementById('user-management').style.display = 'none';
+            document.getElementById('orders-panel').style.display = 'none';
+            document.getElementById('reports-panel').style.display = 'block';
+            
+            const reportsContent = document.getElementById('reports-content');
+            reportsContent.innerHTML = '<p>Relatórios em desenvolvimento</p>';
+        }
+        
         function showOrderHistory() { showToast('Histórico de pedidos em desenvolvimento', 'info'); }
         function showAddresses() { showToast('Gestão de endereços em desenvolvimento', 'info'); }
         function showFavorites() { showToast('Favoritos em desenvolvimento', 'info'); }
