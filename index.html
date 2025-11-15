@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibrações Íntimas - Prazer e Bem-Estar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <style>
+        :root {
+            --primary: #e91e63;
+            --primary-dark: #c2185b;
+            --secondary: #9c27b0;
+            --accent: #ff4081;
+            --light: #f8bbd9;
+            --dark: #880e4f;
+            --text: #333333;
+            --text-light: #777777;
+            --background: #fff5f9;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --discount: #4caf50;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --error: #f44336;
+            --ml-blue: #2968c8;
+            --ml-yellow: #ffe600;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        .top-banner {
+            background: linear-gradient(45deg, var(--ml-blue), #1e4fa0);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 13px;
+        }
+
+        .top-banner-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .banner-offer {
+            background: var(--ml-yellow);
+            color: #333;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .main-header {
+            background: var(--ml-yellow);
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-main {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #e91e63, #9c27b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        
+        .logo-subtitle {
+            font-size: 11px;
+            color: #ff4081;
+            font-weight: 500;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid var(--ml-blue);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-button {
+            position: absolute;
+            right: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--ml-blue);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            width: 40px;
+            height: calc(100% - 4px);
+            cursor: pointer;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-icon {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text);
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-icon i {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .promo-banner {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .filters-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: var(--white);
+            margin: 10px 0;
+            border-radius: 8px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: var(--white);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 20px 0 40px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .product-badges {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .discount-badge {
+            background: var(--discount);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-image {
+            height: 220px;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .brand {
+            color: var(--text-light);
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 14px;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .original-price {
+            color: var(--text-light);
+            text-decoration: line-through;
+            font-size: 13px;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .btn-cart {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-grow: 1;
+            margin-right: 8px;
+        }
+
+        .btn-cart:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-wishlist {
+            background: var(--gray);
+            color: var(--text);
+            border: none;
+            width: 40px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .footer {
+            background: var(--white);
+            padding: 40px 0 20px;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section a {
+            color: var(--text);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: var(--text-light);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1001;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: block;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--gray);
+            color: var(--text);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .admin-panel {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .admin-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            .modal {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="container">
+            <div class="top-banner-content">
+                <div class="banner-text">
+                    <span class="banner-offer">BEAUTY NOVEMBER - ATÉ 30% OFF</span>
+                    <span>Frete Grátis acima de R$ 199</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo-container">
+                    <div class="logo-text">
+                        <div class="logo-main">VIBRAÇÕES ÍNTIMAS</div>
+                        <div class="logo-subtitle">Prazer & Bem-Estar</div>
+                    </div>
+                </a>
+                
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Buscar produtos...">
+                    <button class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="nav-icons">
+                    <a href="#" class="nav-icon" id="account-icon">
+                        <i class="fas fa-user"></i>
+                        <div>Minha Conta</div>
+                    </a>
+                    <a href="#" class="nav-icon" id="cart-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                        <div>Sacola</div>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Promo Banner -->
+    <div class="container">
+        <div class="promo-banner">
+            🎉 Beauty November - Até 30% OFF + Frete GRÁTIS 🎉
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="container">
+        <div class="filters-container">
+            <div class="results-count">Total de 100 produtos</div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="vibradores">Vibradores</button>
+                <button class="filter-btn" data-filter="sugadores">Sugadores</button>
+                <button class="filter-btn" data-filter="kits">Kits</button>
+                <button class="filter-btn" data-filter="lubrificantes">Lubrificantes</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Products Grid -->
+    <div class="container">
+        <div class="products-grid" id="products-grid">
+            <!-- Products loaded dynamically -->
+        </div>
+    </div>
+
+    <!-- Admin Panel (Hidden by default) -->
+    <div class="container">
+        <div class="admin-panel" id="admin-panel" style="display: none;">
+            <div class="admin-section">
+                <h3><i class="fas fa-cog"></i> Painel Administrativo</h3>
+                <div class="admin-actions">
+                    <button class="btn btn-primary" onclick="showAddProductForm()">
+                        <i class="fas fa-plus"></i> Adicionar Produto
+                    </button>
+                    <button class="btn btn-secondary" onclick="showUserManagement()">
+                        <i class="fas fa-users"></i> Gerenciar Usuários
+                    </button>
+                    <button class="btn btn-secondary" onclick="showOrdersPanel()">
+                        <i class="fas fa-shopping-cart"></i> Pedidos
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add Product Form -->
+            <div class="admin-section" id="add-product-form" style="display: none;">
+                <h4>Adicionar Novo Produto</h4>
+                <div class="form-group">
+                    <label>Nome do Produto</label>
+                    <input type="text" id="new-product-name" placeholder="Nome do produto">
+                </div>
+                <div class="form-group">
+                    <label>Preço</label>
+                    <input type="number" id="new-product-price" placeholder="R$ 0.00" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="new-product-category">
+                        <option value="vibradores">Vibradores</option>
+                        <option value="sugadores">Sugadores</option>
+                        <option value="kits">Kits</option>
+                        <option value="lubrificantes">Lubrificantes</option>
+                        <option value="acessorios">Acessórios</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Estoque</label>
+                    <input type="number" id="new-product-stock" placeholder="Quantidade">
+                </div>
+                <button class="btn btn-primary" onclick="addNewProduct()">Adicionar Produto</button>
+            </div>
+
+            <!-- User Management -->
+            <div class="admin-section" id="user-management" style="display: none;">
+                <h4>Gerenciar Usuários</h4>
+                <div id="users-list">
+                    <!-- Users will be listed here -->
+                </div>
+            </div>
+
+            <!-- Orders Panel -->
+            <div class="admin-section" id="orders-panel" style="display: none;">
+                <h4>Pedidos Recentes</h4>
+                <div id="orders-list">
+                    <!-- Orders will be listed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VIBRAÇÕES ÍNTIMAS</h3>
+                    <p>MEI: Jorge Eliecer Morales Ramirez<br>
+                    CNPJ: 63.575.463/0001-00<br>
+                    Descubra uma nova experiência de prazer e bem-estar.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Categorias</h3>
+                    <ul>
+                        <li><a href="#" data-filter="vibradores">Vibradores</a></li>
+                        <li><a href="#" data-filter="sugadores">Sugadores</a></li>
+                        <li><a href="#" data-filter="kits">Kits</a></li>
+                        <li><a href="#" data-filter="lubrificantes">Lubrificantes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Ajuda</h3>
+                    <ul>
+                        <li><a href="#" onclick="showInfo('contact')">Contato</a></li>
+                        <li><a href="#" onclick="showInfo('delivery')">Entregas</a></li>
+                        <li><a href="#" onclick="showInfo('returns')">Trocas</a></li>
+                        <li><a href="#" onclick="showInfo('faq')">Perguntas Frequentes</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Vibrações Íntimas. Todos os direitos reservados. | CNPJ: 63.575.463/0001-00
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="cart-overlay"></div>
+    <div class="modal" id="cart-modal">
+        <div class="modal-header">
+            <h3>🛍️ Minha Sacola</h3>
+            <button class="btn btn-secondary" onclick="closeCartModal()">✕</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items loaded here -->
+        </div>
+        <div class="cart-total" id="cart-total">
+            Total: R$ 0,00
+        </div>
+        <button class="btn btn-primary" onclick="checkout()" style="width: 100%;">
+            Finalizar Compra
+        </button>
+    </div>
+
+    <div class="modal-overlay" id="account-overlay"></div>
+    <div class="modal" id="account-modal">
+        <div class="modal-header">
+            <h3>👤 Minha Conta</h3>
+            <button class="btn btn-secondary" onclick="closeAccountModal()">✕</button>
+        </div>
+        <div id="login-form">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="login-email" placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" id="login-password" placeholder="Sua senha">
+            </div>
+            <button class="btn btn-primary" onclick="login()" style="width: 100%;">
+                Entrar
+            </button>
+            <p style="text-align: center; margin-top: 15px;">
+                <a href="#" onclick="showAdminAccess()">Acesso Administrativo</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Database and State Management
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        let adminUsers = JSON.parse(localStorage.getItem('adminUsers')) || [
+            { email: 'intimomixbr@gmail.com', password: 'Admin123!', role: 'admin' }
+        ];
+
+        // Initialize default products if empty
+        if (products.length === 0) {
+            products = [
+                {
+                    id: 1,
+                    name: "Vibrador Rabbit Dupla Função",
+                    price: 174.93,
+                    originalPrice: 249.90,
+                    category: "vibradores",
+                    stock: 15,
+                    image: "linear-gradient(45deg, #e91e63, #9c27b0)"
+                },
+                {
+                    id: 2,
+                    name: "Sugador de Clítoris Premium",
+                    price: 218.93,
+                    originalPrice: 299.90,
+                    category: "sugadores",
+                    stock: 12,
+                    image: "linear-gradient(45deg, #ff4081, #ad1457)"
+                },
+                {
+                    id: 3,
+                    name: "Kit Iniciante Prazer",
+                    price: 299.90,
+                    originalPrice: 399.90,
+                    category: "kits",
+                    stock: 8,
+                    image: "linear-gradient(45deg, #9c27b0, #6a1b9a)"
+                },
+                {
+                    id: 4,
+                    name: "Lubrificante Íntimo 100ml",
+                    price: 24.90,
+                    originalPrice: 34.90,
+                    category: "lubrificantes",
+                    stock: 50,
+                    image: "linear-gradient(45deg, #2196f3, #0d47a1)"
+                }
+            ];
+            saveProducts();
+        }
+
+        // DOM Elements
+        const productsGrid = document.getElementById('products-grid');
+        const cartIcon = document.getElementById('cart-icon');
+        const accountIcon = document.getElementById('account-icon');
+        const cartModal = document.getElementById('cart-modal');
+        const accountModal = document.getElementById('account-modal');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const accountOverlay = document.getElementById('account-overlay');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const cartCount = document.querySelector('.cart-count');
+        const adminPanel = document.getElementById('admin-panel');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const searchInput = document.querySelector('.search-input');
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+            updateCartCount();
+            setupEventListeners();
+            
+            // Check if user is admin
+            if (currentUser && isAdmin(currentUser.email)) {
+                showAdminPanel();
+            }
+        });
+
+        function setupEventListeners() {
+            cartIcon.addEventListener('click', openCartModal);
+            accountIcon.addEventListener('click', openAccountModal);
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    filterProducts(this.dataset.filter);
+                });
+            });
+
+            searchInput.addEventListener('input', searchProducts);
+        }
+
+        function loadProducts(filter = 'all') {
+            productsGrid.innerHTML = '';
+            let filteredProducts = products;
+            
+            if (filter !== 'all') {
+                filteredProducts = products.filter(product => product.category === filter);
+            }
+            
+            filteredProducts.forEach(product => {
+                const productCard = createProductCard(product);
+                productsGrid.appendChild(productCard);
+            });
+            
+            document.querySelector('.results-count').textContent = 
+                `Total de ${filteredProducts.length} produtos`;
+        }
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-badges">
+                    <div class="discount-badge">${Math.round((1 - product.price/product.originalPrice) * 100)}% OFF</div>
+                </div>
+                <div class="product-image" style="background: ${product.image}">
+                    <i class="fas fa-venus" style="font-size: 48px; color: white;"></i>
+                </div>
+                <div class="product-info">
+                    <div class="brand">VIBRAÇÕES ÍNTIMAS</div>
+                    <div class="product-name">${product.name}</div>
+                    <div class="price-container">
+                        <div class="price">R$ ${product.price.toFixed(2)}</div>
+                        <div class="original-price">R$ ${product.originalPrice.toFixed(2)}</div>
+                    </div>
+                    <div class="installments">ou até 6x de R$ ${(product.price / 6).toFixed(2)} sem juros</div>
+                    <div class="stock-info">${product.stock} disponíveis</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" onclick="addToCart(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>
+                            ${product.stock === 0 ? 'Fora de Estoque' : 'Adicionar à Sacola'}
+                        </button>
+                        <button class="btn-wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function addToCart(productId) {
+            if (!currentUser) {
+                alert('Faça login para adicionar produtos ao carrinho');
+                openAccountModal();
+                return;
+            }
+
+            const product = products.find(p => p.id === productId);
+            
+            if (product.stock === 0) {
+                alert('Produto fora de estoque');
+                return;
+            }
+
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                if (existingItem.quantity >= product.stock) {
+                    alert('Quantidade máxima em estoque');
+                    return;
+                }
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            updateCartCount();
+            updateCartModal();
+            saveCart();
+            
+            alert('Produto adicionado ao carrinho!');
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        function updateCartModal() {
+            cartItems.innerHTML = '';
+            let total = 0;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #777;">Sua sacola está vazia</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div style="display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                            <div style="width: 60px; height: 60px; background: ${item.image}; border-radius: 8px; margin-right: 15px;"></div>
+                            <div style="flex-grow: 1;">
+                                <div style="font-weight: 600; margin-bottom: 5px;">${item.name}</div>
+                                <div style="color: var(--primary); font-weight: 700;">R$ ${item.price.toFixed(2)} × ${item.quantity}</div>
+                            </div>
+                            <button class="btn btn-secondary" onclick="removeFromCart(${item.id})">✕</button>
+                        </div>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+            }
+            
+            cartTotal.textContent = `Total: R$ ${total.toFixed(2)}`;
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartCount();
+            updateCartModal();
+            saveCart();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Adicione produtos ao carrinho primeiro');
+                return;
+            }
+
+            // Process order
+            cart.forEach(cartItem => {
+                const product = products.find(p => p.id === cartItem.id);
+                if (product) {
+                    product.stock -= cartItem.quantity;
+                }
+            });
+
+            // Save order
+            const order = {
+                id: Date.now(),
+                date: new Date().toISOString(),
+                items: [...cart],
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                customer: currentUser.email
+            };
+
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            orders.push(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+
+            // Clear cart
+            cart = [];
+            saveCart();
+            updateCartCount();
+            closeCartModal();
+
+            // Save products with updated stock
+            saveProducts();
+
+            alert(`🎉 Compra realizada com sucesso! Pedido #${order.id}`);
+            loadProducts();
+        }
+
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            if (email && password) {
+                currentUser = { email: email, loginTime: new Date().toISOString() };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                if (isAdmin(email)) {
+                    showAdminPanel();
+                }
+                
+                closeAccountModal();
+                alert('Login realizado com sucesso!');
+            } else {
+                alert('Por favor, preencha email e senha.');
+            }
+        }
+
+        function isAdmin(email) {
+            return adminUsers.some(user => user.email === email);
+        }
+
+        function showAdminPanel() {
+            adminPanel.style.display = 'block';
+        }
+
+        function showAdminAccess() {
+            const email = prompt('Email administrativo:');
+            const password = prompt('Senha administrativa:');
+            
+            if (email && password) {
+                const adminUser = adminUsers.find(user => user.email === email && user.password === password);
+                if (adminUser) {
+                    currentUser = { email: email, role: 'admin', loginTime: new Date().toISOString() };
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    showAdminPanel();
+                    closeAccountModal();
+                    alert('Acesso administrativo concedido!');
+                } else {
+                    alert('Credenciais inválidas.');
+                }
+            }
+        }
+
+        function showAddProductForm() {
+            document.getElementById('add-product-form').style.display = 'block';
+            document.getElementById('user-management').style.display = 'none';
+            document.getElementById('orders-panel').style.display = 'none';
+        }
+
+        function addNewProduct() {
+            const name = document.getElementById('new-product-name').value;
+            const price = parseFloat(document.getElementById('new-product-price').value);
+            const category = document.getElementById('new-product-category').value;
+            const stock = parseInt(document.getElementById('new-product-stock').value);
+            
+            if (name && price && stock) {
+                const newProduct = {
+                    id: Date.now(),
+                    name: name,
+                    price: price,
+                    originalPrice: price * 1.4,
+                    category: category,
+                    stock: stock,
+                    image: `linear-gradient(45deg, #${Math.floor(Math.random()*16777215).toString(16)}, #${Math.floor(Math.random()*16777215).toString(16)})`
+                };
+                
+                products.push(newProduct);
+                saveProducts();
+                loadProducts();
+                
+                // Clear form
+                document.getElementById('new-product-name').value = '';
+                document.getElementById('new-product-price').value = '';
+                document.getElementById('new-product-stock').value = '';
+                
+                alert('Produto adicionado com sucesso!');
+            } else {
+                alert('Por favor, preencha todos os campos.');
+            }
+        }
+
+        function filterProducts(category) {
+            loadProducts(category);
+        }
+
+        function searchProducts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            if (searchTerm.length === 0) {
+                loadProducts();
+                return;
+            }
+            
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm)
+            );
+            
+            productsGrid.innerHTML = '';
+            filteredProducts.forEach(product => {
+                const productCard = createProductCard(product);
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Modal functions
+        function openCartModal() {
+            if (!currentUser) {
+                alert('Faça login para acessar o carrinho');
+                openAccountModal();
+                return;
+            }
+            updateCartModal();
+            cartModal.classList.add('active');
+            cartOverlay.classList.add('active');
+        }
+
+        function closeCartModal() {
+            cartModal.classList.remove('active');
+            cartOverlay.classList.remove('active');
+        }
+
+        function openAccountModal() {
+            accountModal.classList.add('active');
+            accountOverlay.classList.add('active');
+        }
+
+        function closeAccountModal() {
+            accountModal.classList.remove('active');
+            accountOverlay.classList.remove('active');
+        }
+
+        function showInfo(type) {
+            const messages = {
+                contact: '📞 Contato: intimomixbr@gmail.com',
+                delivery: '🚚 Entregas: 2-5 dias úteis',
+                returns: '🔄 Trocas: 30 dias',
+                faq: '❓ Dúvidas: Entre em contato'
+            };
+            alert(messages[type] || 'Informação não disponível');
+        }
+
+        // Save functions
+        function saveProducts() {
+            localStorage.setItem('products', JSON.stringify(products));
+        }
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    </script>
+</body>
+</html>
