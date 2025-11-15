@@ -46,7 +46,7 @@
             padding: 0 15px;
         }
 
-        /* Header Styles */
+        /* Top Banner com CEP */
         .top-banner {
             background: linear-gradient(45deg, var(--ml-blue), #1e4fa0);
             color: var(--white);
@@ -58,6 +58,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .banner-offer {
@@ -69,9 +71,40 @@
             font-size: 12px;
         }
 
+        .cep-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .cep-input {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            width: 120px;
+            font-size: 12px;
+        }
+
+        .cep-btn {
+            background: transparent;
+            border: 1px solid var(--white);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .cep-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Header estilo Mercado Livre */
         .main-header {
             background: var(--ml-yellow);
             padding: 10px 0;
+            border-bottom: 1px solid #ddd;
         }
 
         .header-content {
@@ -110,14 +143,16 @@
         .search-container {
             flex-grow: 1;
             position: relative;
+            max-width: 600px;
         }
 
         .search-input {
             width: 100%;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border: 2px solid var(--ml-blue);
             border-radius: 4px;
             font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .search-button {
@@ -129,14 +164,17 @@
             color: white;
             border: none;
             border-radius: 0 4px 4px 0;
-            width: 40px;
+            width: 50px;
             height: calc(100% - 4px);
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .nav-icons {
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
         .nav-icon {
@@ -146,6 +184,11 @@
             cursor: pointer;
             text-decoration: none;
             position: relative;
+            padding: 5px;
+        }
+
+        .nav-icon:hover {
+            color: var(--primary);
         }
 
         .nav-icon i {
@@ -154,10 +197,10 @@
             margin-bottom: 2px;
         }
 
-        .cart-count {
+        .cart-count, .notification-badge {
             position: absolute;
-            top: -5px;
-            right: -5px;
+            top: -2px;
+            right: -2px;
             background: var(--primary);
             color: white;
             border-radius: 50%;
@@ -167,18 +210,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
         }
 
+        .notification-badge {
+            background: var(--error);
+        }
+
+        /* Banner Promocional */
         .promo-banner {
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
             text-align: center;
-            padding: 12px;
+            padding: 15px;
             margin: 15px 0;
             border-radius: 8px;
             font-weight: 600;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
+        /* Filtros */
         .filters-container {
             display: flex;
             justify-content: space-between;
@@ -189,6 +241,7 @@
             border-radius: 8px;
             flex-wrap: wrap;
             gap: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .filter-buttons {
@@ -198,36 +251,46 @@
         }
 
         .filter-btn {
-            padding: 8px 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
             background: var(--white);
             color: var(--text);
             cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
         }
 
         .filter-btn.active {
             background: var(--primary);
             color: white;
+            border-color: var(--primary);
         }
 
+        .filter-btn:hover {
+            border-color: var(--primary);
+        }
+
+        /* Products Grid */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
             padding: 20px 0 40px;
         }
 
         .product-card {
             background: var(--white);
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
         }
 
         .product-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .product-badges {
@@ -243,14 +306,32 @@
         .discount-badge {
             background: var(--discount);
             color: var(--white);
-            padding: 4px 10px;
-            border-radius: 4px;
+            padding: 6px 12px;
+            border-radius: 20px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
+        }
+
+        .free-shipping-badge {
+            background: var(--primary);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .best-seller-badge {
+            background: var(--warning);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
         }
 
         .product-image {
-            height: 220px;
+            height: 250px;
             background: var(--gray);
             display: flex;
             align-items: center;
@@ -259,22 +340,37 @@
             overflow: hidden;
         }
 
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
         .product-info {
-            padding: 15px;
+            padding: 20px;
         }
 
         .brand {
             color: var(--text-light);
             font-size: 12px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .product-name {
             font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 14px;
-            height: 40px;
+            margin-bottom: 12px;
+            color: var(--text);
+            font-size: 16px;
+            height: 48px;
             overflow: hidden;
+            line-height: 1.4;
         }
 
         .price-container {
@@ -282,19 +378,40 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .price {
             color: var(--primary);
             font-weight: 700;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .original-price {
             color: var(--text-light);
             text-decoration: line-through;
+            font-size: 14px;
+        }
+
+        .installments {
+            color: var(--success);
             font-size: 13px;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .stock-info {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 8px;
+        }
+
+        .stock-low {
+            color: var(--warning);
+        }
+
+        .stock-out {
+            color: var(--error);
         }
 
         .product-actions {
@@ -307,44 +424,66 @@
             background: var(--primary);
             color: var(--white);
             border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
+            padding: 12px 20px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
+            transition: background 0.3s;
             flex-grow: 1;
-            margin-right: 8px;
+            margin-right: 10px;
+            font-size: 14px;
         }
 
         .btn-cart:hover {
             background: var(--primary-dark);
         }
 
+        .btn-cart:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
         .btn-wishlist {
             background: var(--gray);
             color: var(--text);
             border: none;
-            width: 40px;
-            border-radius: 6px;
+            width: 50px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        .btn-wishlist:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-wishlist.active {
+            background: #ffe6e6;
+            color: #e91e63;
+        }
+
+        /* Footer */
         .footer {
             background: var(--white);
-            padding: 40px 0 20px;
-            margin-top: 40px;
+            padding: 50px 0 20px;
+            margin-top: 50px;
             border-top: 1px solid #eee;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
             margin-bottom: 30px;
         }
 
         .footer-section h3 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--primary);
+            font-size: 18px;
         }
 
         .footer-section ul {
@@ -352,20 +491,27 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .footer-section a {
             color: var(--text);
             text-decoration: none;
+            transition: color 0.3s;
             cursor: pointer;
+            font-size: 14px;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid #eee;
             color: var(--text-light);
+            font-size: 14px;
         }
 
         /* Modal Styles */
@@ -377,9 +523,9 @@
             width: 400px;
             height: 100vh;
             background: white;
-            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            box-shadow: -2px 0 20px rgba(0,0,0,0.2);
             z-index: 1001;
-            padding: 20px;
+            padding: 0;
             overflow-y: auto;
         }
 
@@ -407,16 +553,23 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            padding-bottom: 15px;
+            padding: 20px;
             border-bottom: 1px solid #eee;
+            background: #f8f9fa;
+        }
+
+        .modal-content {
+            padding: 20px;
         }
 
         .btn {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
+            transition: all 0.3s;
+            font-size: 14px;
         }
 
         .btn-primary {
@@ -424,65 +577,240 @@
             color: var(--white);
         }
 
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
         .btn-secondary {
             background: var(--gray);
             color: var(--text);
         }
 
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #45a049;
+        }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 600;
+            color: var(--text);
         }
 
-        .form-group input {
+        .form-group input, .form-group select, .form-group textarea {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
         }
 
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Admin Panel */
         .admin-panel {
             background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .admin-section {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
+        .admin-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            z-index: 1002;
+            display: none;
+        }
+
+        .chatbot-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1001;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
+            .top-banner-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
             .header-content {
                 flex-direction: column;
                 gap: 15px;
             }
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+            .search-container {
+                max-width: 100%;
             }
+
+            .nav-icons {
+                gap: 15px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
+
+            .filters-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .filter-buttons {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+
             .modal {
                 width: 100%;
             }
+
+            .chatbot-container {
+                width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+            }
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Notification Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1003;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--error);
+        }
+
+        .toast.warning {
+            border-left: 4px solid var(--warning);
         }
     </style>
 </head>
 <body>
-    <!-- Top Banner -->
+    <!-- Top Banner com CEP -->
     <div class="top-banner">
         <div class="container">
             <div class="top-banner-content">
                 <div class="banner-text">
-                    <span class="banner-offer">BEAUTY NOVEMBER - ATÉ 30% OFF</span>
-                    <span>Frete Grátis acima de R$ 199</span>
+                    <span class="banner-offer">BLACK FRIDAY - ATÉ 60% OFF</span>
+                    <span>Frete Grátis acima de R$ 199 • Vale até 01/12/2023</span>
+                </div>
+                <div class="cep-container">
+                    <span>📦 Confira o envio para o seu endereço</span>
+                    <input type="text" class="cep-input" placeholder="Seu CEP" maxlength="9" id="top-cep-input">
+                    <button class="cep-btn" onclick="calcularFrete()">OK</button>
                 </div>
             </div>
         </div>
@@ -495,27 +823,32 @@
                 <a href="#" class="logo-container">
                     <div class="logo-text">
                         <div class="logo-main">VIBRAÇÕES ÍNTIMAS</div>
-                        <div class="logo-subtitle">Prazer & Bem-Estar</div>
+                        <div class="logo-subtitle">Prazer & Bem-Estar • CNPJ: 63.575.463/0001-00</div>
                     </div>
                 </a>
                 
                 <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Buscar produtos...">
-                    <button class="search-button">
+                    <input type="text" class="search-input" placeholder="Buscar produtos, marcas e muito mais..." id="search-input">
+                    <button class="search-button" onclick="searchProducts()">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
                 
                 <div class="nav-icons">
-                    <a href="#" class="nav-icon" id="account-icon">
+                    <div class="nav-icon" id="account-icon" onclick="openAccountModal()">
                         <i class="fas fa-user"></i>
                         <div>Minha Conta</div>
-                    </a>
-                    <a href="#" class="nav-icon" id="cart-icon">
+                    </div>
+                    <div class="nav-icon" id="notifications-icon" onclick="openNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <div>Notificações</div>
+                        <span class="notification-badge" id="notification-count">0</span>
+                    </div>
+                    <div class="nav-icon" id="cart-icon" onclick="openCartModal()">
                         <i class="fas fa-shopping-bag"></i>
                         <div>Sacola</div>
-                        <span class="cart-count">0</span>
-                    </a>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -524,21 +857,20 @@
     <!-- Promo Banner -->
     <div class="container">
         <div class="promo-banner">
-            🎉 Beauty November - Até 30% OFF + Frete GRÁTIS 🎉
+            🎉 BEAUTY NOVEMBER - ATÉ 30% OFF + FRETE GRÁTIS 🎉
         </div>
     </div>
 
     <!-- Filters -->
     <div class="container">
         <div class="filters-container">
-            <div class="results-count">Total de 100 produtos</div>
-            
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="vibradores">Vibradores</button>
-                <button class="filter-btn" data-filter="sugadores">Sugadores</button>
-                <button class="filter-btn" data-filter="kits">Kits</button>
-                <button class="filter-btn" data-filter="lubrificantes">Lubrificantes</button>
+                <button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">Todos</button>
+                <button class="filter-btn" data-filter="vibradores" onclick="filterProducts('vibradores')">Vibradores</button>
+                <button class="filter-btn" data-filter="sugadores" onclick="filterProducts('sugadores')">Sugadores</button>
+                <button class="filter-btn" data-filter="kits" onclick="filterProducts('kits')">Kits</button>
+                <button class="filter-btn" data-filter="lubrificantes" onclick="filterProducts('lubrificantes')">Lubrificantes</button>
+                <button class="filter-btn" data-filter="acessorios" onclick="filterProducts('acessorios')">Acessórios</button>
             </div>
         </div>
     </div>
@@ -550,7 +882,7 @@
         </div>
     </div>
 
-    <!-- Admin Panel (Hidden by default) -->
+    <!-- Admin Panel -->
     <div class="container">
         <div class="admin-panel" id="admin-panel" style="display: none;">
             <div class="admin-section">
@@ -565,19 +897,29 @@
                     <button class="btn btn-secondary" onclick="showOrdersPanel()">
                         <i class="fas fa-shopping-cart"></i> Pedidos
                     </button>
+                    <button class="btn btn-secondary" onclick="showReports()">
+                        <i class="fas fa-chart-bar"></i> Relatórios
+                    </button>
                 </div>
             </div>
 
-            <!-- Add Product Form -->
             <div class="admin-section" id="add-product-form" style="display: none;">
-                <h4>Adicionar Novo Produto</h4>
+                <h4><i class="fas fa-plus-circle"></i> Adicionar Novo Produto</h4>
                 <div class="form-group">
                     <label>Nome do Produto</label>
-                    <input type="text" id="new-product-name" placeholder="Nome do produto">
+                    <input type="text" id="new-product-name" placeholder="Nome completo do produto">
                 </div>
                 <div class="form-group">
-                    <label>Preço</label>
-                    <input type="number" id="new-product-price" placeholder="R$ 0.00" step="0.01">
+                    <label>Descrição</label>
+                    <textarea id="new-product-description" placeholder="Descrição detalhada do produto" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Preço (R$)</label>
+                    <input type="number" id="new-product-price" placeholder="0.00" step="0.01" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Preço Original (R$)</label>
+                    <input type="number" id="new-product-original-price" placeholder="0.00" step="0.01" min="0">
                 </div>
                 <div class="form-group">
                     <label>Categoria</label>
@@ -591,24 +933,44 @@
                 </div>
                 <div class="form-group">
                     <label>Estoque</label>
-                    <input type="number" id="new-product-stock" placeholder="Quantidade">
+                    <input type="number" id="new-product-stock" placeholder="Quantidade em estoque" min="0">
                 </div>
-                <button class="btn btn-primary" onclick="addNewProduct()">Adicionar Produto</button>
+                <div class="form-group">
+                    <label>Tags</label>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <label><input type="checkbox" name="product-tags" value="frete-gratis"> Frete Grátis</label>
+                        <label><input type="checkbox" name="product-tags" value="mais-vendido"> Mais Vendido</label>
+                        <label><input type="checkbox" name="product-tags" value="novo"> Novo</label>
+                        <label><input type="checkbox" name="product-tags" value="oferta"> Oferta</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Imagem do Produto (URL)</label>
+                    <input type="url" id="new-product-image" placeholder="https://exemplo.com/imagem.jpg">
+                </div>
+                <button class="btn btn-primary" onclick="addNewProduct()">
+                    <i class="fas fa-save"></i> Adicionar Produto
+                </button>
             </div>
 
-            <!-- User Management -->
             <div class="admin-section" id="user-management" style="display: none;">
-                <h4>Gerenciar Usuários</h4>
+                <h4><i class="fas fa-users"></i> Gerenciar Usuários</h4>
                 <div id="users-list">
                     <!-- Users will be listed here -->
                 </div>
             </div>
 
-            <!-- Orders Panel -->
             <div class="admin-section" id="orders-panel" style="display: none;">
-                <h4>Pedidos Recentes</h4>
+                <h4><i class="fas fa-shopping-cart"></i> Pedidos Recentes</h4>
                 <div id="orders-list">
                     <!-- Orders will be listed here -->
+                </div>
+            </div>
+
+            <div class="admin-section" id="reports-panel" style="display: none;">
+                <h4><i class="fas fa-chart-bar"></i> Relatórios</h4>
+                <div id="reports-content">
+                    <!-- Reports will be shown here -->
                 </div>
             </div>
         </div>
@@ -620,26 +982,40 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>VIBRAÇÕES ÍNTIMAS</h3>
-                    <p>MEI: Jorge Eliecer Morales Ramirez<br>
-                    CNPJ: 63.575.463/0001-00<br>
+                    <p><strong>MEI:</strong> Jorge Eliecer Morales Ramirez<br>
+                    <strong>CNPJ:</strong> 63.575.463/0001-00<br>
                     Descubra uma nova experiência de prazer e bem-estar.</p>
+                    <p><strong>📧 Email:</strong> intimomixbr@gmail.com<br>
+                    <strong>📱 WhatsApp:</strong> (11) 99999-9999</p>
                 </div>
                 <div class="footer-section">
                     <h3>Categorias</h3>
                     <ul>
-                        <li><a href="#" data-filter="vibradores">Vibradores</a></li>
-                        <li><a href="#" data-filter="sugadores">Sugadores</a></li>
-                        <li><a href="#" data-filter="kits">Kits</a></li>
-                        <li><a href="#" data-filter="lubrificantes">Lubrificantes</a></li>
+                        <li><a href="#" onclick="filterProducts('vibradores')">Vibradores</a></li>
+                        <li><a href="#" onclick="filterProducts('sugadores')">Sugadores</a></li>
+                        <li><a href="#" onclick="filterProducts('kits')">Kits</a></li>
+                        <li><a href="#" onclick="filterProducts('lubrificantes')">Lubrificantes</a></li>
+                        <li><a href="#" onclick="filterProducts('acessorios')">Acessórios</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Ajuda</h3>
                     <ul>
+                        <li><a href="#" onclick="openChatbot()">Chat Online</a></li>
                         <li><a href="#" onclick="showInfo('contact')">Contato</a></li>
-                        <li><a href="#" onclick="showInfo('delivery')">Entregas</a></li>
-                        <li><a href="#" onclick="showInfo('returns')">Trocas</a></li>
+                        <li><a href="#" onclick="showInfo('delivery')">Entregas e Prazos</a></li>
+                        <li><a href="#" onclick="showInfo('returns')">Trocas e Devoluções</a></li>
                         <li><a href="#" onclick="showInfo('faq')">Perguntas Frequentes</a></li>
+                        <li><a href="#" onclick="showInfo('sizes')">Guia de Tamanhos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#" onclick="showInfo('terms')">Termos e Condições</a></li>
+                        <li><a href="#" onclick="showInfo('privacy')">Política de Privacidade</a></li>
+                        <li><a href="#" onclick="showInfo('cookies')">Política de Cookies</a></li>
+                        <li><a href="#" onclick="showInfo('legal')">Aviso Legal</a></li>
                     </ul>
                 </div>
             </div>
@@ -649,55 +1025,290 @@
         </div>
     </footer>
 
-    <!-- Modals -->
+    <!-- Cart Modal -->
     <div class="modal-overlay" id="cart-overlay"></div>
     <div class="modal" id="cart-modal">
         <div class="modal-header">
-            <h3>🛍️ Minha Sacola</h3>
+            <h3><i class="fas fa-shopping-bag"></i> Minha Sacola</h3>
             <button class="btn btn-secondary" onclick="closeCartModal()">✕</button>
         </div>
-        <div class="cart-items" id="cart-items">
-            <!-- Cart items loaded here -->
+        <div class="modal-content">
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items loaded here -->
+            </div>
+            <div class="cart-total" id="cart-total" style="font-size: 18px; font-weight: 700; text-align: right; margin: 20px 0; padding-top: 20px; border-top: 2px solid #eee;">
+                Total: R$ 0,00
+            </div>
+            
+            <!-- Upselling Section -->
+            <div id="upselling-section" style="display: none; margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                <h4 style="margin-bottom: 10px;">💡 Você também pode gostar:</h4>
+                <div id="upselling-products">
+                    <!-- Upselling products loaded here -->
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="proceedToCheckout()" style="width: 100%; padding: 15px; font-size: 16px;">
+                <i class="fas fa-lock"></i> Finalizar Compra
+            </button>
         </div>
-        <div class="cart-total" id="cart-total">
-            Total: R$ 0,00
-        </div>
-        <button class="btn btn-primary" onclick="checkout()" style="width: 100%;">
-            Finalizar Compra
-        </button>
     </div>
 
+    <!-- Account Modal -->
     <div class="modal-overlay" id="account-overlay"></div>
     <div class="modal" id="account-modal">
         <div class="modal-header">
-            <h3>👤 Minha Conta</h3>
+            <h3><i class="fas fa-user"></i> Minha Conta</h3>
             <button class="btn btn-secondary" onclick="closeAccountModal()">✕</button>
         </div>
-        <div id="login-form">
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="login-email" placeholder="seu@email.com">
+        <div class="modal-content">
+            <div id="login-form">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h4>Entre na sua conta</h4>
+                    <p style="color: #666; font-size: 14px;">Acesse seus pedidos e favoritos</p>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="login-password" placeholder="Sua senha">
+                </div>
+                <button class="btn btn-primary" onclick="login()" style="width: 100%; margin-bottom: 15px;">
+                    <i class="fas fa-sign-in-alt"></i> Entrar
+                </button>
+                <div style="text-align: center;">
+                    <p style="color: #666; margin-bottom: 15px;">Não tem conta?</p>
+                    <button class="btn btn-secondary" onclick="showRegisterForm()" style="width: 100%;">
+                        <i class="fas fa-user-plus"></i> Criar Conta
+                    </button>
+                </div>
+                <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <a href="#" onclick="showAdminAccess()" style="color: #666; font-size: 12px;">Acesso Administrativo</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Senha</label>
-                <input type="password" id="login-password" placeholder="Sua senha">
+
+            <div id="register-form" style="display: none;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h4>Criar Conta</h4>
+                    <p style="color: #666; font-size: 14px;">Preencha seus dados para cadastro</p>
+                </div>
+                <div class="form-group">
+                    <label>Nome Completo *</label>
+                    <input type="text" id="register-name" placeholder="Seu nome completo">
+                </div>
+                <div class="form-group">
+                    <label>CPF *</label>
+                    <input type="text" id="register-cpf" placeholder="000.000.000-00" maxlength="14">
+                </div>
+                <div class="form-group">
+                    <label>Data de Nascimento *</label>
+                    <input type="date" id="register-birthdate">
+                </div>
+                <div class="form-group">
+                    <label>Telefone *</label>
+                    <input type="tel" id="register-phone" placeholder="(11) 99999-9999">
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="register-email" placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Senha *</label>
+                    <input type="password" id="register-password" placeholder="Crie uma senha forte">
+                </div>
+                <div class="form-group">
+                    <label>Confirmar Senha *</label>
+                    <input type="password" id="register-confirm" placeholder="Confirme sua senha">
+                </div>
+                
+                <h5 style="margin: 20px 0 10px 0;">Endereço</h5>
+                <div class="form-group">
+                    <label>CEP *</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="register-cep" placeholder="00000-000" maxlength="9" style="flex: 1;">
+                        <button type="button" class="btn btn-secondary" onclick="buscarEnderecoPorCEP()" style="white-space: nowrap;">Buscar</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Endereço *</label>
+                    <input type="text" id="register-address" placeholder="Rua, Avenida, etc.">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Número *</label>
+                        <input type="text" id="register-number" placeholder="123">
+                    </div>
+                    <div class="form-group" style="flex: 2;">
+                        <label>Complemento</label>
+                        <input type="text" id="register-complement" placeholder="Apto, Casa, etc.">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Bairro *</label>
+                    <input type="text" id="register-neighborhood" placeholder="Seu bairro">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 2;">
+                        <label>Cidade *</label>
+                        <input type="text" id="register-city" placeholder="Sua cidade">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Estado *</label>
+                        <select id="register-state">
+                            <option value="">UF</option>
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AP">AP</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MT">MT</option>
+                            <option value="MS">MS</option>
+                            <option value="MG">MG</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PR">PR</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RS">RS</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="SC">SC</option>
+                            <option value="SP">SP</option>
+                            <option value="SE">SE</option>
+                            <option value="TO">TO</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label style="font-weight: normal;">
+                        <input type="checkbox" id="register-terms" style="margin-right: 8px;">
+                        Aceito os <a href="#" onclick="showInfo('terms')">Termos de Uso</a> e <a href="#" onclick="showInfo('privacy')">Política de Privacidade</a>
+                    </label>
+                </div>
+
+                <button class="btn btn-primary" onclick="register()" style="width: 100%; margin-bottom: 15px;">
+                    <i class="fas fa-user-plus"></i> Criar Minha Conta
+                </button>
+                <div style="text-align: center;">
+                    <a href="#" onclick="showLoginForm()" style="color: #666;">Já tem conta? Faça login</a>
+                </div>
             </div>
-            <button class="btn btn-primary" onclick="login()" style="width: 100%;">
-                Entrar
-            </button>
-            <p style="text-align: center; margin-top: 15px;">
-                <a href="#" onclick="showAdminAccess()">Acesso Administrativo</a>
-            </p>
+
+            <div id="user-profile" style="display: none;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 48px; margin-bottom: 10px;">👤</div>
+                    <h4 id="user-name">Usuário</h4>
+                    <p id="user-email" style="color: #666; font-size: 14px;">usuario@email.com</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <button class="btn btn-secondary" onclick="showOrderHistory()" style="width: 100%; margin-bottom: 10px; text-align: left;">
+                        <i class="fas fa-history"></i> Meus Pedidos
+                    </button>
+                    <button class="btn btn-secondary" onclick="showAddresses()" style="width: 100%; margin-bottom: 10px; text-align: left;">
+                        <i class="fas fa-map-marker-alt"></i> Meus Endereços
+                    </button>
+                    <button class="btn btn-secondary" onclick="showFavorites()" style="width: 100%; margin-bottom: 10px; text-align: left;">
+                        <i class="fas fa-heart"></i> Meus Favoritos
+                    </button>
+                    <button class="btn btn-secondary" onclick="showSettings()" style="width: 100%; margin-bottom: 10px; text-align: left;">
+                        <i class="fas fa-cog"></i> Configurações
+                    </button>
+                </div>
+
+                <button class="btn btn-secondary" onclick="logout()" style="width: 100%;">
+                    <i class="fas fa-sign-out-alt"></i> Sair da Conta
+                </button>
+            </div>
         </div>
     </div>
 
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkout-overlay"></div>
+    <div class="modal" id="checkout-modal">
+        <div class="modal-header">
+            <h3><i class="fas fa-credit-card"></i> Finalizar Pedido</h3>
+            <button class="btn btn-secondary" onclick="closeCheckoutModal()">✕</button>
+        </div>
+        <div class="modal-content">
+            <div id="checkout-content">
+                <!-- Checkout steps loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Modal -->
+    <div class="modal-overlay" id="notifications-overlay"></div>
+    <div class="modal" id="notifications-modal">
+        <div class="modal-header">
+            <h3><i class="fas fa-bell"></i> Notificações</h3>
+            <button class="btn btn-secondary" onclick="closeNotificationsModal()">✕</button>
+        </div>
+        <div class="modal-content">
+            <div id="notifications-list">
+                <!-- Notifications loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="chatbot-toggle" onclick="toggleChatbot()">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div class="chatbot-container" id="chatbot">
+        <div class="chatbot-header">
+            <h4 style="margin: 0;"><i class="fas fa-robot"></i> Assistente Virtual</h4>
+            <button class="btn btn-secondary" onclick="toggleChatbot()" style="background: transparent; border: none; color: white; padding: 5px;">✕</button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chat-message bot-message">
+                <strong>Assistente:</strong> Olá! Sou seu assistente virtual. Como posso ajudar você hoje?
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Digite sua mensagem..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px;">
+            <button class="btn btn-primary" onclick="sendChatMessage()" style="margin-left: 10px; border-radius: 20px; padding: 10px 15px;">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle" style="color: var(--success);"></i>
+        <span id="toast-message">Operação realizada com sucesso!</span>
+    </div>
+
     <script>
+        // =============================================
+        // SISTEMA COMPLETO - VIBRAÇÕES ÍNTIMAS
+        // =============================================
+
         // Database and State Management
         let products = JSON.parse(localStorage.getItem('products')) || [];
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+        let notifications = JSON.parse(localStorage.getItem('notifications')) || [];
         let adminUsers = JSON.parse(localStorage.getItem('adminUsers')) || [
-            { email: 'intimomixbr@gmail.com', password: 'Admin123!', role: 'admin' }
+            { 
+                email: 'intimomixbr@gmail.com', 
+                password: 'Admin123!', 
+                role: 'admin',
+                name: 'Administrador Principal'
+            }
         ];
 
         // Initialize default products if empty
@@ -706,38 +1317,67 @@
                 {
                     id: 1,
                     name: "Vibrador Rabbit Dupla Função",
+                    description: "Vibrador rabbit com estimulação dupla para clitóris e ponto G. Design ergonômico e silencioso.",
                     price: 174.93,
                     originalPrice: 249.90,
                     category: "vibradores",
                     stock: 15,
-                    image: "linear-gradient(45deg, #e91e63, #9c27b0)"
+                    image: "linear-gradient(45deg, #e91e63, #9c27b0)",
+                    tags: ["frete-gratis", "mais-vendido", "oferta"],
+                    rating: 4.8,
+                    reviews: 127
                 },
                 {
                     id: 2,
                     name: "Sugador de Clítoris Premium",
+                    description: "Sugador de clítoris com tecnologia air pressure. 10 níveis de intensidade e design discreto.",
                     price: 218.93,
                     originalPrice: 299.90,
                     category: "sugadores",
                     stock: 12,
-                    image: "linear-gradient(45deg, #ff4081, #ad1457)"
+                    image: "linear-gradient(45deg, #ff4081, #ad1457)",
+                    tags: ["frete-gratis", "novo"],
+                    rating: 4.9,
+                    reviews: 89
                 },
                 {
                     id: 3,
                     name: "Kit Iniciante Prazer",
+                    description: "Kit completo para iniciantes com 3 produtos: vibrador, lubrificante e gel massageador.",
                     price: 299.90,
                     originalPrice: 399.90,
                     category: "kits",
                     stock: 8,
-                    image: "linear-gradient(45deg, #9c27b0, #6a1b9a)"
+                    image: "linear-gradient(45deg, #9c27b0, #6a1b9a)",
+                    tags: ["frete-gratis", "kit"],
+                    rating: 4.7,
+                    reviews: 64
                 },
                 {
                     id: 4,
                     name: "Lubrificante Íntimo 100ml",
+                    description: "Lubrificante à base de água, hipoalergênico. Ideal para maior conforto e prazer.",
                     price: 24.90,
                     originalPrice: 34.90,
                     category: "lubrificantes",
                     stock: 50,
-                    image: "linear-gradient(45deg, #2196f3, #0d47a1)"
+                    image: "linear-gradient(45deg, #2196f3, #0d47a1)",
+                    tags: ["oferta"],
+                    rating: 4.5,
+                    reviews: 203
+                },
+                {
+                    id: 5,
+                    name: "Vela Aromática Sensual",
+                    description: "Vela aromática com essência de baunilha e ylang-ylang. Cria ambiente íntimo e relaxante.",
+                    price: 34.90,
+                    originalPrice: 49.90,
+                    category: "acessorios",
+                    stock: 25,
+                    image: "linear-gradient(45deg, #ff9800, #f57c00)",
+                    tags: ["novo"],
+                    rating: 4.6,
+                    reviews: 45
                 }
             ];
             saveProducts();
@@ -747,85 +1387,163 @@
         const productsGrid = document.getElementById('products-grid');
         const cartIcon = document.getElementById('cart-icon');
         const accountIcon = document.getElementById('account-icon');
+        const notificationsIcon = document.getElementById('notifications-icon');
         const cartModal = document.getElementById('cart-modal');
         const accountModal = document.getElementById('account-modal');
+        const checkoutModal = document.getElementById('checkout-modal');
+        const notificationsModal = document.getElementById('notifications-modal');
         const cartOverlay = document.getElementById('cart-overlay');
         const accountOverlay = document.getElementById('account-overlay');
+        const checkoutOverlay = document.getElementById('checkout-overlay');
+        const notificationsOverlay = document.getElementById('notifications-overlay');
         const cartItems = document.getElementById('cart-items');
         const cartTotal = document.getElementById('cart-total');
-        const cartCount = document.querySelector('.cart-count');
+        const cartCount = document.getElementById('cart-count');
+        const notificationCount = document.getElementById('notification-count');
         const adminPanel = document.getElementById('admin-panel');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const searchInput = document.querySelector('.search-input');
+        const searchInput = document.getElementById('search-input');
+        const topCepInput = document.getElementById('top-cep-input');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        const chatbot = document.getElementById('chatbot');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        const chatbotInput = document.getElementById('chatbot-input');
+
+        // Current State
+        let currentFilter = 'all';
+        let currentCart = [];
+        let isAdminMode = false;
 
         // Initialize App
         document.addEventListener('DOMContentLoaded', function() {
             loadProducts();
             updateCartCount();
+            updateNotificationCount();
             setupEventListeners();
+            checkAdminAccess();
             
-            // Check if user is admin
-            if (currentUser && isAdmin(currentUser.email)) {
-                showAdminPanel();
+            // Add some sample notifications
+            if (notifications.length === 0) {
+                addNotification('Bem-vindo à Vibrações Íntimas!', 'Sua loja de produtos para prazer e bem-estar.', 'info');
             }
         });
 
         function setupEventListeners() {
-            cartIcon.addEventListener('click', openCartModal);
-            accountIcon.addEventListener('click', openAccountModal);
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    filterProducts(this.dataset.filter);
+            // Search functionality
+            searchInput.addEventListener('input', debounce(searchProducts, 300));
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') searchProducts();
+            });
+
+            // CEP functionality
+            topCepInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') calcularFrete();
+            });
+
+            // Chatbot functionality
+            chatbotInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') sendChatMessage();
+            });
+
+            // Close modals when clicking overlay
+            document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                overlay.addEventListener('click', function() {
+                    closeAllModals();
                 });
             });
 
-            searchInput.addEventListener('input', searchProducts);
+            // Close modals with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeAllModals();
+            });
         }
 
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Product Management
         function loadProducts(filter = 'all') {
             productsGrid.innerHTML = '';
+            currentFilter = filter;
+            
             let filteredProducts = products;
             
             if (filter !== 'all') {
                 filteredProducts = products.filter(product => product.category === filter);
             }
             
+            if (filteredProducts.length === 0) {
+                productsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <i class="fas fa-search" style="font-size: 64px; color: #ccc; margin-bottom: 20px;"></i>
+                        <h3 style="color: #666; margin-bottom: 15px;">Nenhum produto encontrado</h3>
+                        <p style="color: #999; margin-bottom: 25px;">Tente outros termos de busca ou explore nossas categorias</p>
+                        <button class="btn btn-primary" onclick="filterProducts('all')">
+                            Ver Todos os Produtos
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
             filteredProducts.forEach(product => {
                 const productCard = createProductCard(product);
                 productsGrid.appendChild(productCard);
             });
-            
-            document.querySelector('.results-count').textContent = 
-                `Total de ${filteredProducts.length} produtos`;
         }
 
         function createProductCard(product) {
             const card = document.createElement('div');
             card.className = 'product-card';
+            
+            const discount = Math.round((1 - product.price / product.originalPrice) * 100);
+            const hasFreeShipping = product.tags.includes('frete-gratis');
+            const isBestSeller = product.tags.includes('mais-vendido');
+            const isNew = product.tags.includes('novo');
+            
+            const badges = [];
+            if (discount > 0) badges.push(`<div class="discount-badge">${discount}% OFF</div>`);
+            if (hasFreeShipping) badges.push(`<div class="free-shipping-badge">FRETE GRÁTIS</div>`);
+            if (isBestSeller) badges.push(`<div class="best-seller-badge">MAIS VENDIDO</div>`);
+            if (isNew) badges.push(`<div class="free-shipping-badge" style="background: var(--ml-blue);">NOVO</div>`);
+            
+            const stockClass = product.stock < 10 ? 'stock-low' : product.stock === 0 ? 'stock-out' : '';
+            const stockText = product.stock === 0 ? 'Fora de estoque' : 
+                            product.stock < 10 ? `Últimas ${product.stock} unidades!` : `${product.stock} disponíveis`;
+            
+            const installments = Math.min(12, Math.floor(product.price / 10));
+            const installmentValue = (product.price / installments).toFixed(2);
+            
             card.innerHTML = `
                 <div class="product-badges">
-                    <div class="discount-badge">${Math.round((1 - product.price/product.originalPrice) * 100)}% OFF</div>
+                    ${badges.join('')}
                 </div>
                 <div class="product-image" style="background: ${product.image}">
-                    <i class="fas fa-venus" style="font-size: 48px; color: white;"></i>
+                    <i class="fas fa-venus" style="font-size: 48px; color: white; opacity: 0.8;"></i>
                 </div>
                 <div class="product-info">
                     <div class="brand">VIBRAÇÕES ÍNTIMAS</div>
                     <div class="product-name">${product.name}</div>
                     <div class="price-container">
                         <div class="price">R$ ${product.price.toFixed(2)}</div>
-                        <div class="original-price">R$ ${product.originalPrice.toFixed(2)}</div>
+                        ${discount > 0 ? `<div class="original-price">R$ ${product.originalPrice.toFixed(2)}</div>` : ''}
                     </div>
-                    <div class="installments">ou até 6x de R$ ${(product.price / 6).toFixed(2)} sem juros</div>
-                    <div class="stock-info">${product.stock} disponíveis</div>
+                    <div class="installments">ou até ${installments}x de R$ ${installmentValue} sem juros</div>
+                    <div class="stock-info ${stockClass}">${stockText}</div>
                     <div class="product-actions">
                         <button class="btn-cart" onclick="addToCart(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>
                             ${product.stock === 0 ? 'Fora de Estoque' : 'Adicionar à Sacola'}
                         </button>
-                        <button class="btn-wishlist">
+                        <button class="btn-wishlist" onclick="toggleWishlist(${product.id})">
                             <i class="far fa-heart"></i>
                         </button>
                     </div>
@@ -834,17 +1552,80 @@
             return card;
         }
 
+        function filterProducts(category) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            loadProducts(category);
+        }
+
+        function searchProducts() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            if (searchTerm.length === 0) {
+                loadProducts(currentFilter);
+                return;
+            }
+            
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm) ||
+                product.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+            
+            displaySearchResults(filteredProducts, searchTerm);
+        }
+
+        function displaySearchResults(products, searchTerm) {
+            productsGrid.innerHTML = '';
+            
+            if (products.length === 0) {
+                productsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <i class="fas fa-search" style="font-size: 64px; color: #ccc; margin-bottom: 20px;"></i>
+                        <h3 style="color: #666; margin-bottom: 15px;">Nenhum produto encontrado</h3>
+                        <p style="color: #999; margin-bottom: 25px;">Não encontramos resultados para "${searchTerm}"</p>
+                        <button class="btn btn-primary" onclick="clearSearch()">
+                            Limpar Busca
+                        </button>
+                    </div>
+                `;
+            } else {
+                products.forEach(product => {
+                    const productCard = createProductCard(product);
+                    productsGrid.appendChild(productCard);
+                });
+            }
+        }
+
+        function clearSearch() {
+            searchInput.value = '';
+            loadProducts(currentFilter);
+        }
+
+        // Cart System
         function addToCart(productId) {
             if (!currentUser) {
-                alert('Faça login para adicionar produtos ao carrinho');
+                showToast('Faça login para adicionar produtos ao carrinho', 'warning');
                 openAccountModal();
                 return;
             }
 
             const product = products.find(p => p.id === productId);
             
+            if (!product) {
+                showToast('Produto não encontrado', 'error');
+                return;
+            }
+
             if (product.stock === 0) {
-                alert('Produto fora de estoque');
+                showToast('Produto fora de estoque', 'error');
                 return;
             }
 
@@ -852,14 +1633,15 @@
             
             if (existingItem) {
                 if (existingItem.quantity >= product.stock) {
-                    alert('Quantidade máxima em estoque');
+                    showToast('Quantidade máxima em estoque atingida', 'warning');
                     return;
                 }
                 existingItem.quantity += 1;
             } else {
                 cart.push({
                     ...product,
-                    quantity: 1
+                    quantity: 1,
+                    addedAt: new Date().toISOString()
                 });
             }
             
@@ -867,7 +1649,28 @@
             updateCartModal();
             saveCart();
             
-            alert('Produto adicionado ao carrinho!');
+            showToast('Produto adicionado ao carrinho!', 'success');
+            
+            // Visual feedback
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = '✓ Adicionado!';
+            button.style.background = '#4caf50';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+                button.disabled = false;
+            }, 2000);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartCount();
+            updateCartModal();
+            saveCart();
+            showToast('Produto removido do carrinho', 'warning');
         }
 
         function updateCartCount() {
@@ -880,7 +1683,16 @@
             let total = 0;
             
             if (cart.length === 0) {
-                cartItems.innerHTML = '<p style="text-align: center; color: #777;">Sua sacola está vazia</p>';
+                cartItems.innerHTML = `
+                    <div style="text-align: center; padding: 40px 20px;">
+                        <i class="fas fa-shopping-bag" style="font-size: 48px; color: #ccc; margin-bottom: 15px;"></i>
+                        <p style="color: #777; margin-bottom: 20px;">Sua sacola está vazia</p>
+                        <button class="btn btn-primary" onclick="closeCartModal()">
+                            Continuar Comprando
+                        </button>
+                    </div>
+                `;
+                document.getElementById('upselling-section').style.display = 'none';
             } else {
                 cart.forEach(item => {
                     const itemTotal = item.price * item.quantity;
@@ -889,36 +1701,269 @@
                     const cartItem = document.createElement('div');
                     cartItem.className = 'cart-item';
                     cartItem.innerHTML = `
-                        <div style="display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
-                            <div style="width: 60px; height: 60px; background: ${item.image}; border-radius: 8px; margin-right: 15px;"></div>
-                            <div style="flex-grow: 1;">
-                                <div style="font-weight: 600; margin-bottom: 5px;">${item.name}</div>
-                                <div style="color: var(--primary); font-weight: 700;">R$ ${item.price.toFixed(2)} × ${item.quantity}</div>
+                        <div style="display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid #f0f0f0;">
+                            <div style="width: 60px; height: 60px; background: ${item.image}; border-radius: 8px; margin-right: 15px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-venus" style="color: white; font-size: 20px;"></i>
                             </div>
-                            <button class="btn btn-secondary" onclick="removeFromCart(${item.id})">✕</button>
+                            <div style="flex-grow: 1;">
+                                <div style="font-weight: 600; margin-bottom: 5px; font-size: 14px;">${item.name}</div>
+                                <div style="color: var(--primary); font-weight: 700; font-size: 14px;">R$ ${item.price.toFixed(2)} × ${item.quantity}</div>
+                                <div style="display: flex; gap: 10px; margin-top: 8px;">
+                                    <button class="qty-btn" onclick="decreaseQuantity(${item.id})" style="width: 25px; height: 25px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">-</button>
+                                    <span style="font-weight: 600;">${item.quantity}</span>
+                                    <button class="qty-btn" onclick="increaseQuantity(${item.id})" style="width: 25px; height: 25px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">+</button>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary" onclick="removeFromCart(${item.id})" style="padding: 5px 10px; font-size: 12px;">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </div>
                     `;
                     cartItems.appendChild(cartItem);
                 });
+
+                // Show upselling products
+                showUpsellingProducts();
             }
             
             cartTotal.textContent = `Total: R$ ${total.toFixed(2)}`;
         }
 
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            updateCartCount();
-            updateCartModal();
-            saveCart();
+        function increaseQuantity(productId) {
+            const item = cart.find(item => item.id === productId);
+            const product = products.find(p => p.id === productId);
+            
+            if (item && product && item.quantity < product.stock) {
+                item.quantity += 1;
+                updateCartModal();
+                updateCartCount();
+                saveCart();
+            } else {
+                showToast('Quantidade máxima em estoque', 'warning');
+            }
         }
 
-        function checkout() {
+        function decreaseQuantity(productId) {
+            const item = cart.find(item => item.id === productId);
+            if (item && item.quantity > 1) {
+                item.quantity -= 1;
+                updateCartModal();
+                updateCartCount();
+                saveCart();
+            }
+        }
+
+        function showUpsellingProducts() {
+            const upsellingSection = document.getElementById('upselling-section');
+            const upsellingProducts = document.getElementById('upselling-products');
+            
             if (cart.length === 0) {
-                alert('Adicione produtos ao carrinho primeiro');
+                upsellingSection.style.display = 'none';
                 return;
             }
 
+            // Get random products that are not in cart
+            const cartProductIds = cart.map(item => item.id);
+            const availableProducts = products.filter(p => !cartProductIds.includes(p.id));
+            
+            if (availableProducts.length === 0) {
+                upsellingSection.style.display = 'none';
+                return;
+            }
+
+            // Select 2 random products
+            const randomProducts = [];
+            for (let i = 0; i < Math.min(2, availableProducts.length); i++) {
+                const randomIndex = Math.floor(Math.random() * availableProducts.length);
+                randomProducts.push(availableProducts[randomIndex]);
+            }
+
+            upsellingProducts.innerHTML = randomProducts.map(product => `
+                <div style="display: flex; align-items: center; padding: 10px; background: white; border-radius: 8px; margin-bottom: 10px; border: 1px solid #eee;">
+                    <div style="width: 40px; height: 40px; background: ${product.image}; border-radius: 6px; margin-right: 10px;"></div>
+                    <div style="flex-grow: 1;">
+                        <div style="font-size: 12px; font-weight: 600;">${product.name}</div>
+                        <div style="font-size: 11px; color: var(--primary); font-weight: 700;">R$ ${product.price.toFixed(2)}</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="addToCart(${product.id})" style="padding: 5px 10px; font-size: 11px;">
+                        Add
+                    </button>
+                </div>
+            `).join('');
+
+            upsellingSection.style.display = 'block';
+        }
+
+        // Checkout System
+        function proceedToCheckout() {
+            if (!currentUser) {
+                showToast('Faça login para finalizar a compra', 'warning');
+                openAccountModal();
+                return;
+            }
+
+            if (cart.length === 0) {
+                showToast('Adicione produtos ao carrinho primeiro', 'warning');
+                return;
+            }
+
+            // Validate stock
+            for (const item of cart) {
+                const product = products.find(p => p.id === item.id);
+                if (!product || product.stock < item.quantity) {
+                    showToast(`Produto "${item.name}" sem estoque suficiente`, 'error');
+                    return;
+                }
+            }
+
+            closeCartModal();
+            openCheckoutModal();
+        }
+
+        function openCheckoutModal() {
+            const checkoutContent = document.getElementById('checkout-content');
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            checkoutContent.innerHTML = `
+                <div style="margin-bottom: 25px;">
+                    <h4 style="margin-bottom: 15px;">📦 Resumo do Pedido</h4>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                        ${cart.map(item => `
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+                                <div>
+                                    <div style="font-weight: 600; font-size: 14px;">${item.name}</div>
+                                    <div style="font-size: 12px; color: #666;">Quantidade: ${item.quantity}</div>
+                                </div>
+                                <div style="font-weight: 700; color: var(--primary);">R$ ${(item.price * item.quantity).toFixed(2)}</div>
+                            </div>
+                        `).join('')}
+                        <div style="border-top: 2px solid #ddd; margin-top: 10px; padding-top: 10px;">
+                            <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 16px;">
+                                <span>Total:</span>
+                                <span>R$ ${total.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <h4 style="margin-bottom: 15px;">📍 Endereço de Entrega</h4>
+                    <div style="background: #f0f8ff; padding: 15px; border-radius: 8px;">
+                        <p id="checkout-address" style="margin: 0; font-weight: 600;">${currentUser.address ? formatAddress(currentUser.address) : 'Endereço não definido'}</p>
+                        <button class="btn btn-secondary" onclick="changeDeliveryAddress()" style="margin-top: 10px; width: 100%;">
+                            <i class="fas fa-edit"></i> Alterar Endereço
+                        </button>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <h4 style="margin-bottom: 15px;">💳 Forma de Pagamento</h4>
+                    <div class="payment-methods">
+                        <div class="payment-method" onclick="selectPaymentMethod('pix')" style="padding: 15px; border: 2px solid #eee; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                            <h5 style="margin: 0 0 5px 0;">🔄 PIX</h5>
+                            <p style="margin: 0; font-size: 13px; color: #666;">Pagamento instantâneo - 5% de desconto</p>
+                        </div>
+                        <div class="payment-method" onclick="selectPaymentMethod('credit')" style="padding: 15px; border: 2px solid #eee; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                            <h5 style="margin: 0 0 5px 0;">💳 Cartão de Crédito</h5>
+                            <p style="margin: 0; font-size: 13px; color: #666;">Até 12x sem juros</p>
+                        </div>
+                        <div class="payment-method" onclick="selectPaymentMethod('debit')" style="padding: 15px; border: 2px solid #eee; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                            <h5 style="margin: 0 0 5px 0;">🏦 Cartão de Débito</h5>
+                            <p style="margin: 0; font-size: 13px; color: #666;">Pagamento à vista</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="payment-details" style="display: none;">
+                    <!-- Payment details will be loaded here -->
+                </div>
+
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107; margin-bottom: 20px;">
+                    <p style="margin: 0; font-size: 13px; color: #856404;">
+                        <strong>⚠️ Confirmação de Idade:</strong> Você declara ter 18 anos ou mais e que está de acordo com nossos 
+                        <a href="#" onclick="showInfo('terms')" style="color: #856404; text-decoration: underline;">Termos de Uso</a>.
+                    </p>
+                </div>
+
+                <button class="btn btn-success" onclick="confirmOrder()" style="width: 100%; padding: 15px; font-size: 16px;">
+                    <i class="fas fa-lock"></i> Confirmar Pedido
+                </button>
+            `;
+
+            openModal(checkoutModal, checkoutOverlay);
+        }
+
+        function formatAddress(address) {
+            return `${address.logradouro}, ${address.numero}${address.complemento ? ' - ' + address.complemento : ''} - ${address.bairro}, ${address.cidade} - ${address.estado}, CEP: ${address.cep}`;
+        }
+
+        function selectPaymentMethod(method) {
+            // Remove selection from all payment methods
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.style.borderColor = '#eee';
+                el.style.background = 'white';
+            });
+
+            // Add selection to current method
+            event.currentTarget.style.borderColor = 'var(--primary)';
+            event.currentTarget.style.background = '#fff5f7';
+
+            const paymentDetails = document.getElementById('payment-details');
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            let discount = 0;
+
+            if (method === 'pix') {
+                discount = total * 0.05; // 5% discount for PIX
+            }
+
+            const finalTotal = total - discount;
+
+            paymentDetails.innerHTML = `
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <h5 style="margin-bottom: 10px;">Resumo Final</h5>
+                    <div style="display: flex; justify-content: between; margin-bottom: 5px;">
+                        <span>Subtotal:</span>
+                        <span>R$ ${total.toFixed(2)}</span>
+                    </div>
+                    ${discount > 0 ? `
+                    <div style="display: flex; justify-content: between; margin-bottom: 5px; color: var(--success);">
+                        <span>Desconto PIX:</span>
+                        <span>- R$ ${discount.toFixed(2)}</span>
+                    </div>
+                    ` : ''}
+                    <div style="display: flex; justify-content: between; font-weight: 700; border-top: 1px solid #ddd; padding-top: 10px; margin-top: 10px;">
+                        <span>Total:</span>
+                        <span>R$ ${finalTotal.toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+
+            paymentDetails.style.display = 'block';
+        }
+
+        function confirmOrder() {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
             // Process order
+            const order = {
+                id: 'VIB' + Date.now(),
+                date: new Date().toISOString(),
+                customer: currentUser.email,
+                items: [...cart],
+                total: total,
+                status: 'confirmed',
+                shippingAddress: currentUser.address,
+                tracking: {
+                    code: 'BR' + Date.now() + 'VIB',
+                    status: 'processing',
+                    steps: [
+                        { status: 'confirmed', date: new Date().toISOString(), description: 'Pedido confirmado' },
+                        { status: 'preparing', date: new Date().toISOString(), description: 'Preparando para envio' }
+                    ]
+                }
+            };
+
+            // Update stock
             cart.forEach(cartItem => {
                 const product = products.find(p => p.id === cartItem.id);
                 if (product) {
@@ -927,58 +1972,299 @@
             });
 
             // Save order
-            const order = {
-                id: Date.now(),
-                date: new Date().toISOString(),
-                items: [...cart],
-                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
-                customer: currentUser.email
-            };
-
-            const orders = JSON.parse(localStorage.getItem('orders')) || [];
             orders.push(order);
             localStorage.setItem('orders', JSON.stringify(orders));
+
+            // Add notifications
+            addNotification('Pedido Confirmado', `Seu pedido ${order.id} foi confirmado com sucesso!`, 'success');
+            addNotification('Pagamento Aprovado', `Pagamento do pedido ${order.id} aprovado.`, 'info');
+
+            // Send email notification (simulated)
+            sendOrderConfirmationEmail(order);
 
             // Clear cart
             cart = [];
             saveCart();
             updateCartCount();
-            closeCartModal();
 
             // Save products with updated stock
             saveProducts();
 
-            alert(`🎉 Compra realizada com sucesso! Pedido #${order.id}`);
-            loadProducts();
+            closeCheckoutModal();
+            
+            showToast(`🎉 Pedido ${order.id} confirmado com sucesso! Enviamos os detalhes para seu email.`, 'success');
+
+            // Show order confirmation
+            setTimeout(() => {
+                showOrderConfirmation(order);
+            }, 1000);
+        }
+
+        function sendOrderConfirmationEmail(order) {
+            // Simulated email sending
+            console.log('Email enviado para:', currentUser.email);
+            console.log('Assunto: Confirmação do Pedido', order.id);
+            console.log('Conteúdo:', order);
+        }
+
+        function showOrderConfirmation(order) {
+            const checkoutContent = document.getElementById('checkout-content');
+            checkoutContent.innerHTML = `
+                <div style="text-align: center; padding: 30px 20px;">
+                    <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
+                    <h3 style="color: var(--success); margin-bottom: 15px;">Pedido Confirmado!</h3>
+                    <p style="color: #666; margin-bottom: 10px;"><strong>Número do Pedido:</strong> ${order.id}</p>
+                    <p style="color: #666; margin-bottom: 20px;"><strong>Total:</strong> R$ ${order.total.toFixed(2)}</p>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                        <h4 style="margin-bottom: 15px;">📦 Status do Pedido</h4>
+                        <div style="text-align: left;">
+                            ${order.tracking.steps.map(step => `
+                                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                    <div style="width: 12px; height: 12px; background: var(--success); border-radius: 50%; margin-right: 10px;"></div>
+                                    <div>
+                                        <div style="font-weight: 600;">${step.description}</div>
+                                        <div style="font-size: 12px; color: #666;">${new Date(step.date).toLocaleString('pt-BR')}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <p style="color: #666; margin-bottom: 25px;">
+                        Enviamos os detalhes do seu pedido para <strong>${currentUser.email}</strong>. 
+                        Acompanhe o status pela sua conta.
+                    </p>
+
+                    <button class="btn btn-primary" onclick="closeCheckoutModal()" style="margin-bottom: 10px; width: 100%;">
+                        <i class="fas fa-home"></i> Continuar Comprando
+                    </button>
+                    <button class="btn btn-secondary" onclick="viewOrderHistory()" style="width: 100%;">
+                        <i class="fas fa-history"></i> Ver Meus Pedidos
+                    </button>
+                </div>
+            `;
+        }
+
+        // User Management
+        function showLoginForm() {
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('user-profile').style.display = 'none';
+        }
+
+        function showRegisterForm() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('register-form').style.display = 'block';
+            document.getElementById('user-profile').style.display = 'none';
+        }
+
+        function showUserProfile() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('user-profile').style.display = 'block';
+            
+            document.getElementById('user-name').textContent = currentUser.name;
+            document.getElementById('user-email').textContent = currentUser.email;
         }
 
         function login() {
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             
-            if (email && password) {
-                currentUser = { email: email, loginTime: new Date().toISOString() };
+            if (!email || !password) {
+                showToast('Por favor, preencha email e senha.', 'error');
+                return;
+            }
+
+            // Check admin users first
+            const adminUser = adminUsers.find(user => user.email === email && user.password === password);
+            if (adminUser) {
+                currentUser = {
+                    email: adminUser.email,
+                    name: adminUser.name,
+                    role: 'admin',
+                    loginTime: new Date().toISOString()
+                };
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                
-                if (isAdmin(email)) {
-                    showAdminPanel();
-                }
-                
+                showAdminPanel();
                 closeAccountModal();
-                alert('Login realizado com sucesso!');
+                showToast('Acesso administrativo concedido!', 'success');
+                return;
+            }
+
+            // Check regular users
+            const user = users.find(user => user.email === email && user.password === password);
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                showUserProfile();
+                closeAccountModal();
+                showToast('Login realizado com sucesso!', 'success');
+                
+                // Add welcome notification
+                addNotification('Bem-vindo de volta!', 'É bom ter você aqui novamente.', 'info');
             } else {
-                alert('Por favor, preencha email e senha.');
+                showToast('Email ou senha incorretos.', 'error');
             }
         }
 
-        function isAdmin(email) {
-            return adminUsers.some(user => user.email === email);
+        function register() {
+            const name = document.getElementById('register-name').value;
+            const cpf = document.getElementById('register-cpf').value;
+            const birthdate = document.getElementById('register-birthdate').value;
+            const phone = document.getElementById('register-phone').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm').value;
+            const cep = document.getElementById('register-cep').value;
+            const address = document.getElementById('register-address').value;
+            const number = document.getElementById('register-number').value;
+            const neighborhood = document.getElementById('register-neighborhood').value;
+            const city = document.getElementById('register-city').value;
+            const state = document.getElementById('register-state').value;
+            const terms = document.getElementById('register-terms').checked;
+
+            // Validation
+            if (!name || !cpf || !birthdate || !phone || !email || !password || !cep || !address || !number || !neighborhood || !city || !state) {
+                showToast('Por favor, preencha todos os campos obrigatórios.', 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showToast('As senhas não coincidem.', 'error');
+                return;
+            }
+
+            if (!terms) {
+                showToast('Você deve aceitar os Termos de Uso e Política de Privacidade.', 'error');
+                return;
+            }
+
+            // Age validation (18+ years)
+            const birthDate = new Date(birthdate);
+            const today = new Date();
+            const age = today.getFullYear() - birthDate.getFullYear();
+            if (age < 18) {
+                showToast('Você deve ter 18 anos ou mais para se cadastrar.', 'error');
+                return;
+            }
+
+            // Check if user already exists
+            if (users.find(user => user.email === email)) {
+                showToast('Este email já está cadastrado.', 'error');
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                id: 'USER' + Date.now(),
+                email: email,
+                password: password,
+                name: name,
+                cpf: cpf,
+                birthdate: birthdate,
+                phone: phone,
+                address: {
+                    cep: cep,
+                    logradouro: address,
+                    numero: number,
+                    complemento: document.getElementById('register-complement').value,
+                    bairro: neighborhood,
+                    cidade: city,
+                    estado: state
+                },
+                createdAt: new Date().toISOString(),
+                orders: []
+            };
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            currentUser = newUser;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+            showUserProfile();
+            showToast('Cadastro realizado com sucesso!', 'success');
+
+            // Add welcome notification
+            addNotification('Bem-vindo à Vibrações Íntimas!', 'Sua conta foi criada com sucesso.', 'success');
         }
 
-        function showAdminPanel() {
-            adminPanel.style.display = 'block';
+        function logout() {
+            currentUser = null;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            showLoginForm();
+            hideAdminPanel();
+            showToast('Até logo!', 'warning');
         }
 
+        // Address Management
+        function buscarEnderecoPorCEP() {
+            const cep = document.getElementById('register-cep').value.replace(/\D/g, '');
+            
+            if (cep.length !== 8) {
+                showToast('CEP inválido. Digite 8 números.', 'error');
+                return;
+            }
+
+            // Show loading
+            const button = event.target;
+            const originalText = button.textContent;
+            button.innerHTML = '<div class="loading"></div>';
+            button.disabled = true;
+
+            // Simulate API call (in real implementation, use ViaCEP API)
+            setTimeout(() => {
+                // Mock data - in production, fetch from ViaCEP API
+                const mockAddress = {
+                    logradouro: "Rua das Flores",
+                    bairro: "Jardim Paulista",
+                    localidade: "São Paulo",
+                    uf: "SP"
+                };
+
+                document.getElementById('register-address').value = mockAddress.logradouro;
+                document.getElementById('register-neighborhood').value = mockAddress.bairro;
+                document.getElementById('register-city').value = mockAddress.localidade;
+                document.getElementById('register-state').value = mockAddress.uf;
+
+                button.textContent = originalText;
+                button.disabled = false;
+
+                showToast('Endereço encontrado!', 'success');
+            }, 1000);
+        }
+
+        function calcularFrete() {
+            const cep = topCepInput.value.replace(/\D/g, '');
+            
+            if (cep.length !== 8) {
+                showToast('Digite um CEP válido com 8 números.', 'error');
+                return;
+            }
+
+            showToast('Calculando frete...', 'info');
+            
+            // Simulate freight calculation
+            setTimeout(() => {
+                const freteOptions = [
+                    { name: 'PAC', price: 15.90, days: '5-8 dias' },
+                    { name: 'SEDEX', price: 25.90, days: '2-3 dias' }
+                ];
+
+                let message = 'Opções de frete para seu CEP:\n';
+                freteOptions.forEach(option => {
+                    message += `\n${option.name}: R$ ${option.price.toFixed(2)} (${option.days})`;
+                });
+
+                showToast('Frete calculado! Verifique as opções.', 'success');
+                // In a real implementation, you would show this in a modal or tooltip
+                console.log(message);
+            }, 1500);
+        }
+
+        // Admin Functions
         function showAdminAccess() {
             const email = prompt('Email administrativo:');
             const password = prompt('Senha administrativa:');
@@ -986,117 +2272,387 @@
             if (email && password) {
                 const adminUser = adminUsers.find(user => user.email === email && user.password === password);
                 if (adminUser) {
-                    currentUser = { email: email, role: 'admin', loginTime: new Date().toISOString() };
+                    currentUser = {
+                        email: adminUser.email,
+                        name: adminUser.name,
+                        role: 'admin',
+                        loginTime: new Date().toISOString()
+                    };
                     localStorage.setItem('currentUser', JSON.stringify(currentUser));
                     showAdminPanel();
                     closeAccountModal();
-                    alert('Acesso administrativo concedido!');
+                    showToast('Acesso administrativo concedido!', 'success');
                 } else {
-                    alert('Credenciais inválidas.');
+                    showToast('Credenciais inválidas.', 'error');
                 }
             }
+        }
+
+        function checkAdminAccess() {
+            if (currentUser && currentUser.role === 'admin') {
+                showAdminPanel();
+            }
+        }
+
+        function showAdminPanel() {
+            adminPanel.style.display = 'block';
+            isAdminMode = true;
+        }
+
+        function hideAdminPanel() {
+            adminPanel.style.display = 'none';
+            isAdminMode = false;
         }
 
         function showAddProductForm() {
             document.getElementById('add-product-form').style.display = 'block';
             document.getElementById('user-management').style.display = 'none';
             document.getElementById('orders-panel').style.display = 'none';
+            document.getElementById('reports-panel').style.display = 'none';
         }
 
         function addNewProduct() {
             const name = document.getElementById('new-product-name').value;
+            const description = document.getElementById('new-product-description').value;
             const price = parseFloat(document.getElementById('new-product-price').value);
+            const originalPrice = parseFloat(document.getElementById('new-product-original-price').value) || price * 1.4;
             const category = document.getElementById('new-product-category').value;
             const stock = parseInt(document.getElementById('new-product-stock').value);
+            const image = document.getElementById('new-product-image').value;
             
-            if (name && price && stock) {
-                const newProduct = {
-                    id: Date.now(),
-                    name: name,
-                    price: price,
-                    originalPrice: price * 1.4,
-                    category: category,
-                    stock: stock,
-                    image: `linear-gradient(45deg, #${Math.floor(Math.random()*16777215).toString(16)}, #${Math.floor(Math.random()*16777215).toString(16)})`
-                };
-                
-                products.push(newProduct);
-                saveProducts();
-                loadProducts();
-                
-                // Clear form
-                document.getElementById('new-product-name').value = '';
-                document.getElementById('new-product-price').value = '';
-                document.getElementById('new-product-stock').value = '';
-                
-                alert('Produto adicionado com sucesso!');
-            } else {
-                alert('Por favor, preencha todos os campos.');
-            }
-        }
-
-        function filterProducts(category) {
-            loadProducts(category);
-        }
-
-        function searchProducts() {
-            const searchTerm = searchInput.value.toLowerCase();
-            
-            if (searchTerm.length === 0) {
-                loadProducts();
+            if (!name || !price || !stock) {
+                showToast('Por favor, preencha nome, preço e estoque.', 'error');
                 return;
             }
-            
-            const filteredProducts = products.filter(product => 
-                product.name.toLowerCase().includes(searchTerm) ||
-                product.category.toLowerCase().includes(searchTerm)
-            );
-            
-            productsGrid.innerHTML = '';
-            filteredProducts.forEach(product => {
-                const productCard = createProductCard(product);
-                productsGrid.appendChild(productCard);
+
+            // Get selected tags
+            const tags = [];
+            document.querySelectorAll('input[name="product-tags"]:checked').forEach(checkbox => {
+                tags.push(checkbox.value);
             });
+
+            const newProduct = {
+                id: Date.now(),
+                name: name,
+                description: description || 'Descrição do produto...',
+                price: price,
+                originalPrice: originalPrice,
+                category: category,
+                stock: stock,
+                image: image || `linear-gradient(45deg, #${Math.floor(Math.random()*16777215).toString(16)}, #${Math.floor(Math.random()*16777215).toString(16)})`,
+                tags: tags,
+                rating: 0,
+                reviews: 0,
+                createdAt: new Date().toISOString()
+            };
+            
+            products.push(newProduct);
+            saveProducts();
+            loadProducts(currentFilter);
+            
+            // Clear form
+            document.getElementById('new-product-name').value = '';
+            document.getElementById('new-product-description').value = '';
+            document.getElementById('new-product-price').value = '';
+            document.getElementById('new-product-original-price').value = '';
+            document.getElementById('new-product-stock').value = '';
+            document.getElementById('new-product-image').value = '';
+            document.querySelectorAll('input[name="product-tags"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            showToast('Produto adicionado com sucesso!', 'success');
         }
 
-        // Modal functions
+        // Notifications System
+        function addNotification(title, message, type = 'info') {
+            const notification = {
+                id: 'NOT' + Date.now(),
+                title: title,
+                message: message,
+                type: type,
+                date: new Date().toISOString(),
+                read: false
+            };
+            
+            notifications.unshift(notification);
+            localStorage.setItem('notifications', JSON.stringify(notifications));
+            updateNotificationCount();
+        }
+
+        function updateNotificationCount() {
+            const unreadCount = notifications.filter(n => !n.read).length;
+            notificationCount.textContent = unreadCount;
+            notificationCount.style.display = unreadCount > 0 ? 'flex' : 'none';
+        }
+
+        function openNotifications() {
+            if (!currentUser) {
+                showToast('Faça login para ver notificações', 'warning');
+                openAccountModal();
+                return;
+            }
+
+            const notificationsList = document.getElementById('notifications-list');
+            notificationsList.innerHTML = '';
+
+            if (notifications.length === 0) {
+                notificationsList.innerHTML = `
+                    <div style="text-align: center; padding: 40px 20px;">
+                        <i class="fas fa-bell-slash" style="font-size: 48px; color: #ccc; margin-bottom: 15px;"></i>
+                        <p style="color: #777;">Nenhuma notificação</p>
+                    </div>
+                `;
+            } else {
+                notifications.forEach(notification => {
+                    const notificationElement = document.createElement('div');
+                    notificationElement.className = 'notification-item';
+                    notificationElement.style.padding = '15px';
+                    notificationElement.style.borderBottom = '1px solid #f0f0f0';
+                    notificationElement.style.cursor = 'pointer';
+                    notificationElement.style.background = notification.read ? 'white' : '#f8f9fa';
+                    
+                    notificationElement.innerHTML = `
+                        <div style="font-weight: 600; margin-bottom: 5px; color: ${notification.read ? '#666' : '#333'};">${notification.title}</div>
+                        <div style="font-size: 13px; color: #666; margin-bottom: 5px;">${notification.message}</div>
+                        <div style="font-size: 11px; color: #999;">${new Date(notification.date).toLocaleString('pt-BR')}</div>
+                    `;
+                    
+                    notificationElement.addEventListener('click', () => {
+                        notification.read = true;
+                        localStorage.setItem('notifications', JSON.stringify(notifications));
+                        updateNotificationCount();
+                        openNotifications(); // Refresh
+                    });
+                    
+                    notificationsList.appendChild(notificationElement);
+                });
+            }
+
+            openModal(notificationsModal, notificationsOverlay);
+        }
+
+        // Chatbot System
+        function toggleChatbot() {
+            chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function openChatbot() {
+            chatbot.style.display = 'block';
+        }
+
+        function sendChatMessage() {
+            const message = chatbotInput.value.trim();
+            if (!message) return;
+
+            // Add user message
+            addChatMessage('user', message);
+            chatbotInput.value = '';
+
+            // Simulate bot response
+            setTimeout(() => {
+                const response = generateBotResponse(message);
+                addChatMessage('bot', response);
+            }, 1000);
+        }
+
+        function addChatMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `chat-message ${sender}-message`;
+            messageElement.style.marginBottom = '10px';
+            messageElement.style.padding = '10px';
+            messageElement.style.borderRadius = '10px';
+            messageElement.style.background = sender === 'user' ? '#e3f2fd' : '#f5f5f5';
+            messageElement.style.marginLeft = sender === 'user' ? '20%' : '0';
+            messageElement.style.marginRight = sender === 'user' ? '0' : '20%';
+            
+            messageElement.innerHTML = `<strong>${sender === 'user' ? 'Você' : 'Assistente'}:</strong> ${message}`;
+            
+            chatbotMessages.appendChild(messageElement);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function generateBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('frete') || lowerMessage.includes('entrega')) {
+                return 'Oferecemos frete grátis para compras acima de R$ 199. Prazos: PAC 5-8 dias, SEDEX 2-3 dias.';
+            } else if (lowerMessage.includes('pagamento') || lowerMessage.includes('cartão')) {
+                return 'Aceitamos PIX (5% off), cartão de crédito (até 12x sem juros) e débito.';
+            } else if (lowerMessage.includes('troca') || lowerMessage.includes('devolução')) {
+                return 'Trocas em até 30 dias. Produto deve estar na embalagem original. Consulte nossa política completa.';
+            } else if (lowerMessage.includes('idade') || lowerMessage.includes('18')) {
+                return 'É necessário ter 18 anos ou mais para comprar em nossa loja. Validamos idade no cadastro.';
+            } else if (lowerMessage.includes('discreto') || lowerMessage.includes('privacidade')) {
+                return 'Todas as embalagens são neutras e discretas. Sua privacidade é nossa prioridade.';
+            } else if (lowerMessage.includes('contato') || lowerMessage.includes('email')) {
+                return 'Entre em contato: intimomixbr@gmail.com ou WhatsApp (11) 99999-9999. Horário: Seg-Sex 9h-18h.';
+            } else {
+                return 'Como posso ajudar? Posso informar sobre: fretes, pagamentos, trocas, privacidade ou entrar em contato.';
+            }
+        }
+
+        // Info System
+        function showInfo(type) {
+            const infoContent = {
+                contact: {
+                    title: '📞 Contato',
+                    content: `
+                        <h3>Fale Conosco</h3>
+                        <p><strong>Email:</strong> intimomixbr@gmail.com</p>
+                        <p><strong>WhatsApp:</strong> (11) 99999-9999</p>
+                        <p><strong>Horário:</strong> Segunda a Sexta, 9h às 18h</p>
+                        <p><strong>Endereço:</strong> São Paulo - SP</p>
+                    `
+                },
+                delivery: {
+                    title: '🚚 Entregas e Prazos',
+                    content: `
+                        <h3>Política de Entregas</h3>
+                        <p><strong>Frete Grátis:</strong> Compras acima de R$ 199</p>
+                        <p><strong>PAC:</strong> 5-8 dias úteis • R$ 15,90</p>
+                        <p><strong>SEDEX:</strong> 2-3 dias úteis • R$ 25,90</p>
+                        <p><strong>Embalagem:</strong> Discreta e neutra</p>
+                        <p><strong>Rastreio:</strong> Enviado por email após postagem</p>
+                    `
+                },
+                returns: {
+                    title: '🔄 Trocas e Devoluções',
+                    content: `
+                        <h3>Política de Trocas</h3>
+                        <p><strong>Prazo:</strong> 30 dias após recebimento</p>
+                        <p><strong>Condições:</strong></p>
+                        <ul>
+                            <li>Produto na embalagem original</li>
+                            <li>Produto não utilizado</li>
+                            <li>Nota fiscal incluída</li>
+                        </ul>
+                        <p><strong>Processo:</strong> Entre em contato por email</p>
+                    `
+                },
+                faq: {
+                    title: '❓ Perguntas Frequentes',
+                    content: `
+                        <h3>FAQ</h3>
+                        <p><strong>Preciso ter 18 anos?</strong> Sim, é obrigatório.</p>
+                        <p><strong>A embalagem é discreta?</strong> Sim, totalmente neutra.</p>
+                        <p><strong>Quais formas de pagamento?</strong> PIX, cartão crédito/débito.</p>
+                        <p><strong>Como limpar os produtos?</strong> Água e sabão neutro.</p>
+                        <p><strong>Tem garantia?</strong> 3 meses contra defeitos.</p>
+                    `
+                },
+                terms: {
+                    title: '📄 Termos e Condições',
+                    content: `
+                        <h3>Termos de Uso</h3>
+                        <p>• Idade mínima: 18 anos</p>
+                        <p>• Produtos para uso pessoal</p>
+                        <p>• Privacidade garantida</p>
+                        <p>• Venda proibida para menores</p>
+                        <p>• Uso responsável recomendado</p>
+                    `
+                },
+                privacy: {
+                    title: '🔒 Política de Privacidade',
+                    content: `
+                        <h3>Privacidade</h3>
+                        <p>• Dados protegidos por criptografia</p>
+                        <p>• Não compartilhamos informações</p>
+                        <p>• Embalagem 100% discreta</p>
+                        <p>• Conformidade com LGPD</p>
+                    `
+                }
+            };
+
+            const info = infoContent[type];
+            if (info) {
+                alert(`${info.title}\n\n${info.content}`);
+            }
+        }
+
+        // Modal Management
         function openCartModal() {
             if (!currentUser) {
-                alert('Faça login para acessar o carrinho');
+                showToast('Faça login para acessar o carrinho', 'warning');
                 openAccountModal();
                 return;
             }
             updateCartModal();
-            cartModal.classList.add('active');
-            cartOverlay.classList.add('active');
+            openModal(cartModal, cartOverlay);
         }
 
         function closeCartModal() {
-            cartModal.classList.remove('active');
-            cartOverlay.classList.remove('active');
+            closeModal(cartModal, cartOverlay);
         }
 
         function openAccountModal() {
-            accountModal.classList.add('active');
-            accountOverlay.classList.add('active');
+            if (currentUser) {
+                showUserProfile();
+            } else {
+                showLoginForm();
+            }
+            openModal(accountModal, accountOverlay);
         }
 
         function closeAccountModal() {
-            accountModal.classList.remove('active');
-            accountOverlay.classList.remove('active');
+            closeModal(accountModal, accountOverlay);
         }
 
-        function showInfo(type) {
-            const messages = {
-                contact: '📞 Contato: intimomixbr@gmail.com',
-                delivery: '🚚 Entregas: 2-5 dias úteis',
-                returns: '🔄 Trocas: 30 dias',
-                faq: '❓ Dúvidas: Entre em contato'
-            };
-            alert(messages[type] || 'Informação não disponível');
+        function openCheckoutModal() {
+            openModal(checkoutModal, checkoutOverlay);
         }
 
-        // Save functions
+        function closeCheckoutModal() {
+            closeModal(checkoutModal, checkoutOverlay);
+        }
+
+        function openNotificationsModal() {
+            openModal(notificationsModal, notificationsOverlay);
+        }
+
+        function closeNotificationsModal() {
+            closeModal(notificationsModal, notificationsOverlay);
+        }
+
+        function openModal(modal, overlay) {
+            modal.classList.add('active');
+            overlay.classList.add('active');
+        }
+
+        function closeModal(modal, overlay) {
+            modal.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        function closeAllModals() {
+            closeCartModal();
+            closeAccountModal();
+            closeCheckoutModal();
+            closeNotificationsModal();
+        }
+
+        // Toast Notifications
+        function showToast(message, type = 'success') {
+            toastMessage.textContent = message;
+            toast.className = `toast ${type}`;
+            
+            const icon = toast.querySelector('i');
+            icon.className = type === 'success' ? 'fas fa-check-circle' :
+                            type === 'error' ? 'fas fa-exclamation-circle' :
+                            'fas fa-exclamation-triangle';
+            
+            icon.style.color = type === 'success' ? 'var(--success)' :
+                             type === 'error' ? 'var(--error)' :
+                             'var(--warning)';
+            
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // Utility Functions
         function saveProducts() {
             localStorage.setItem('products', JSON.stringify(products));
         }
@@ -1104,6 +2660,23 @@
         function saveCart() {
             localStorage.setItem('cart', JSON.stringify(cart));
         }
+
+        // Additional placeholder functions for future implementation
+        function showUserManagement() { showToast('Gestão de usuários em desenvolvimento', 'info'); }
+        function showOrdersPanel() { showToast('Painel de pedidos em desenvolvimento', 'info'); }
+        function showReports() { showToast('Relatórios em desenvolvimento', 'info'); }
+        function showOrderHistory() { showToast('Histórico de pedidos em desenvolvimento', 'info'); }
+        function showAddresses() { showToast('Gestão de endereços em desenvolvimento', 'info'); }
+        function showFavorites() { showToast('Favoritos em desenvolvimento', 'info'); }
+        function showSettings() { showToast('Configurações em desenvolvimento', 'info'); }
+        function viewOrderHistory() { showToast('Histórico em desenvolvimento', 'info'); }
+        function changeDeliveryAddress() { showToast('Alteração de endereço em desenvolvimento', 'info'); }
+        function toggleWishlist() { showToast('Funcionalidade em desenvolvimento', 'info'); }
+
+        // Initialize any additional components
+        window.addEventListener('load', function() {
+            // Any additional initialization code
+        });
     </script>
 </body>
 </html>
