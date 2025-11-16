@@ -991,11 +991,11 @@
                 <div class="footer-section">
                     <h3>Categorias</h3>
                     <ul>
-                        <li><a href="#" onclick="filterProducts('vibradores')">Vibradores</a></li>
-                        <li><a href="#" onclick="filterProducts('sugadores')">Sugadores</a></li>
-                        <li><a href="#" onclick="filterProducts('kits')">Kits</a></li>
-                        <li><a href="#" onclick="filterProducts('lubrificantes')">Lubrificantes</a></li>
-                        <li><a href="#" onclick="filterProducts('acessorios')">Acessórios</a></li>
+                        <li><a href="#" onclick="filterProducts('vibradores'); return false;">Vibradores</a></li>
+                        <li><a href="#" onclick="filterProducts('sugadores'); return false;">Sugadores</a></li>
+                        <li><a href="#" onclick="filterProducts('kits'); return false;">Kits</a></li>
+                        <li><a href="#" onclick="filterProducts('lubrificantes'); return false;">Lubrificantes</a></li>
+                        <li><a href="#" onclick="filterProducts('acessorios'); return false;">Acessórios</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -1312,75 +1312,103 @@
         ];
 
         // Initialize default products if empty
-        if (products.length === 0) {
-            products = [
-                {
-                    id: 1,
-                    name: "Vibrador Rabbit Dupla Função",
-                    description: "Vibrador rabbit com estimulação dupla para clitóris e ponto G. Design ergonômico e silencioso.",
-                    price: 174.93,
-                    originalPrice: 249.90,
-                    category: "vibradores",
-                    stock: 15,
-                    image: "linear-gradient(45deg, #e91e63, #9c27b0)",
-                    tags: ["frete-gratis", "mais-vendido", "oferta"],
-                    rating: 4.8,
-                    reviews: 127
-                },
-                {
-                    id: 2,
-                    name: "Sugador de Clítoris Premium",
-                    description: "Sugador de clítoris com tecnologia air pressure. 10 níveis de intensidade e design discreto.",
-                    price: 218.93,
-                    originalPrice: 299.90,
-                    category: "sugadores",
-                    stock: 12,
-                    image: "linear-gradient(45deg, #ff4081, #ad1457)",
-                    tags: ["frete-gratis", "novo"],
-                    rating: 4.9,
-                    reviews: 89
-                },
-                {
-                    id: 3,
-                    name: "Kit Iniciante Prazer",
-                    description: "Kit completo para iniciantes com 3 produtos: vibrador, lubrificante e gel massageador.",
-                    price: 299.90,
-                    originalPrice: 399.90,
-                    category: "kits",
-                    stock: 8,
-                    image: "linear-gradient(45deg, #9c27b0, #6a1b9a)",
-                    tags: ["frete-gratis", "kit"],
-                    rating: 4.7,
-                    reviews: 64
-                },
-                {
-                    id: 4,
-                    name: "Lubrificante Íntimo 100ml",
-                    description: "Lubrificante à base de água, hipoalergênico. Ideal para maior conforto e prazer.",
-                    price: 24.90,
-                    originalPrice: 34.90,
-                    category: "lubrificantes",
-                    stock: 50,
-                    image: "linear-gradient(45deg, #2196f3, #0d47a1)",
-                    tags: ["oferta"],
-                    rating: 4.5,
-                    reviews: 203
-                },
-                {
-                    id: 5,
-                    name: "Vela Aromática Sensual",
-                    description: "Vela aromática com essência de baunilha e ylang-ylang. Cria ambiente íntimo e relaxante.",
-                    price: 34.90,
-                    originalPrice: 49.90,
-                    category: "acessorios",
-                    stock: 25,
-                    image: "linear-gradient(45deg, #ff9800, #f57c00)",
-                    tags: ["novo"],
-                    rating: 4.6,
-                    reviews: 45
-                }
-            ];
-            saveProducts();
+        function initializeDefaultProducts() {
+            if (products.length === 0) {
+                products = [
+                    {
+                        id: 1,
+                        name: "Vibrador Rabbit Dupla Função",
+                        description: "Vibrador rabbit com estimulação dupla para clitóris e ponto G. Design ergonômico e silencioso.",
+                        price: 174.93,
+                        originalPrice: 249.90,
+                        category: "vibradores",
+                        stock: 15,
+                        image: "linear-gradient(45deg, #e91e63, #9c27b0)",
+                        tags: ["frete-gratis", "mais-vendido", "oferta"],
+                        rating: 4.8,
+                        reviews: 127
+                    },
+                    {
+                        id: 2,
+                        name: "Sugador de Clítoris Premium",
+                        description: "Sugador de clítoris com tecnologia air pressure. 10 níveis de intensidade e design discreto.",
+                        price: 218.93,
+                        originalPrice: 299.90,
+                        category: "sugadores",
+                        stock: 12,
+                        image: "linear-gradient(45deg, #ff4081, #ad1457)",
+                        tags: ["frete-gratis", "novo"],
+                        rating: 4.9,
+                        reviews: 89
+                    },
+                    {
+                        id: 3,
+                        name: "Kit Iniciante Prazer",
+                        description: "Kit completo para iniciantes com 3 produtos: vibrador, lubrificante e gel massageador.",
+                        price: 299.90,
+                        originalPrice: 399.90,
+                        category: "kits",
+                        stock: 8,
+                        image: "linear-gradient(45deg, #9c27b0, #6a1b9a)",
+                        tags: ["frete-gratis", "kit"],
+                        rating: 4.7,
+                        reviews: 64
+                    },
+                    {
+                        id: 4,
+                        name: "Lubrificante Íntimo 100ml",
+                        description: "Lubrificante à base de água, hipoalergênico. Ideal para maior conforto e prazer.",
+                        price: 24.90,
+                        originalPrice: 34.90,
+                        category: "lubrificantes",
+                        stock: 50,
+                        image: "linear-gradient(45deg, #2196f3, #0d47a1)",
+                        tags: ["oferta"],
+                        rating: 4.5,
+                        reviews: 203
+                    },
+                    {
+                        id: 5,
+                        name: "Vela Aromática Sensual",
+                        description: "Vela aromática com essência de baunilha e ylang-ylang. Cria ambiente íntimo e relaxante.",
+                        price: 34.90,
+                        originalPrice: 49.90,
+                        category: "acessorios",
+                        stock: 25,
+                        image: "linear-gradient(45deg, #ff9800, #f57c00)",
+                        tags: ["novo"],
+                        rating: 4.6,
+                        reviews: 45
+                    },
+                    {
+                        id: 6,
+                        name: "Capa Protetora para Vibrador",
+                        description: "Capa protetora em silicone para higienização e conservação do vibrador.",
+                        price: 29.90,
+                        originalPrice: 39.90,
+                        category: "acessorios",
+                        stock: 30,
+                        image: "linear-gradient(45deg, #795548, #5d4037)",
+                        tags: ["novo"],
+                        rating: 4.4,
+                        reviews: 28
+                    },
+                    {
+                        id: 7,
+                        name: "Bolsa Térmica para Produtos",
+                        description: "Bolsa térmica discreta para transporte e armazenamento de produtos íntimos.",
+                        price: 49.90,
+                        originalPrice: 69.90,
+                        category: "acessorios",
+                        stock: 18,
+                        image: "linear-gradient(45deg, #607d8b, #455a64)",
+                        tags: ["frete-gratis", "novo"],
+                        rating: 4.6,
+                        reviews: 42
+                    }
+                ];
+                saveProducts();
+            }
         }
 
         // DOM Elements
@@ -1416,6 +1444,7 @@
 
         // Initialize App
         document.addEventListener('DOMContentLoaded', function() {
+            initializeDefaultProducts();
             loadProducts();
             updateCartCount();
             updateNotificationCount();
@@ -1443,6 +1472,16 @@
             // Chatbot functionality
             chatbotInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') sendChatMessage();
+            });
+
+            // FIX: Agregar event listeners para las pestañas del footer
+            document.querySelectorAll('.footer-section a[onclick*="filterProducts"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const filter = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    filterProducts(filter);
+                    closeAllModals();
+                });
             });
 
             // Close modals when clicking overlay
@@ -1494,6 +1533,17 @@
                 `;
                 return;
             }
+            
+            // FIX: Ordenar productos para mejor visualización
+            filteredProducts.sort((a, b) => {
+                const aPriority = a.tags.includes('mais-vendido') ? 3 : 
+                                 a.tags.includes('novo') ? 2 : 
+                                 a.tags.includes('oferta') ? 1 : 0;
+                const bPriority = b.tags.includes('mais-vendido') ? 3 : 
+                                 b.tags.includes('novo') ? 2 : 
+                                 b.tags.includes('oferta') ? 1 : 0;
+                return bPriority - aPriority;
+            });
             
             filteredProducts.forEach(product => {
                 const productCard = createProductCard(product);
@@ -1561,7 +1611,15 @@
                 }
             });
             
+            // FIX: Asegurar que el filtrado funcione correctamente
+            currentFilter = category;
             loadProducts(category);
+            
+            // Scroll to top of products
+            window.scrollTo({
+                top: productsGrid.offsetTop - 100,
+                behavior: 'smooth'
+            });
         }
 
         function searchProducts() {
@@ -1572,12 +1630,16 @@
                 return;
             }
             
-            const filteredProducts = products.filter(product => 
-                product.name.toLowerCase().includes(searchTerm) ||
-                product.description.toLowerCase().includes(searchTerm) ||
-                product.category.toLowerCase().includes(searchTerm) ||
-                product.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-            );
+            const filteredProducts = products.filter(product => {
+                const searchFields = [
+                    product.name.toLowerCase(),
+                    product.description.toLowerCase(),
+                    product.category.toLowerCase(),
+                    ...product.tags.map(tag => tag.toLowerCase())
+                ];
+                
+                return searchFields.some(field => field.includes(searchTerm));
+            });
             
             displaySearchResults(filteredProducts, searchTerm);
         }
@@ -2266,10 +2328,81 @@
 
         // Admin Functions
         function showAdminAccess() {
-            const email = prompt('Email administrativo:');
-            const password = prompt('Senha administrativa:');
+            const adminModal = `
+                <div style="padding: 20px; text-align: center;">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">🔐 Acesso Administrativo</h3>
+                    <div class="form-group">
+                        <label>Email Administrativo</label>
+                        <input type="email" id="admin-email" placeholder="admin@email.com" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" id="admin-password" placeholder="Sua senha" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <button class="btn btn-primary" onclick="verifyAdminCredentials()" style="width: 100%; padding: 12px;">
+                            <i class="fas fa-sign-in-alt"></i> Acessar Painel Admin
+                        </button>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 12px; color: #666;">
+                        <p>Credenciais padrão:</p>
+                        <p>Email: intimomixbr@gmail.com</p>
+                        <p>Senha: Admin123!</p>
+                    </div>
+                </div>
+            `;
             
-            if (email && password) {
+            // Crear modal temporal para admin access
+            const tempModal = document.createElement('div');
+            tempModal.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: white;
+                padding: 0;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 1004;
+                width: 90%;
+                max-width: 400px;
+                max-height: 90vh;
+                overflow-y: auto;
+            `;
+            
+            const tempOverlay = document.createElement('div');
+            tempOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 1003;
+            `;
+            
+            tempModal.innerHTML = `
+                <div class="modal-header">
+                    <h3><i class="fas fa-lock"></i> Acesso Restrito</h3>
+                    <button class="btn btn-secondary" onclick="closeTempModal()" style="background: transparent; border: none; font-size: 18px;">✕</button>
+                </div>
+                ${adminModal}
+            `;
+            
+            tempOverlay.onclick = closeTempModal;
+            
+            document.body.appendChild(tempOverlay);
+            document.body.appendChild(tempModal);
+            
+            window.closeTempModal = function() {
+                document.body.removeChild(tempOverlay);
+                document.body.removeChild(tempModal);
+            };
+            
+            window.verifyAdminCredentials = function() {
+                const email = document.getElementById('admin-email').value;
+                const password = document.getElementById('admin-password').value;
+                
                 const adminUser = adminUsers.find(user => user.email === email && user.password === password);
                 if (adminUser) {
                     currentUser = {
@@ -2279,13 +2412,19 @@
                         loginTime: new Date().toISOString()
                     };
                     localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    closeTempModal();
                     showAdminPanel();
-                    closeAccountModal();
                     showToast('Acesso administrativo concedido!', 'success');
+                    
+                    // Mostrar panel admin automáticamente
+                    setTimeout(() => {
+                        adminPanel.scrollIntoView({ behavior: 'smooth' });
+                    }, 500);
+                    
                 } else {
-                    showToast('Credenciais inválidas.', 'error');
+                    showToast('Credenciais administrativas inválidas.', 'error');
                 }
-            }
+            };
         }
 
         function checkAdminAccess() {
@@ -2297,6 +2436,11 @@
         function showAdminPanel() {
             adminPanel.style.display = 'block';
             isAdminMode = true;
+            
+            // Scroll al panel admin
+            setTimeout(() => {
+                adminPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
         }
 
         function hideAdminPanel() {
@@ -2322,6 +2466,13 @@
             
             if (!name || !price || !stock) {
                 showToast('Por favor, preencha nome, preço e estoque.', 'error');
+                return;
+            }
+
+            // FIX: Validar categoría
+            const validCategories = ['vibradores', 'sugadores', 'kits', 'lubrificantes', 'acessorios'];
+            if (!validCategories.includes(category)) {
+                showToast('Categoria inválida.', 'error');
                 return;
             }
 
@@ -2362,6 +2513,11 @@
             });
             
             showToast('Produto adicionado com sucesso!', 'success');
+            
+            // FIX: Si estamos en la categoría del nuevo producto, recargar
+            if (currentFilter === category || currentFilter === 'all') {
+                loadProducts(currentFilter);
+            }
         }
 
         // Notifications System
