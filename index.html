@@ -1,565 +1,333 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibrações Íntimas - Prazer e Bem-Estar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <title>Vibrações Íntimas - Loja de Bem-Estar Sexual</title>
     <style>
-        :root {
-            --primary: #e91e63;
-            --primary-dark: #c2185b;
-            --secondary: #9c27b0;
-            --accent: #ff4081;
-            --light: #f8bbd9;
-            --dark: #880e4f;
-            --text: #333333;
-            --text-light: #777777;
-            --background: #fff5f9;
-            --white: #ffffff;
-            --gray: #f5f5f5;
-            --discount: #4caf50;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --error: #f44336;
-            --ml-blue: #2968c8;
-            --ml-yellow: #ffe600;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #8B008B;
+            --secondary-color: #4B0082;
+            --accent-color: #FF69B4;
+            --text-color: #333;
+            --light-bg: #f8f8f8;
+            --white: #ffffff;
+            --dark-bg: #2c2c2c;
         }
 
         body {
-            background-color: var(--background);
-            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
         }
 
-        .container {
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
         }
 
-        /* Top Banner com CEP */
-        .top-banner {
-            background: linear-gradient(45deg, var(--ml-blue), #1e4fa0);
-            color: var(--white);
-            padding: 8px 0;
-            font-size: 13px;
-        }
-
-        .top-banner-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .banner-offer {
-            background: var(--ml-yellow);
-            color: #333;
-            padding: 3px 8px;
-            border-radius: 4px;
+        .logo {
+            font-size: 1.8rem;
             font-weight: bold;
-            font-size: 12px;
         }
 
-        .cep-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 12px;
-        }
-
-        .cep-input {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            width: 120px;
-            font-size: 12px;
-        }
-
-        .cep-btn {
-            background: transparent;
+        .user-actions a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 1rem;
+            padding: 0.5rem 1rem;
             border: 1px solid var(--white);
-            color: var(--white);
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
 
-        .cep-btn:hover {
-            background: rgba(255,255,255,0.1);
+        .user-actions a:hover {
+            background: var(--white);
+            color: var(--primary-color);
         }
 
-        /* Header estilo Mercado Livre */
-        .main-header {
-            background: var(--ml-yellow);
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .header-content {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-        
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .logo-main {
-            font-size: 22px;
-            font-weight: 800;
-            background: linear-gradient(45deg, #e91e63, #9c27b0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-        }
-        
-        .logo-subtitle {
-            font-size: 11px;
-            color: #ff4081;
-            font-weight: 500;
-        }
-
-        .search-container {
-            flex-grow: 1;
-            position: relative;
-            max-width: 600px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--ml-blue);
-            border-radius: 4px;
-            font-size: 14px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .search-button {
-            position: absolute;
-            right: 2px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--ml-blue);
-            color: white;
-            border: none;
-            border-radius: 0 4px 4px 0;
-            width: 50px;
-            height: calc(100% - 4px);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 25px;
-        }
-
-        .nav-icon {
-            text-align: center;
-            font-size: 12px;
-            color: var(--text);
-            cursor: pointer;
-            text-decoration: none;
-            position: relative;
-            padding: 5px;
-        }
-
-        .nav-icon:hover {
-            color: var(--primary);
-        }
-
-        .nav-icon i {
-            font-size: 20px;
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .cart-count, .notification-badge {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 11px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .notification-badge {
-            background: var(--error);
-        }
-
-        /* Banner Promocional */
-        .promo-banner {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 18px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        /* Banner Superior Funcional */
-        .top-banners {
-            display: flex;
-            gap: 10px;
-            margin: 10px 0;
-            overflow-x: auto;
-            padding: 10px 0;
-        }
-
-        .banner-item {
-            flex: 0 0 auto;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-
-        .banner-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        /* Filtros */
-        .filters-container {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
-            background: var(--white);
-            margin: 10px 0;
-            border-radius: 8px;
-            flex-wrap: wrap;
-            gap: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        .filter-buttons {
+        .nav-links {
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            list-style: none;
+            gap: 2rem;
         }
 
-        .filter-btn {
-            padding: 10px 20px;
-            border: 2px solid #ddd;
-            border-radius: 25px;
-            background: var(--white);
-            color: var(--text);
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .search-cart {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-box {
+            display: flex;
+            background: var(--light-bg);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+        }
+
+        .search-box input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 200px;
+        }
+
+        .cart-icon {
+            position: relative;
             cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
         }
 
-        .filter-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent-color);
+            color: var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .filter-btn:hover {
-            border-color: var(--primary);
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
         }
 
-        /* Products Grid */
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 20px 0 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
         .product-card {
             background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            position: relative;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .product-badges {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .discount-badge {
-            background: var(--discount);
-            color: var(--white);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .free-shipping-badge {
-            background: var(--primary);
-            color: var(--white);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .best-seller-badge {
-            background: var(--warning);
-            color: var(--white);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .product-image {
-            height: 250px;
-            background: var(--gray);
+            width: 100%;
+            height: 200px;
+            background: var(--light-bg);
+            border-radius: 8px;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
+            font-size: 3rem;
         }
 
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
         }
 
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-
-        .product-info {
-            padding: 20px;
-        }
-
-        .brand {
-            color: var(--text-light);
-            font-size: 12px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .product-name {
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text);
-            font-size: 16px;
-            height: 48px;
-            overflow: hidden;
-            line-height: 1.4;
-        }
-
-        .price-container {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .price {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .original-price {
-            color: var(--text-light);
-            text-decoration: line-through;
-            font-size: 14px;
-        }
-
-        .installments {
-            color: var(--success);
-            font-size: 13px;
-            font-weight: 600;
-            width: 100%;
-        }
-
-        .stock-info {
-            font-size: 12px;
-            color: var(--text-light);
-            margin-top: 8px;
-        }
-
-        .stock-low {
-            color: var(--warning);
-        }
-
-        .stock-out {
-            color: var(--error);
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
         }
 
         .product-actions {
             display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
+            gap: 0.5rem;
         }
 
-        .btn-cart {
-            background: var(--primary);
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
             color: var(--white);
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            flex-grow: 1;
-            margin-right: 10px;
-            font-size: 14px;
         }
 
-        .btn-cart:hover {
-            background: var(--primary-dark);
+        .btn-secondary {
+            background: var(--light-bg);
+            color: var(--text-color);
         }
 
-        .btn-cart:disabled {
-            background: #ccc;
-            cursor: not-allowed;
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
 
-        .btn-wishlist {
-            background: var(--gray);
-            color: var(--text);
-            border: none;
-            width: 50px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
+        /* Categories */
+        .categories {
             display: flex;
-            align-items: center;
             justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
 
-        .btn-wishlist:hover {
-            background: #e0e0e0;
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .btn-wishlist.active {
-            background: #ffe6e6;
-            color: #e91e63;
+        .category-btn.active,
+        .category-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
         }
 
         /* Footer */
-        .footer {
-            background: var(--white);
-            padding: 50px 0 20px;
-            margin-top: 50px;
-            border-top: 1px solid #eee;
+        footer {
+            background: var(--dark-bg);
+            color: var(--white);
+            padding: 3rem 2rem;
         }
 
         .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
+            gap: 2rem;
         }
 
         .footer-section h3 {
-            margin-bottom: 20px;
-            color: var(--primary);
-            font-size: 18px;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
         }
 
-        .footer-section ul {
+        .footer-links {
             list-style: none;
         }
 
-        .footer-section ul li {
-            margin-bottom: 12px;
+        .footer-links li {
+            margin-bottom: 0.5rem;
         }
 
-        .footer-section a {
-            color: var(--text);
+        .footer-links a {
+            color: var(--white);
             text-decoration: none;
-            transition: color 0.3s;
-            cursor: pointer;
-            font-size: 14px;
+            transition: color 0.3s ease;
         }
 
-        .footer-section a:hover {
-            color: var(--primary);
+        .footer-links a:hover {
+            color: var(--accent-color);
         }
 
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-            color: var(--text-light);
-            font-size: 14px;
+        .company-info {
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
 
         /* Modal Styles */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 400px;
-            height: 100vh;
-            background: white;
-            box-shadow: -2px 0 20px rgba(0,0,0,0.2);
-            z-index: 1001;
-            padding: 0;
-            overflow-y: auto;
-        }
-
-        .modal.active {
-            display: block;
-        }
-
-        .modal-overlay {
             display: none;
             position: fixed;
             top: 0;
@@ -568,2330 +336,401 @@
             height: 100%;
             background: rgba(0,0,0,0.5);
             z-index: 1000;
-        }
-
-        .modal-overlay.active {
-            display: block;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            background: #f8f9fa;
+            justify-content: center;
         }
 
         .modal-content {
-            padding: 20px;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            font-size: 14px;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-        }
-
-        .btn-secondary {
-            background: var(--gray);
-            color: var(--text);
-        }
-
-        .btn-secondary:hover {
-            background: #e0e0e0;
-        }
-
-        .btn-success {
-            background: var(--success);
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #45a049;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        /* Admin Panel */
-        .admin-panel {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
-            margin: 30px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .admin-section {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .admin-actions {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        /* Chatbot */
-        .chatbot-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 350px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            z-index: 1002;
-            display: none;
-        }
-
-        .chatbot-header {
-            background: var(--primary);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 12px 12px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chatbot-messages {
-            height: 300px;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
             overflow-y: auto;
-            padding: 20px;
         }
 
-        .chatbot-input {
-            display: flex;
-            padding: 15px;
-            border-top: 1px solid #eee;
-        }
-
-        .chatbot-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .close-modal {
+            float: right;
+            font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 1001;
-        }
-
-        /* Payment Methods */
-        .payment-method {
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .payment-method:hover {
-            border-color: var(--primary);
-            background: #fff5f7;
-        }
-
-        .payment-method.selected {
-            border-color: var(--primary);
-            background: #fff5f7;
-        }
-
-        /* Shipping Methods */
-        .shipping-method {
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .shipping-method:hover {
-            border-color: var(--primary);
-            background: #fff5f7;
-        }
-
-        .shipping-method.selected {
-            border-color: var(--primary);
-            background: #fff5f7;
+            color: var(--text-color);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .top-banner-content {
+            .header-top {
                 flex-direction: column;
-                gap: 10px;
-                text-align: center;
+                gap: 1rem;
             }
 
-            .header-content {
+            .nav-container {
                 flex-direction: column;
-                gap: 15px;
+                gap: 1rem;
             }
 
-            .search-container {
-                max-width: 100%;
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
-            .nav-icons {
-                gap: 15px;
+            .hero h1 {
+                font-size: 2rem;
             }
 
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 15px;
+            .search-box input {
+                width: 150px;
             }
-
-            .filters-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .filter-buttons {
-                width: 100%;
-                overflow-x: auto;
-                padding-bottom: 10px;
-            }
-
-            .modal {
-                width: 100%;
-            }
-
-            .chatbot-container {
-                width: calc(100% - 40px);
-                right: 20px;
-                left: 20px;
-            }
-        }
-
-        /* Loading Spinner */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Notification Toast */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 1003;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .toast.show {
-            opacity: 1;
-        }
-
-        .toast.success {
-            border-left: 4px solid var(--success);
-        }
-
-        .toast.error {
-            border-left: 4px solid var(--error);
-        }
-
-        .toast.warning {
-            border-left: 4px solid var(--warning);
-        }
-
-        /* Verification Badges */
-        .verification-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: #e8f5e8;
-            color: var(--success);
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        /* Order Tracking */
-        .tracking-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .tracking-step {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 10px;
-            border-radius: 8px;
-            background: #f8f9fa;
-        }
-
-        .tracking-step.completed {
-            background: #e8f5e8;
-            border-left: 4px solid var(--success);
-        }
-
-        .tracking-step.active {
-            background: #fff3cd;
-            border-left: 4px solid var(--warning);
-        }
-
-        .step-icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .step-icon.completed {
-            background: var(--success);
-            color: white;
-        }
-
-        .step-icon.active {
-            background: var(--warning);
-            color: white;
-        }
-
-        .step-icon.pending {
-            background: #e0e0e0;
-            color: #666;
         }
     </style>
 </head>
 <body>
-    <!-- Top Banner com CEP -->
-    <div class="top-banner">
-        <div class="container">
-            <div class="top-banner-content">
-                <div class="banner-text">
-                    <span class="banner-offer">BLACK FRIDAY - ATÉ 60% OFF</span>
-                    <span>Frete Grátis acima de R$ 199 • Vale até 01/12/2023</span>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo">VIBRAÇÕES ÍNTIMAS</div>
+            <div class="user-actions">
+                <a href="#" onclick="openModal('loginModal')">Minha Conta</a>
+                <a href="#" onclick="openModal('favoritesModal')">Favoritos</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#" onclick="filterProducts('all')">Todos</a></li>
+                <li><a href="#" onclick="filterProducts('vibradores')">Vibradores</a></li>
+                <li><a href="#" onclick="filterProducts('sugadores')">Sugadores</a></li>
+                <li><a href="#" onclick="filterProducts('kits')">Kits</a></li>
+                <li><a href="#" onclick="filterProducts('lubrificantes')">Lubrificantes</a></li>
+                <li><a href="#" onclick="filterProducts('acessorios')">Acessórios</a></li>
+            </ul>
+            <div class="search-cart">
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar produtos..." onkeyup="searchProducts(this.value)">
                 </div>
-                <div class="cep-container">
-                    <span>📦 Confira o envio para o seu endereço</span>
-                    <input type="text" class="cep-input" placeholder="Seu CEP" maxlength="9" id="top-cep-input">
-                    <button class="cep-btn" onclick="calcularFrete()">OK</button>
+                <div class="cart-icon" onclick="openModal('cartModal')">
+                    🛒 <span class="cart-count">0</span>
                 </div>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- Main Header -->
-    <div class="main-header">
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo-container">
-                    <div class="logo-text">
-                        <div class="logo-main">VIBRAÇÕES ÍNTIMAS</div>
-                        <div class="logo-subtitle">Prazer & Bem-Estar • CNPJ: 63.575.463/0001-00</div>
-                    </div>
-                </a>
-                
-                <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Buscar produtos, marcas e muito mais..." id="search-input">
-                    <button class="search-button" onclick="searchProducts()">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-                
-                <div class="nav-icons">
-                    <div class="nav-icon" id="account-icon" onclick="openAccountModal()">
-                        <i class="fas fa-user"></i>
-                        <div>Minha Conta</div>
-                    </div>
-                    <div class="nav-icon" id="notifications-icon" onclick="openNotifications()">
-                        <i class="fas fa-bell"></i>
-                        <div>Notificações</div>
-                        <span class="notification-badge" id="notification-count">0</span>
-                    </div>
-                    <div class="nav-icon" id="cart-icon" onclick="openCartModal()">
-                        <i class="fas fa-shopping-bag"></i>
-                        <div>Sacola</div>
-                        <span class="cart-count" id="cart-count">0</span>
-                    </div>
-                </div>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>VIBRADORES - ATÉ 30% OFF</h1>
+        <p>SUGADORES - NOVOS MODELOS</p>
+        <button class="cta-button" onclick="filterProducts('vibradores')">VER OFERTAS</button>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <h2 class="section-title">NOSSOS PRODUTOS</h2>
+        
+        <div class="categories">
+            <button class="category-btn active" onclick="filterProducts('all')">Todos</button>
+            <button class="category-btn" onclick="filterProducts('vibradores')">Vibradores</button>
+            <button class="category-btn" onclick="filterProducts('sugadores')">Sugadores</button>
+            <button class="category-btn" onclick="filterProducts('kits')">Kits</button>
+            <button class="category-btn" onclick="filterProducts('lubrificantes')">Lubrificantes</button>
+            <button class="category-btn" onclick="filterProducts('acessorios')">Acessórios</button>
         </div>
-    </div>
 
-    <!-- Banners Superiores Funcionais -->
-    <div class="container">
-        <div class="top-banners">
-            <div class="banner-item" onclick="filterProducts('vibradores')">🎯 VIBRADORES - ATÉ 50% OFF</div>
-            <div class="banner-item" onclick="filterProducts('sugadores')">💝 SUGADORES - NOVOS MODELOS</div>
-            <div class="banner-item" onclick="filterProducts('kits')">🎁 KITS COMPLETOS - FRETE GRÁTIS</div>
-            <div class="banner-item" onclick="filterProducts('lubrificantes')">💧 LUBRIFICANTES - OFERTAS</div>
-            <div class="banner-item" onclick="filterProducts('acessorios')">✨ ACESSÓRIOS - PROMOÇÃO</div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded here by JavaScript -->
         </div>
-    </div>
-
-    <!-- Promo Banner -->
-    <div class="container">
-        <div class="promo-banner">
-            🎉 BEAUTY NOVEMBER - ATÉ 30% OFF + FRETE GRÁTIS 🎉
-        </div>
-    </div>
-
-    <!-- Filters -->
-    <div class="container">
-        <div class="filters-container">
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">Todos</button>
-                <button class="filter-btn" data-filter="vibradores" onclick="filterProducts('vibradores')">Vibradores</button>
-                <button class="filter-btn" data-filter="sugadores" onclick="filterProducts('sugadores')">Sugadores</button>
-                <button class="filter-btn" data-filter="kits" onclick="filterProducts('kits')">Kits</button>
-                <button class="filter-btn" data-filter="lubrificantes" onclick="filterProducts('lubrificantes')">Lubrificantes</button>
-                <button class="filter-btn" data-filter="acessorios" onclick="filterProducts('acessorios')">Acessórios</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Products Grid -->
-    <div class="container">
-        <div class="products-grid" id="products-grid">
-            <!-- Products loaded dynamically -->
-        </div>
-    </div>
-
-    <!-- Admin Panel -->
-    <div class="container">
-        <div class="admin-panel" id="admin-panel" style="display: none;">
-            <div class="admin-section">
-                <h3><i class="fas fa-cog"></i> Painel Administrativo</h3>
-                <div class="admin-actions">
-                    <button class="btn btn-primary" onclick="showAddProductForm()">
-                        <i class="fas fa-plus"></i> Adicionar Produto
-                    </button>
-                    <button class="btn btn-secondary" onclick="showUserManagement()">
-                        <i class="fas fa-users"></i> Gerenciar Usuários
-                    </button>
-                    <button class="btn btn-secondary" onclick="showOrdersPanel()">
-                        <i class="fas fa-shopping-cart"></i> Pedidos
-                    </button>
-                    <button class="btn btn-secondary" onclick="showReports()">
-                        <i class="fas fa-chart-bar"></i> Relatórios
-                    </button>
-                    <button class="btn btn-secondary" onclick="generateNFe()">
-                        <i class="fas fa-file-invoice"></i> Gerar NFe
-                    </button>
-                </div>
-            </div>
-
-            <div class="admin-section" id="add-product-form" style="display: none;">
-                <h4><i class="fas fa-plus-circle"></i> Adicionar Novo Produto</h4>
-                <div class="form-group">
-                    <label>Nome do Produto</label>
-                    <input type="text" id="new-product-name" placeholder="Nome completo do produto">
-                </div>
-                <div class="form-group">
-                    <label>Descrição</label>
-                    <textarea id="new-product-description" placeholder="Descrição detalhada do produto" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Preço (R$)</label>
-                    <input type="number" id="new-product-price" placeholder="0.00" step="0.01" min="0">
-                </div>
-                <div class="form-group">
-                    <label>Preço Original (R$)</label>
-                    <input type="number" id="new-product-original-price" placeholder="0.00" step="0.01" min="0">
-                </div>
-                <div class="form-group">
-                    <label>Categoria</label>
-                    <select id="new-product-category">
-                        <option value="vibradores">Vibradores</option>
-                        <option value="sugadores">Sugadores</option>
-                        <option value="kits">Kits</option>
-                        <option value="lubrificantes">Lubrificantes</option>
-                        <option value="acessorios">Acessórios</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Estoque</label>
-                    <input type="number" id="new-product-stock" placeholder="Quantidade em estoque" min="0">
-                </div>
-                <div class="form-group">
-                    <label>Tags</label>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <label><input type="checkbox" name="product-tags" value="frete-gratis"> Frete Grátis</label>
-                        <label><input type="checkbox" name="product-tags" value="mais-vendido"> Mais Vendido</label>
-                        <label><input type="checkbox" name="product-tags" value="novo"> Novo</label>
-                        <label><input type="checkbox" name="product-tags" value="oferta"> Oferta</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Imagem do Produto (URL)</label>
-                    <input type="url" id="new-product-image" placeholder="https://exemplo.com/imagem.jpg">
-                </div>
-                <button class="btn btn-primary" onclick="addNewProduct()">
-                    <i class="fas fa-save"></i> Adicionar Produto
-                </button>
-            </div>
-
-            <div class="admin-section" id="user-management" style="display: none;">
-                <h4><i class="fas fa-users"></i> Gerenciar Usuários</h4>
-                <div id="users-list">
-                    <!-- Users will be listed here -->
-                </div>
-            </div>
-
-            <div class="admin-section" id="orders-panel" style="display: none;">
-                <h4><i class="fas fa-shopping-cart"></i> Pedidos Recentes</h4>
-                <div id="orders-list">
-                    <!-- Orders will be listed here -->
-                </div>
-            </div>
-
-            <div class="admin-section" id="reports-panel" style="display: none;">
-                <h4><i class="fas fa-chart-bar"></i> Relatórios</h4>
-                <div id="reports-content">
-                    <!-- Reports will be shown here -->
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>VIBRAÇÕES ÍNTIMAS</h3>
-                    <p><strong>MEI:</strong> Jorge Eliecer Morales Ramirez<br>
-                    <strong>CNPJ:</strong> 63.575.463/0001-00<br>
-                    Descubra uma nova experiência de prazer e bem-estar.</p>
-                    <p><strong>📧 Email:</strong> intimomixbr@gmail.com<br>
-                    <strong>📱 WhatsApp:</strong> (11) 99999-9999</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Categorias</h3>
-                    <ul>
-                        <li><a href="#" onclick="filterProducts('vibradores'); return false;">Vibradores</a></li>
-                        <li><a href="#" onclick="filterProducts('sugadores'); return false;">Sugadores</a></li>
-                        <li><a href="#" onclick="filterProducts('kits'); return false;">Kits</a></li>
-                        <li><a href="#" onclick="filterProducts('lubrificantes'); return false;">Lubrificantes</a></li>
-                        <li><a href="#" onclick="filterProducts('acessorios'); return false;">Acessórios</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Ajuda</h3>
-                    <ul>
-                        <li><a href="#" onclick="openChatbot()">Chat Online</a></li>
-                        <li><a href="#" onclick="showInfo('contact')">Contato</a></li>
-                        <li><a href="#" onclick="showInfo('delivery')">Entregas e Prazos</a></li>
-                        <li><a href="#" onclick="showInfo('returns')">Trocas e Devoluções</a></li>
-                        <li><a href="#" onclick="showInfo('faq')">Perguntas Frequentes</a></li>
-                        <li><a href="#" onclick="showInfo('sizes')">Guia de Tamanhos</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="#" onclick="showInfo('terms')">Termos e Condições</a></li>
-                        <li><a href="#" onclick="showInfo('privacy')">Política de Privacidade</a></li>
-                        <li><a href="#" onclick="showInfo('cookies')">Política de Cookies</a></li>
-                        <li><a href="#" onclick="showInfo('legal')">Aviso Legal</a></li>
-                    </ul>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>VIBRAÇÕES ÍNTIMAS</h3>
+                <div class="company-info">
+                    <p><strong>Responsável:</strong> Jorge Eliecer Morales Ramírez</p>
+                    <p><strong>CNPJ:</strong> 63.575.463/0001-00</p>
                 </div>
             </div>
-            <div class="copyright">
-                &copy; 2023 Vibrações Íntimas. Todos os direitos reservados. | CNPJ: 63.575.463/0001-00
+            
+            <div class="footer-section">
+                <h3>Categorias</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="filterProducts('vibradores')">Vibradores</a></li>
+                    <li><a href="#" onclick="filterProducts('sugadores')">Sugadores</a></li>
+                    <li><a href="#" onclick="filterProducts('kits')">Kits</a></li>
+                    <li><a href="#" onclick="filterProducts('lubrificantes')">Lubrificantes</a></li>
+                    <li><a href="#" onclick="filterProducts('acessorios')">Acessórios</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Ajuda</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="openModal('chatModal')">Chat Online</a></li>
+                    <li><a href="#" onclick="openModal('contactModal')">Contato</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="openModal('termsModal')">Termos e Condições</a></li>
+                    <li><a href="#" onclick="openModal('privacyModal')">Política de Privacidade</a></li>
+                </ul>
             </div>
         </div>
     </footer>
 
-    <!-- Cart Modal -->
-    <div class="modal-overlay" id="cart-overlay"></div>
-    <div class="modal" id="cart-modal">
-        <div class="modal-header">
-            <h3><i class="fas fa-shopping-bag"></i> Minha Sacola</h3>
-            <button class="btn btn-secondary" onclick="closeCartModal()">✕</button>
-        </div>
+    <!-- Modals -->
+    <div id="loginModal" class="modal">
         <div class="modal-content">
-            <div class="cart-items" id="cart-items">
-                <!-- Cart items loaded here -->
-            </div>
-            <div class="cart-total" id="cart-total" style="font-size: 18px; font-weight: 700; text-align: right; margin: 20px 0; padding-top: 20px; border-top: 2px solid #eee;">
-                Total: R$ 0,00
-            </div>
-            
-            <!-- Upselling Section -->
-            <div id="upselling-section" style="display: none; margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                <h4 style="margin-bottom: 10px;">💡 Você também pode gostar:</h4>
-                <div id="upselling-products">
-                    <!-- Upselling products loaded here -->
-                </div>
-            </div>
-
-            <button class="btn btn-primary" onclick="proceedToCheckout()" style="width: 100%; padding: 15px; font-size: 16px;">
-                <i class="fas fa-lock"></i> Finalizar Compra
-            </button>
+            <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Minha Conta</h2>
+            <form id="loginForm">
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+            <p>Não tem conta? <a href="#" onclick="showRegister()">Cadastre-se</a></p>
         </div>
     </div>
 
-    <!-- Account Modal -->
-    <div class="modal-overlay" id="account-overlay"></div>
-    <div class="modal" id="account-modal">
-        <div class="modal-header">
-            <h3><i class="fas fa-user"></i> Minha Conta</h3>
-            <button class="btn btn-secondary" onclick="closeAccountModal()">✕</button>
-        </div>
+    <div id="productModal" class="modal">
         <div class="modal-content">
-            <div id="login-form">
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <h4>Entre na sua conta</h4>
-                    <p style="color: #666; font-size: 14px;">Acesse seus pedidos e favoritos</p>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="login-email" placeholder="seu@email.com">
-                </div>
-                <div class="form-group">
-                    <label>Senha</label>
-                    <input type="password" id="login-password" placeholder="Sua senha">
-                </div>
-                <div style="text-align: center; margin: 15px 0;">
-                    <a href="#" onclick="showForgotPassword()" style="color: var(--primary); font-size: 14px;">Esqueci minha senha</a>
-                </div>
-                <button class="btn btn-primary" onclick="login()" style="width: 100%; margin-bottom: 15px;">
-                    <i class="fas fa-sign-in-alt"></i> Entrar
-                </button>
-                <div style="text-align: center;">
-                    <p style="color: #666; margin-bottom: 15px;">Não tem conta?</p>
-                    <button class="btn btn-secondary" onclick="showRegisterForm()" style="width: 100%;">
-                        <i class="fas fa-user-plus"></i> Criar Conta
-                    </button>
-                </div>
-                <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
-                    <a href="#" onclick="showAdminAccess()" style="color: #666; font-size: 12px;">Acesso Administrativo</a>
-                </div>
-            </div>
-
-            <div id="register-form" style="display: none;">
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <h4>Criar Conta</h4>
-                    <p style="color: #666; font-size: 14px;">Preencha seus dados para cadastro</p>
-                </div>
-                <div class="form-group">
-                    <label>Nome Completo *</label>
-                    <input type="text" id="register-name" placeholder="Seu nome completo">
-                </div>
-                <div class="form-group">
-                    <label>CPF *</label>
-                    <input type="text" id="register-cpf" placeholder="000.000.000-00" maxlength="14">
-                </div>
-                <div class="form-group">
-                    <label>Data de Nascimento *</label>
-                    <input type="date" id="register-birthdate">
-                </div>
-                <div class="form-group">
-                    <label>Telefone *</label>
-                    <input type="tel" id="register-phone" placeholder="(11) 99999-9999">
-                </div>
-                <div class="form-group">
-                    <label>Email *</label>
-                    <input type="email" id="register-email" placeholder="seu@email.com">
-                </div>
-                <div class="form-group">
-                    <label>Senha *</label>
-                    <input type="password" id="register-password" placeholder="Crie uma senha forte">
-                </div>
-                <div class="form-group">
-                    <label>Confirmar Senha *</label>
-                    <input type="password" id="register-confirm" placeholder="Confirme sua senha">
-                </div>
-                
-                <h5 style="margin: 20px 0 10px 0;">Endereço</h5>
-                <div class="form-group">
-                    <label>CEP *</label>
-                    <div style="display: flex; gap: 10px;">
-                        <input type="text" id="register-cep" placeholder="00000-000" maxlength="9" style="flex: 1;">
-                        <button type="button" class="btn btn-secondary" onclick="buscarEnderecoPorCEP()" style="white-space: nowrap;">Buscar</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Endereço *</label>
-                    <input type="text" id="register-address" placeholder="Rua, Avenida, etc." readonly>
-                </div>
-                <div style="display: flex; gap: 10px;">
-                    <div class="form-group" style="flex: 1;">
-                        <label>Número *</label>
-                        <input type="text" id="register-number" placeholder="123">
-                    </div>
-                    <div class="form-group" style="flex: 2;">
-                        <label>Complemento</label>
-                        <input type="text" id="register-complement" placeholder="Apto, Casa, etc.">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Bairro *</label>
-                    <input type="text" id="register-neighborhood" placeholder="Seu bairro" readonly>
-                </div>
-                <div style="display: flex; gap: 10px;">
-                    <div class="form-group" style="flex: 2;">
-                        <label>Cidade *</label>
-                        <input type="text" id="register-city" placeholder="Sua cidade" readonly>
-                    </div>
-                    <div class="form-group" style="flex: 1;">
-                        <label>Estado *</label>
-                        <select id="register-state" disabled>
-                            <option value="">UF</option>
-                            <option value="AC">AC</option>
-                            <option value="AL">AL</option>
-                            <option value="AP">AP</option>
-                            <option value="AM">AM</option>
-                            <option value="BA">BA</option>
-                            <option value="CE">CE</option>
-                            <option value="DF">DF</option>
-                            <option value="ES">ES</option>
-                            <option value="GO">GO</option>
-                            <option value="MA">MA</option>
-                            <option value="MT">MT</option>
-                            <option value="MS">MS</option>
-                            <option value="MG">MG</option>
-                            <option value="PA">PA</option>
-                            <option value="PB">PB</option>
-                            <option value="PR">PR</option>
-                            <option value="PE">PE</option>
-                            <option value="PI">PI</option>
-                            <option value="RJ">RJ</option>
-                            <option value="RN">RN</option>
-                            <option value="RS">RS</option>
-                            <option value="RO">RO</option>
-                            <option value="RR">RR</option>
-                            <option value="SC">SC</option>
-                            <option value="SP">SP</option>
-                            <option value="SE">SE</option>
-                            <option value="TO">TO</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label style="font-weight: normal;">
-                        <input type="checkbox" id="register-terms" style="margin-right: 8px;">
-                        Aceito os <a href="#" onclick="showInfo('terms')">Termos de Uso</a> e <a href="#" onclick="showInfo('privacy')">Política de Privacidade</a>
-                    </label>
-                </div>
-
-                <button class="btn btn-primary" onclick="register()" style="width: 100%; margin-bottom: 15px;">
-                    <i class="fas fa-user-plus"></i> Criar Minha Conta
-                </button>
-                <div style="text-align: center;">
-                    <a href="#" onclick="showLoginForm()" style="color: #666;">Já tem conta? Faça login</a>
-                </div>
-            </div>
-
-            <div id="forgot-password-form" style="display: none;">
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <h4>Recuperar Senha</h4>
-                    <p style="color: #666; font-size: 14px;">Digite seu email para redefinir a senha</p>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="forgot-email" placeholder="seu@email.com">
-                </div>
-                <button class="btn btn-primary" onclick="sendPasswordReset()" style="width: 100%; margin-bottom: 15px;">
-                    <i class="fas fa-paper-plane"></i> Enviar Link de Recuperação
-                </button>
-                <div style="text-align: center;">
-                    <a href="#" onclick="showLoginForm()" style="color: #666;">Voltar ao Login</a>
-                </div>
-            </div>
-
-            <div id="user-profile" style="display: none;">
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <div style="font-size: 48px; margin-bottom: 10px;">👤</div>
-                    <h4 id="user-name">Usuário</h4>
-                    <p id="user-email" style="color: #666; font-size: 14px;">usuario@email.com</p>
-                </div>
-                
-                <div style="margin-bottom: 20px;">
-                    <button class="btn btn-secondary" onclick="showOrderHistory()" style="width: 100%; margin-bottom: 10px; text-align: left;">
-                        <i class="fas fa-history"></i> Meus Pedidos
-                    </button>
-                    <button class="btn btn-secondary" onclick="showAddresses()" style="width: 100%; margin-bottom: 10px; text-align: left;">
-                        <i class="fas fa-map-marker-alt"></i> Meus Endereços
-                    </button>
-                    <button class="btn btn-secondary" onclick="showFavorites()" style="width: 100%; margin-bottom: 10px; text-align: left;">
-                        <i class="fas fa-heart"></i> Meus Favoritos
-                    </button>
-                    <button class="btn btn-secondary" onclick="showSettings()" style="width: 100%; margin-bottom: 10px; text-align: left;">
-                        <i class="fas fa-cog"></i> Configurações
-                    </button>
-                </div>
-
-                <button class="btn btn-secondary" onclick="logout()" style="width: 100%;">
-                    <i class="fas fa-sign-out-alt"></i> Sair da Conta
-                </button>
+            <span class="close-modal" onclick="closeModal('productModal')">&times;</span>
+            <div id="productModalContent">
+                <!-- Product details will be loaded here -->
             </div>
         </div>
     </div>
 
-    <!-- Checkout Modal -->
-    <div class="modal-overlay" id="checkout-overlay"></div>
-    <div class="modal" id="checkout-modal">
-        <div class="modal-header">
-            <h3><i class="fas fa-credit-card"></i> Finalizar Pedido</h3>
-            <button class="btn btn-secondary" onclick="closeCheckoutModal()">✕</button>
-        </div>
+    <div id="cartModal" class="modal">
         <div class="modal-content">
-            <div id="checkout-content">
-                <!-- Checkout steps loaded here -->
+            <span class="close-modal" onclick="closeModal('cartModal')">&times;</span>
+            <h2>Meu Carrinho</h2>
+            <div id="cartContent">
+                <!-- Cart items will be loaded here -->
             </div>
         </div>
-    </div>
-
-    <!-- Notifications Modal -->
-    <div class="modal-overlay" id="notifications-overlay"></div>
-    <div class="modal" id="notifications-modal">
-        <div class="modal-header">
-            <h3><i class="fas fa-bell"></i> Notificações</h3>
-            <button class="btn btn-secondary" onclick="closeNotificationsModal()">✕</button>
-        </div>
-        <div class="modal-content">
-            <div id="notifications-list">
-                <!-- Notifications loaded here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Chatbot -->
-    <div class="chatbot-toggle" onclick="toggleChatbot()">
-        <i class="fas fa-comments"></i>
-    </div>
-
-    <div class="chatbot-container" id="chatbot">
-        <div class="chatbot-header">
-            <h4 style="margin: 0;"><i class="fas fa-robot"></i> Assistente Virtual</h4>
-            <button class="btn btn-secondary" onclick="toggleChatbot()" style="background: transparent; border: none; color: white; padding: 5px;">✕</button>
-        </div>
-        <div class="chatbot-messages" id="chatbot-messages">
-            <div class="chat-message bot-message">
-                <strong>Assistente:</strong> Olá! Sou seu assistente virtual. Como posso ajudar você hoje?
-            </div>
-        </div>
-        <div class="chatbot-input">
-            <input type="text" id="chatbot-input" placeholder="Digite sua mensagem..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px;">
-            <button class="btn btn-primary" onclick="sendChatMessage()" style="margin-left: 10px; border-radius: 20px; padding: 10px 15px;">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle" style="color: var(--success);"></i>
-        <span id="toast-message">Operação realizada com sucesso!</span>
     </div>
 
     <script>
-        // =============================================
-        // SISTEMA 100% FUNCIONAL BRASIL - VIBRAÇÕES ÍNTIMAS
-        // =============================================
-
-        // Database and State Management
-        let products = JSON.parse(localStorage.getItem('products')) || [];
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
-        let users = JSON.parse(localStorage.getItem('users')) || [];
-        let orders = JSON.parse(localStorage.getItem('orders')) || [];
-        let notifications = JSON.parse(localStorage.getItem('notifications')) || [];
-        let adminUsers = JSON.parse(localStorage.getItem('adminUsers')) || [
-            { 
-                email: 'intimomixbr@gmail.com', 
-                password: 'Admin123!', 
-                role: 'admin',
-                name: 'Administrador Principal'
+        // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Vibrador Clássico Premium",
+                price: 129.90,
+                category: "vibradores",
+                image: "💜",
+                description: "Vibrador discreto com 10 modos de vibração, recarregável via USB e totalmente silencioso.",
+                features: ["Recarregável", "Silencioso", "10 modos", "À prova d'água"]
+            },
+            {
+                id: 2,
+                name: "Sugador Clitoriano",
+                price: 189.90,
+                category: "sugadores",
+                image: "💖",
+                description: "Tecnologia de sucção avançada para orgasmos intensos. Design ergonômico e discreto.",
+                features: ["Tecnologia de sucção", "8 intensidades", "Silencioso", "Recarregável"]
+            },
+            {
+                id: 3,
+                name: "Kit Iniciante",
+                price: 229.90,
+                category: "kits",
+                image: "🎁",
+                description: "Kit completo para iniciantes com vibrador, lubrificante e guia educativo.",
+                features: ["3 produtos", "Guia educativo", "Discreto", "Premium"]
+            },
+            {
+                id: 4,
+                name: "Lubrificante Íntimo",
+                price: 39.90,
+                category: "lubrificantes",
+                image: "💧",
+                description: "Lubrificante à base d'água, compatível com preservativos e brinquedos sexuais.",
+                features: ["Base d'água", "Hipoalergênico", "150ml", "Sem perfume"]
+            },
+            {
+                id: 5,
+                name: "Case Discreta",
+                price: 29.90,
+                category: "acessorios",
+                image: "🎀",
+                description: "Case elegante para armazenamento discreto dos seus produtos.",
+                features: ["Antiodor", "Discreta", "Vários tamanhos", "Fácil limpeza"]
+            },
+            {
+                id: 6,
+                name: "Vibrador Duplo",
+                price: 159.90,
+                category: "vibradores",
+                image: "💗",
+                description: "Vibrador duplo para estimulação interna e externa simultânea.",
+                features: ["Dupla estimulação", "8 modos", "Recarregável", "À prova d'água"]
             }
         ];
 
-        // Chatbot conversation memory
-        let chatHistory = [];
+        let cart = [];
+        let favorites = [];
 
-        // Initialize default products if empty
-        function initializeDefaultProducts() {
-            if (products.length === 0) {
-                products = [
-                    {
-                        id: 1,
-                        name: "Vibrador Rabbit Dupla Função",
-                        description: "Vibrador rabbit com estimulação dupla para clitóris e ponto G. Design ergonômico e silencioso.",
-                        price: 174.93,
-                        originalPrice: 249.90,
-                        category: "vibradores",
-                        stock: 15,
-                        image: "linear-gradient(45deg, #e91e63, #9c27b0)",
-                        tags: ["frete-gratis", "mais-vendido", "oferta"],
-                        rating: 4.8,
-                        reviews: 127
-                    },
-                    {
-                        id: 2,
-                        name: "Sugador de Clítoris Premium",
-                        description: "Sugador de clítoris com tecnologia air pressure. 10 níveis de intensidade e design discreto.",
-                        price: 218.93,
-                        originalPrice: 299.90,
-                        category: "sugadores",
-                        stock: 12,
-                        image: "linear-gradient(45deg, #ff4081, #ad1457)",
-                        tags: ["frete-gratis", "novo"],
-                        rating: 4.9,
-                        reviews: 89
-                    },
-                    {
-                        id: 3,
-                        name: "Kit Iniciante Prazer",
-                        description: "Kit completo para iniciantes com 3 produtos: vibrador, lubrificante e gel massageador.",
-                        price: 299.90,
-                        originalPrice: 399.90,
-                        category: "kits",
-                        stock: 8,
-                        image: "linear-gradient(45deg, #9c27b0, #6a1b9a)",
-                        tags: ["frete-gratis", "kit"],
-                        rating: 4.7,
-                        reviews: 64
-                    },
-                    {
-                        id: 4,
-                        name: "Lubrificante Íntimo 100ml",
-                        description: "Lubrificante à base de água, hipoalergênico. Ideal para maior conforto e prazer.",
-                        price: 24.90,
-                        originalPrice: 34.90,
-                        category: "lubrificantes",
-                        stock: 50,
-                        image: "linear-gradient(45deg, #2196f3, #0d47a1)",
-                        tags: ["oferta"],
-                        rating: 4.5,
-                        reviews: 203
-                    },
-                    {
-                        id: 5,
-                        name: "Vela Aromática Sensual",
-                        description: "Vela aromática com essência de baunilha e ylang-ylang. Cria ambiente íntimo e relaxante.",
-                        price: 34.90,
-                        originalPrice: 49.90,
-                        category: "acessorios",
-                        stock: 25,
-                        image: "linear-gradient(45deg, #ff9800, #f57c00)",
-                        tags: ["novo"],
-                        rating: 4.6,
-                        reviews: 45
-                    }
-                ];
-                saveProducts();
-            }
-        }
-
-        // DOM Elements
-        const productsGrid = document.getElementById('products-grid');
-        const cartIcon = document.getElementById('cart-icon');
-        const accountIcon = document.getElementById('account-icon');
-        const notificationsIcon = document.getElementById('notifications-icon');
-        const cartModal = document.getElementById('cart-modal');
-        const accountModal = document.getElementById('account-modal');
-        const checkoutModal = document.getElementById('checkout-modal');
-        const notificationsModal = document.getElementById('notifications-modal');
-        const cartOverlay = document.getElementById('cart-overlay');
-        const accountOverlay = document.getElementById('account-overlay');
-        const checkoutOverlay = document.getElementById('checkout-overlay');
-        const notificationsOverlay = document.getElementById('notifications-overlay');
-        const cartItems = document.getElementById('cart-items');
-        const cartTotal = document.getElementById('cart-total');
-        const cartCount = document.getElementById('cart-count');
-        const notificationCount = document.getElementById('notification-count');
-        const adminPanel = document.getElementById('admin-panel');
-        const searchInput = document.getElementById('search-input');
-        const topCepInput = document.getElementById('top-cep-input');
-        const toast = document.getElementById('toast');
-        const toastMessage = document.getElementById('toast-message');
-        const chatbot = document.getElementById('chatbot');
-        const chatbotMessages = document.getElementById('chatbot-messages');
-        const chatbotInput = document.getElementById('chatbot-input');
-
-        // Current State
-        let currentFilter = 'all';
-        let isAdminMode = false;
-        let selectedPaymentMethod = null;
-        let selectedShippingMethod = null;
-
-        // Initialize App
+        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            initializeDefaultProducts();
-            loadProducts();
+            displayProducts(products);
             updateCartCount();
-            updateNotificationCount();
-            setupEventListeners();
-            checkAdminAccess();
-            
-            // Add some sample notifications
-            if (notifications.length === 0) {
-                addNotification('Bem-vindo à Vibrações Íntimas!', 'Sua loja de produtos para prazer e bem-estar.', 'info');
-            }
         });
 
-        function setupEventListeners() {
-            // Search functionality
-            searchInput.addEventListener('input', debounce(searchProducts, 300));
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') searchProducts();
-            });
+        // Display products in grid
+        function displayProducts(productsToShow) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
 
-            // CEP functionality
-            topCepInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') calcularFrete();
-            });
+            productsToShow.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.onclick = () => openProductModal(product);
 
-            // Chatbot functionality
-            chatbotInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') sendChatMessage();
-            });
-
-            // FIX: Agregar event listeners para las pestañas del footer
-            document.querySelectorAll('.footer-section a[onclick*="filterProducts"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const filter = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-                    filterProducts(filter);
-                    closeAllModals();
-                });
-            });
-
-            // FIX: Banners superiores funcionais
-            document.querySelectorAll('.banner-item').forEach(banner => {
-                banner.addEventListener('click', function() {
-                    const filter = this.textContent.includes('VIBRADORES') ? 'vibradores' :
-                                 this.textContent.includes('SUGADORES') ? 'sugadores' :
-                                 this.textContent.includes('KITS') ? 'kits' :
-                                 this.textContent.includes('LUBRIFICANTES') ? 'lubrificantes' :
-                                 this.textContent.includes('ACESSÓRIOS') ? 'acessorios' : 'all';
-                    filterProducts(filter);
-                });
-            });
-
-            // Close modals when clicking overlay
-            document.querySelectorAll('.modal-overlay').forEach(overlay => {
-                overlay.addEventListener('click', function() {
-                    closeAllModals();
-                });
-            });
-
-            // Close modals with ESC key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeAllModals();
-            });
-        }
-
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Product Management
-        function loadProducts(filter = 'all') {
-            productsGrid.innerHTML = '';
-            currentFilter = filter;
-            
-            let filteredProducts = products;
-            
-            if (filter !== 'all') {
-                filteredProducts = products.filter(product => product.category === filter);
-            }
-            
-            if (filteredProducts.length === 0) {
-                productsGrid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
-                        <i class="fas fa-search" style="font-size: 64px; color: #ccc; margin-bottom: 20px;"></i>
-                        <h3 style="color: #666; margin-bottom: 15px;">Nenhum produto encontrado</h3>
-                        <p style="color: #999; margin-bottom: 25px;">Tente outros termos de busca ou explore nossas categorias</p>
-                        <button class="btn btn-primary" onclick="filterProducts('all')">
-                            Ver Todos os Produtos
-                        </button>
-                    </div>
-                `;
-                return;
-            }
-            
-            // FIX: Ordenar productos para mejor visualización
-            filteredProducts.sort((a, b) => {
-                const aPriority = a.tags.includes('mais-vendido') ? 3 : 
-                                 a.tags.includes('novo') ? 2 : 
-                                 a.tags.includes('oferta') ? 1 : 0;
-                const bPriority = b.tags.includes('mais-vendido') ? 3 : 
-                                 b.tags.includes('novo') ? 2 : 
-                                 b.tags.includes('oferta') ? 1 : 0;
-                return bPriority - aPriority;
-            });
-            
-            filteredProducts.forEach(product => {
-                const productCard = createProductCard(product);
-                productsGrid.appendChild(productCard);
-            });
-        }
-
-        function createProductCard(product) {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            
-            const discount = Math.round((1 - product.price / product.originalPrice) * 100);
-            const hasFreeShipping = product.tags.includes('frete-gratis');
-            const isBestSeller = product.tags.includes('mais-vendido');
-            const isNew = product.tags.includes('novo');
-            
-            const badges = [];
-            if (discount > 0) badges.push(`<div class="discount-badge">${discount}% OFF</div>`);
-            if (hasFreeShipping) badges.push(`<div class="free-shipping-badge">FRETE GRÁTIS</div>`);
-            if (isBestSeller) badges.push(`<div class="best-seller-badge">MAIS VENDIDO</div>`);
-            if (isNew) badges.push(`<div class="free-shipping-badge" style="background: var(--ml-blue);">NOVO</div>`);
-            
-            const stockClass = product.stock < 10 ? 'stock-low' : product.stock === 0 ? 'stock-out' : '';
-            const stockText = product.stock === 0 ? 'Fora de estoque' : 
-                            product.stock < 10 ? `Últimas ${product.stock} unidades!` : `${product.stock} disponíveis`;
-            
-            const installments = Math.min(12, Math.floor(product.price / 10));
-            const installmentValue = (product.price / installments).toFixed(2);
-            
-            card.innerHTML = `
-                <div class="product-badges">
-                    ${badges.join('')}
-                </div>
-                <div class="product-image" style="background: ${product.image}">
-                    <i class="fas fa-venus" style="font-size: 48px; color: white; opacity: 0.8;"></i>
-                </div>
-                <div class="product-info">
-                    <div class="brand">VIBRAÇÕES ÍNTIMAS</div>
-                    <div class="product-name">${product.name}</div>
-                    <div class="price-container">
-                        <div class="price">R$ ${product.price.toFixed(2)}</div>
-                        ${discount > 0 ? `<div class="original-price">R$ ${product.originalPrice.toFixed(2)}</div>` : ''}
-                    </div>
-                    <div class="installments">ou até ${installments}x de R$ ${installmentValue} sem juros</div>
-                    <div class="stock-info ${stockClass}">${stockText}</div>
-                    <div class="product-actions">
-                        <button class="btn-cart" onclick="addToCart(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>
-                            ${product.stock === 0 ? 'Fora de Estoque' : 'Adicionar à Sacola'}
-                        </button>
-                        <button class="btn-wishlist" onclick="toggleWishlist(${product.id})">
-                            <i class="far fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
-            return card;
-        }
-
-        function filterProducts(category) {
-            // Update active filter button
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.filter === category) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            // FIX: Asegurar que el filtrado funcione correctamente
-            currentFilter = category;
-            loadProducts(category);
-            
-            // Scroll to top of products
-            window.scrollTo({
-                top: productsGrid.offsetTop - 100,
-                behavior: 'smooth'
-            });
-        }
-
-        // Cart System - FIX: Separar carrito por usuario
-        function addToCart(productId) {
-            if (!currentUser) {
-                showToast('Faça login para adicionar produtos ao carrinho', 'warning');
-                openAccountModal();
-                return;
-            }
-
-            const product = products.find(p => p.id === productId);
-            
-            if (!product) {
-                showToast('Produto não encontrado', 'error');
-                return;
-            }
-
-            if (product.stock === 0) {
-                showToast('Produto fora de estoque', 'error');
-                return;
-            }
-
-            // FIX: Carrito separado por usuario
-            let userCart = cart.find(c => c.userId === currentUser.id);
-            if (!userCart) {
-                userCart = { userId: currentUser.id, items: [] };
-                cart.push(userCart);
-            }
-
-            const existingItem = userCart.items.find(item => item.id === productId);
-            
-            if (existingItem) {
-                if (existingItem.quantity >= product.stock) {
-                    showToast('Quantidade máxima em estoque atingida', 'warning');
-                    return;
-                }
-                existingItem.quantity += 1;
-            } else {
-                userCart.items.push({
-                    ...product,
-                    quantity: 1,
-                    addedAt: new Date().toISOString()
-                });
-            }
-            
-            updateCartCount();
-            updateCartModal();
-            saveCart();
-            
-            showToast('Produto adicionado ao carrinho!', 'success');
-            
-            // Visual feedback
-            const button = event.target;
-            const originalText = button.textContent;
-            button.textContent = '✓ Adicionado!';
-            button.style.background = '#4caf50';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.style.background = '';
-                button.disabled = false;
-            }, 2000);
-        }
-
-        function getCurrentUserCart() {
-            if (!currentUser) return { items: [] };
-            const userCart = cart.find(c => c.userId === currentUser.id);
-            return userCart || { items: [] };
-        }
-
-        function removeFromCart(productId) {
-            const userCart = cart.find(c => c.userId === currentUser.id);
-            if (userCart) {
-                userCart.items = userCart.items.filter(item => item.id !== productId);
-                updateCartCount();
-                updateCartModal();
-                saveCart();
-                showToast('Produto removido do carrinho', 'warning');
-            }
-        }
-
-        function updateCartCount() {
-            if (!currentUser) {
-                cartCount.textContent = '0';
-                return;
-            }
-            const userCart = getCurrentUserCart();
-            const totalItems = userCart.items.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-        }
-
-        function updateCartModal() {
-            cartItems.innerHTML = '';
-            let total = 0;
-            
-            const userCart = getCurrentUserCart();
-            
-            if (userCart.items.length === 0) {
-                cartItems.innerHTML = `
-                    <div style="text-align: center; padding: 40px 20px;">
-                        <i class="fas fa-shopping-bag" style="font-size: 48px; color: #ccc; margin-bottom: 15px;"></i>
-                        <p style="color: #777; margin-bottom: 20px;">Sua sacola está vazia</p>
-                        <button class="btn btn-primary" onclick="closeCartModal()">
-                            Continuar Comprando
-                        </button>
-                    </div>
-                `;
-                document.getElementById('upselling-section').style.display = 'none';
-            } else {
-                userCart.items.forEach(item => {
-                    const itemTotal = item.price * item.quantity;
-                    total += itemTotal;
-                    
-                    const cartItem = document.createElement('div');
-                    cartItem.className = 'cart-item';
-                    cartItem.innerHTML = `
-                        <div style="display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid #f0f0f0;">
-                            <div style="width: 60px; height: 60px; background: ${item.image}; border-radius: 8px; margin-right: 15px; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-venus" style="color: white; font-size: 20px;"></i>
-                            </div>
-                            <div style="flex-grow: 1;">
-                                <div style="font-weight: 600; margin-bottom: 5px; font-size: 14px;">${item.name}</div>
-                                <div style="color: var(--primary); font-weight: 700; font-size: 14px;">R$ ${item.price.toFixed(2)} × ${item.quantity}</div>
-                                <div style="display: flex; gap: 10px; margin-top: 8px;">
-                                    <button class="qty-btn" onclick="decreaseQuantity(${item.id})" style="width: 25px; height: 25px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">-</button>
-                                    <span style="font-weight: 600;">${item.quantity}</span>
-                                    <button class="qty-btn" onclick="increaseQuantity(${item.id})" style="width: 25px; height: 25px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">+</button>
-                                </div>
-                            </div>
-                            <button class="btn btn-secondary" onclick="removeFromCart(${item.id})" style="padding: 5px 10px; font-size: 12px;">
-                                <i class="fas fa-trash"></i>
+                productCard.innerHTML = `
+                    <div class="product-image">${product.image}</div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <div class="product-price">R$ ${product.price.toFixed(2)}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="event.stopPropagation(); addToCart(${product.id})">
+                                🛒 Add Carrinho
+                            </button>
+                            <button class="btn btn-secondary" onclick="event.stopPropagation(); addToFavorites(${product.id})">
+                                ❤️ Favorito
                             </button>
                         </div>
-                    `;
-                    cartItems.appendChild(cartItem);
-                });
+                    </div>
+                `;
 
-                // Show upselling products
-                showUpsellingProducts();
-            }
-            
-            cartTotal.textContent = `Total: R$ ${total.toFixed(2)}`;
+                grid.appendChild(productCard);
+            });
         }
 
-        function increaseQuantity(productId) {
-            const userCart = cart.find(c => c.userId === currentUser.id);
-            if (!userCart) return;
+        // Filter products by category
+        function filterProducts(category) {
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const filteredProducts = category === 'all' 
+                ? products 
+                : products.filter(product => product.category === category);
             
-            const item = userCart.items.find(item => item.id === productId);
+            displayProducts(filteredProducts);
+        }
+
+        // Search products
+        function searchProducts(query) {
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(query.toLowerCase()) ||
+                product.description.toLowerCase().includes(query.toLowerCase())
+            );
+            displayProducts(filteredProducts);
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({...product, quantity: 1});
+            }
+
+            updateCartCount();
+            showNotification(`${product.name} adicionado ao carrinho!`);
+        }
+
+        // Add to favorites
+        function addToFavorites(productId) {
             const product = products.find(p => p.id === productId);
             
-            if (item && product && item.quantity < product.stock) {
-                item.quantity += 1;
-                updateCartModal();
-                updateCartCount();
-                saveCart();
+            if (!favorites.find(fav => fav.id === productId)) {
+                favorites.push(product);
+                showNotification(`${product.name} adicionado aos favoritos!`);
             } else {
-                showToast('Quantidade máxima em estoque', 'warning');
+                showNotification(`${product.name} já está nos favoritos!`);
             }
         }
 
-        function decreaseQuantity(productId) {
-            const userCart = cart.find(c => c.userId === currentUser.id);
-            if (!userCart) return;
-            
-            const item = userCart.items.find(item => item.id === productId);
-            if (item && item.quantity > 1) {
-                item.quantity -= 1;
-                updateCartModal();
-                updateCartCount();
-                saveCart();
-            }
+        // Update cart count
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
         }
 
-        // Checkout System - INTEGRAÇÃO COM MERCADOPAGO E PAGSEGURO
-        function proceedToCheckout() {
-            if (!currentUser) {
-                showToast('Faça login para finalizar a compra', 'warning');
-                openAccountModal();
-                return;
-            }
-
-            if (getCurrentUserCart().items.length === 0) {
-                showToast('Adicione produtos ao carrinho primeiro', 'warning');
-                return;
-            }
-
-            // Validate stock
-            for (const item of getCurrentUserCart().items) {
-                const product = products.find(p => p.id === item.id);
-                if (!product || product.stock < item.quantity) {
-                    showToast(`Produto "${item.name}" sem estoque suficiente`, 'error');
-                    return;
-                }
-            }
-
-            closeCartModal();
-            openCheckoutModal();
-        }
-
-        function openCheckoutModal() {
-            const checkoutContent = document.getElementById('checkout-content');
-            const userCart = getCurrentUserCart();
-            const total = userCart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            checkoutContent.innerHTML = `
-                <div style="margin-bottom: 25px;">
-                    <h4 style="margin-bottom: 15px;">📦 Resumo do Pedido</h4>
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                        ${userCart.items.map(item => `
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
-                                <div>
-                                    <div style="font-weight: 600; font-size: 14px;">${item.name}</div>
-                                    <div style="font-size: 12px; color: #666;">Quantidade: ${item.quantity}</div>
-                                </div>
-                                <div style="font-weight: 700; color: var(--primary);">R$ ${(item.price * item.quantity).toFixed(2)}</div>
-                            </div>
-                        `).join('')}
-                        <div style="border-top: 2px solid #ddd; margin-top: 10px; padding-top: 10px;">
-                            <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 16px;">
-                                <span>Total:</span>
-                                <span>R$ ${total.toFixed(2)}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-bottom: 25px;">
-                    <h4 style="margin-bottom: 15px;">📍 Endereço de Entrega</h4>
-                    <div style="background: #f0f8ff; padding: 15px; border-radius: 8px;">
-                        <p id="checkout-address" style="margin: 0; font-weight: 600;">${currentUser.address ? formatAddress(currentUser.address) : 'Endereço não definido'}</p>
-                        <button class="btn btn-secondary" onclick="changeDeliveryAddress()" style="margin-top: 10px; width: 100%;">
-                            <i class="fas fa-edit"></i> Alterar Endereço
-                        </button>
-                    </div>
-                </div>
-
-                <div style="margin-bottom: 25px;">
-                    <h4 style="margin-bottom: 15px;">🚚 Método de Envio</h4>
-                    <div id="shipping-methods">
-                        <div class="shipping-method" onclick="selectShippingMethod('correios-pac')">
-                            <h5 style="margin: 0 0 5px 0;">📮 Correios PAC</h5>
-                            <p style="margin: 0; font-size: 13px; color: #666;">5-8 dias úteis • R$ 15,90</p>
-                        </div>
-                        <div class="shipping-method" onclick="selectShippingMethod('correios-sedex')">
-                            <h5 style="margin: 0 0 5px 0;">📦 Correios SEDEX</h5>
-                            <p style="margin: 0; font-size: 13px; color: #666;">2-3 dias úteis • R$ 25,90</p>
-                        </div>
-                        <div class="shipping-method" onclick="selectShippingMethod('jadlog')">
-                            <h5 style="margin: 0 0 5px 0;">🚚 Jadlog</h5>
-                            <p style="margin: 0; font-size: 13px; color: #666;">3-5 dias úteis • R$ 18,90</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-bottom: 25px;">
-                    <h4 style="margin-bottom: 15px;">💳 Forma de Pagamento</h4>
-                    <div id="payment-methods">
-                        <div class="payment-method" onclick="selectPaymentMethod('pix')">
-                            <h5 style="margin: 0 0 5px 0;">🔄 PIX</h5>
-                            <p style="margin: 0; font-size: 13px; color: #666;">Pagamento instantâneo - 5% de desconto</p>
-                        </div>
-                        <div class="payment-method" onclick="selectPaymentMethod('mercadopago')">
-                            <h5 style="margin: 0 0 5px 0;">💙 MercadoPago</h5>
-                            <p style="margin: 0; font-size: 13px; color: #666;">Cartão, boleto, saldo • Até 12x</p>
-                        </div>
-                        <div class="payment-method" onclick="selectPaymentMethod('pagseguro')">
-                            <h5 style="margin: 0 0 5px 0;">💚 PagSeguro</h5>
-                            <p style="margin: 0; font-size: 13px; color: #666;">Cartão, boleto, débito • Parcelado</p>
-                        </div>
-                        <div class="payment-method" onclick="selectPaymentMethod('credit')">
-                            <h5 style="margin: 0 0 5px 0;">💳 Cartão de Crédito</h5>
-                            <p style="margin: 0; font-size: 13px; color: #666;">Até 12x sem juros</p>
-                        </div>
-                        <div class="payment-method" onclick="selectPaymentMethod('debit')">
-                            <h5 style="margin: 0 0 5px 0;">🏦 Cartão de Débito</h5>
-                            <p style="margin: 0; font-size: 13px; color: #666;">Pagamento à vista</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="payment-details" style="display: none;">
-                    <!-- Payment details will be loaded here -->
-                </div>
-
-                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107; margin-bottom: 20px;">
-                    <p style="margin: 0; font-size: 13px; color: #856404;">
-                        <strong>⚠️ Confirmação de Idade:</strong> Você declara ter 18 anos ou mais e que está de acordo com nossos 
-                        <a href="#" onclick="showInfo('terms')" style="color: #856404; text-decoration: underline;">Termos de Uso</a>.
-                    </p>
-                </div>
-
-                <button class="btn btn-success" onclick="processPayment()" style="width: 100%; padding: 15px; font-size: 16px;">
-                    <i class="fas fa-lock"></i> Confirmar e Pagar
-                </button>
+        // Show notification
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--primary-color);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 5px;
+                z-index: 1001;
+                animation: slideIn 0.3s ease;
             `;
-
-            openModal(checkoutModal, checkoutOverlay);
-        }
-
-        function selectShippingMethod(method) {
-            // Remove selection from all shipping methods
-            document.querySelectorAll('.shipping-method').forEach(el => {
-                el.classList.remove('selected');
-            });
-
-            // Add selection to current method
-            event.currentTarget.classList.add('selected');
-            selectedShippingMethod = method;
-        }
-
-        function selectPaymentMethod(method) {
-            // Remove selection from all payment methods
-            document.querySelectorAll('.payment-method').forEach(el => {
-                el.classList.remove('selected');
-            });
-
-            // Add selection to current method
-            event.currentTarget.classList.add('selected');
-            selectedPaymentMethod = method;
-
-            const paymentDetails = document.getElementById('payment-details');
-            const userCart = getCurrentUserCart();
-            const total = userCart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            let discount = 0;
-            let finalTotal = total;
-
-            if (method === 'pix') {
-                discount = total * 0.05; // 5% discount for PIX
-                finalTotal = total - discount;
-            }
-
-            paymentDetails.innerHTML = `
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <h5 style="margin-bottom: 10px;">Resumo Final</h5>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>Subtotal:</span>
-                        <span>R$ ${total.toFixed(2)}</span>
-                    </div>
-                    ${discount > 0 ? `
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px; color: var(--success);">
-                        <span>Desconto PIX:</span>
-                        <span>- R$ ${discount.toFixed(2)}</span>
-                    </div>
-                    ` : ''}
-                    <div style="display: flex; justify-content: space-between; font-weight: 700; border-top: 1px solid #ddd; padding-top: 10px; margin-top: 10px;">
-                        <span>Total:</span>
-                        <span>R$ ${finalTotal.toFixed(2)}</span>
-                    </div>
-                </div>
-            `;
-
-            paymentDetails.style.display = 'block';
-        }
-
-        function processPayment() {
-            if (!selectedPaymentMethod) {
-                showToast('Selecione uma forma de pagamento', 'error');
-                return;
-            }
-
-            if (!selectedShippingMethod) {
-                showToast('Selecione um método de envio', 'error');
-                return;
-            }
-
-            const userCart = getCurrentUserCart();
-            const total = userCart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            let discount = selectedPaymentMethod === 'pix' ? total * 0.05 : 0;
-            let finalTotal = total - discount;
-
-            // Simular processamento de pagamento
-            showToast('Processando pagamento...', 'info');
-
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
             setTimeout(() => {
-                // Criar pedido
-                const order = {
-                    id: 'VIB' + Date.now(),
-                    date: new Date().toISOString(),
-                    customer: currentUser.email,
-                    customerInfo: currentUser,
-                    items: [...userCart.items],
-                    total: finalTotal,
-                    paymentMethod: selectedPaymentMethod,
-                    shippingMethod: selectedShippingMethod,
-                    status: 'paid',
-                    shippingAddress: currentUser.address,
-                    tracking: {
-                        code: 'BR' + Date.now() + 'VIB',
-                        status: 'processing',
-                        steps: [
-                            { status: 'paid', date: new Date().toISOString(), description: 'Pagamento confirmado' },
-                            { status: 'preparing', date: new Date().toISOString(), description: 'Preparando para envio' }
-                        ]
-                    },
-                    nfe: {
-                        number: 'NFe' + Date.now(),
-                        status: 'pending',
-                        accessKey: generateNFeAccessKey()
-                    }
-                };
-
-                // Update stock
-                userCart.items.forEach(cartItem => {
-                    const product = products.find(p => p.id === cartItem.id);
-                    if (product) {
-                        product.stock -= cartItem.quantity;
-                    }
-                });
-
-                // Save order
-                orders.push(order);
-                localStorage.setItem('orders', JSON.stringify(orders));
-
-                // Clear cart
-                const userCartIndex = cart.findIndex(c => c.userId === currentUser.id);
-                if (userCartIndex !== -1) {
-                    cart.splice(userCartIndex, 1);
-                }
-                saveCart();
-                updateCartCount();
-
-                // Save products with updated stock
-                saveProducts();
-
-                // Add notifications
-                addNotification('Pagamento Confirmado', `Seu pedido ${order.id} foi confirmado com sucesso!`, 'success');
-                addNotification('Nota Fiscal', `NFe ${order.nfe.number} gerada para seu pedido.`, 'info');
-
-                closeCheckoutModal();
-                
-                showToast(`🎉 Pedido ${order.id} confirmado! NFe: ${order.nfe.number}`, 'success');
-
-                // Show order confirmation
-                setTimeout(() => {
-                    showOrderConfirmation(order);
-                }, 1000);
-
-            }, 2000);
+                notification.remove();
+            }, 3000);
         }
 
-        function generateNFeAccessKey() {
-            // Gerar chave de acesso da NFe (44 dígitos)
-            const randomPart = Math.random().toString().substr(2, 35);
-            const uf = '35'; // SP
-            const year = '23';
-            const month = '11';
-            const cnpj = '63575463000100';
-            return uf + year + month + cnpj + randomPart;
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
         }
 
-        function showOrderConfirmation(order) {
-            const checkoutContent = document.getElementById('checkout-content');
-            checkoutContent.innerHTML = `
-                <div style="text-align: center; padding: 30px 20px;">
-                    <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
-                    <h3 style="color: var(--success); margin-bottom: 15px;">Pedido Confirmado!</h3>
-                    <p style="color: #666; margin-bottom: 10px;"><strong>Número do Pedido:</strong> ${order.id}</p>
-                    <p style="color: #666; margin-bottom: 10px;"><strong>NFe:</strong> ${order.nfe.number}</p>
-                    <p style="color: #666; margin-bottom: 20px;"><strong>Total:</strong> R$ ${order.total.toFixed(2)}</p>
-                    
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
-                        <h4 style="margin-bottom: 15px;">📦 Status do Pedido</h4>
-                        <div class="tracking-steps">
-                            ${order.tracking.steps.map((step, index) => `
-                                <div class="tracking-step ${index === 0 ? 'completed' : 'active'}">
-                                    <div class="step-icon ${index === 0 ? 'completed' : 'active'}">${index + 1}</div>
-                                    <div>
-                                        <div style="font-weight: 600;">${step.description}</div>
-                                        <div style="font-size: 12px; color: #666;">${new Date(step.date).toLocaleString('pt-BR')}</div>
-                                    </div>
-                                </div>
-                            `).join('')}
-                            <div class="tracking-step">
-                                <div class="step-icon pending">3</div>
-                                <div>
-                                    <div style="font-weight: 600;">Enviado para transporte</div>
-                                    <div style="font-size: 12px; color: #666;">Em breve</div>
-                                </div>
-                            </div>
-                            <div class="tracking-step">
-                                <div class="step-icon pending">4</div>
-                                <div>
-                                    <div style="font-weight: 600;">Entregue</div>
-                                    <div style="font-size: 12px; color: #666;">Em breve</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
 
-                    <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                        <h5 style="margin-bottom: 10px; color: var(--success);">📄 Nota Fiscal Eletrônica</h5>
-                        <p style="margin: 0; font-size: 14px; color: #666;">
-                            <strong>Número:</strong> ${order.nfe.number}<br>
-                            <strong>Chave de Acesso:</strong> ${order.nfe.accessKey}<br>
-                            <strong>Status:</strong> Autorizada
-                        </p>
-                    </div>
-
-                    <p style="color: #666; margin-bottom: 25px;">
-                        Enviamos os detalhes do seu pedido para <strong>${currentUser.email}</strong> 
-                        e WhatsApp <strong>${currentUser.phone}</strong>. 
-                        Acompanhe o status pela sua conta.
-                    </p>
-
-                    <button class="btn btn-primary" onclick="closeCheckoutModal()" style="margin-bottom: 10px; width: 100%;">
-                        <i class="fas fa-home"></i> Continuar Comprando
+        function openProductModal(product) {
+            const modalContent = document.getElementById('productModalContent');
+            modalContent.innerHTML = `
+                <h2>${product.name}</h2>
+                <div style="font-size: 4rem; text-align: center; margin: 1rem 0;">${product.image}</div>
+                <div class="product-price" style="font-size: 1.5rem; margin: 1rem 0;">R$ ${product.price.toFixed(2)}</div>
+                <p>${product.description}</p>
+                <h3>Características:</h3>
+                <ul>
+                    ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+                <div class="product-actions" style="margin-top: 2rem;">
+                    <button class="btn btn-primary" onclick="addToCart(${product.id}); closeModal('productModal')">
+                        🛒 Add Carrinho
                     </button>
-                    <button class="btn btn-secondary" onclick="viewOrderHistory()" style="width: 100%;">
-                        <i class="fas fa-history"></i> Ver Meus Pedidos
+                    <button class="btn btn-secondary" onclick="addToFavorites(${product.id})">
+                        ❤️ Add Favoritos
                     </button>
                 </div>
             `;
+            openModal('productModal');
         }
 
-        // User Management - FIX: Esqueci minha senha
-        function showForgotPassword() {
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('register-form').style.display = 'none';
-            document.getElementById('forgot-password-form').style.display = 'block';
-            document.getElementById('user-profile').style.display = 'none';
-        }
-
-        function sendPasswordReset() {
-            const email = document.getElementById('forgot-email').value;
-            
-            if (!email) {
-                showToast('Por favor, digite seu email.', 'error');
-                return;
-            }
-
-            const user = users.find(u => u.email === email);
-            if (!user) {
-                showToast('Email não encontrado em nosso sistema.', 'error');
-                return;
-            }
-
-            // Simular envio de email e WhatsApp
-            showToast(`Link de recuperação enviado para ${email} e WhatsApp ${user.phone}`, 'success');
-            
-            // Voltar ao login após 2 segundos
-            setTimeout(() => {
-                showLoginForm();
-            }, 2000);
-        }
-
-        // Address Management - FIX: CEP com API real
-        function buscarEnderecoPorCEP() {
-            const cep = document.getElementById('register-cep').value.replace(/\D/g, '');
-            
-            if (cep.length !== 8) {
-                showToast('CEP inválido. Digite 8 números.', 'error');
-                return;
-            }
-
-            // Show loading
-            const button = event.target;
-            const originalText = button.textContent;
-            button.innerHTML = '<div class="loading"></div>';
-            button.disabled = true;
-
-            // Usar API ViaCEP real
-            fetch(`https://viacep.com.br/ws/${cep}/json/`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.erro) {
-                        showToast('CEP não encontrado.', 'error');
-                        return;
-                    }
-
-                    // Preencher automaticamente os campos
-                    document.getElementById('register-address').value = data.logradouro || '';
-                    document.getElementById('register-neighborhood').value = data.bairro || '';
-                    document.getElementById('register-city').value = data.localidade || '';
-                    document.getElementById('register-state').value = data.uf || '';
-
-                    // Habilitar campos para edição se necessário
-                    document.getElementById('register-address').readOnly = false;
-                    document.getElementById('register-neighborhood').readOnly = false;
-                    document.getElementById('register-city').readOnly = false;
-                    document.getElementById('register-state').disabled = false;
-
-                    showToast('Endereço encontrado! Verifique os dados.', 'success');
-                })
-                .catch(error => {
-                    console.error('Erro ao buscar CEP:', error);
-                    showToast('Erro ao buscar CEP. Tente novamente.', 'error');
-                })
-                .finally(() => {
-                    button.textContent = originalText;
-                    button.disabled = false;
-                });
-        }
-
-        // Chatbot System - FIX: Inteligência melhorada
-        function sendChatMessage() {
-            const message = chatbotInput.value.trim();
-            if (!message) return;
-
-            // Add user message
-            addChatMessage('user', message);
-            chatbotInput.value = '';
-
-            // Guardar en historial
-            chatHistory.push({ role: 'user', content: message });
-
-            // Simulate bot response con IA mejorada
-            setTimeout(() => {
-                const response = generateSmartResponse(message);
-                addChatMessage('bot', response);
-                chatHistory.push({ role: 'assistant', content: response });
-            }, 1000);
-        }
-
-        function generateSmartResponse(message) {
-            const lowerMessage = message.toLowerCase();
-            
-            // Verificar historial de conversación
-            const lastMessages = chatHistory.slice(-3).map(msg => msg.content.toLowerCase());
-            
-            // Respuestas inteligentes basadas en contexto
-            if (lowerMessage.includes('esqueci') && lowerMessage.includes('senha')) {
-                return 'Para redefinir sua senha, clique em "Esqueci minha senha" na tela de login. Enviaremos um link para seu email e WhatsApp.';
-            } else if (lowerMessage.includes('senha') && lastMessages.some(m => m.includes('esqueci'))) {
-                return 'Já enviamos as instruções para redefinir sua senha. Verifique sua caixa de entrada e WhatsApp. Precisa de mais ajuda?';
-            } else if (lowerMessage.includes('cadastr') && lowerMessage.includes('problema')) {
-                return 'Problemas com cadastro? Verifique: 1) Todos campos obrigatórios 2) Email válido 3) Senha forte 4) CEP correto. Precisa de ajuda específica?';
-            } else if (lowerMessage.includes('cep') && (lowerMessage.includes('erro') || lowerMessage.includes('errado'))) {
-                return 'Problemas com CEP? Digite apenas números (8 dígitos). O sistema busca automaticamente o endereço via Correios. Se persistir, verifique se o CEP existe.';
-            } else if (lowerMessage.includes('frete') || lowerMessage.includes('entrega')) {
-                return 'Oferecemos frete grátis para compras acima de R$ 199. Trabalhamos com Correios e Jadlog. Prazos: PAC 5-8 dias, SEDEX 2-3 dias, Jadlog 3-5 dias.';
-            } else if (lowerMessage.includes('pagamento') || lowerMessage.includes('cartão')) {
-                return 'Aceitamos PIX (5% off), MercadoPago, PagSeguro, cartão de crédito (até 12x sem juros) e débito. Qual método prefere?';
-            } else if (lowerMessage.includes('nota fiscal') || lowerMessage.includes('nfe')) {
-                return 'Emitimos Nota Fiscal Eletrônica para todos os pedidos. A NFe é gerada automaticamente após a confirmação do pagamento e enviada por email.';
-            } else if (lowerMessage.includes('idade') || lowerMessage.includes('18')) {
-                return 'É necessário ter 18 anos ou mais para comprar em nossa loja. Validamos idade no cadastro conforme a legislação brasileira.';
-            } else if (lowerMessage.includes('discreto') || lowerMessage.includes('privacidade')) {
-                return 'Todas as embalagens são neutras e discretas. Sua privacidade é nossa prioridade. Ninguém saberá o conteúdo do pacote.';
-            } else if (lowerMessage.includes('contato') || lowerMessage.includes('email')) {
-                return 'Entre em contato: intimomixbr@gmail.com ou WhatsApp (11) 99999-9999. Horário: Seg-Sex 9h-18h.';
-            } else if (lowerMessage.includes('produto') && lowerMessage.includes('recomenda')) {
-                return 'Recomendo nossos kits iniciantes ou vibradores rabbit (mais vendidos). Posso ajudar a escolher por categoria?';
-            } else if (lowerMessage.includes('devolução') || lowerMessage.includes('troca')) {
-                return 'Trocas em até 30 dias. Produto deve estar na embalagem original. Consulte nossa política completa no footer do site.';
-            } else {
-                // Respuesta general mejorada
-                const options = [
-                    'Posso ajudar com: cadastro, login, produtos, fretes, pagamentos, NFe ou trocas. Em que posso ajudar?',
-                    'Como posso ajudar? Posso explicar sobre nossos produtos, formas de pagamento (PIX, MercadoPago, PagSeguro), prazos de entrega ou política de trocas.',
-                    'Em que posso ser útil? Posso orientar sobre compras, dúvidas de produtos, notas fiscais ou informações da loja.'
-                ];
-                return options[Math.floor(Math.random() * options.length)];
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
             }
         }
-
-        // Admin Functions - FIX: Acceso más claro
-        function showAdminAccess() {
-            const adminModal = `
-                <div style="padding: 20px; text-align: center;">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">🔐 Acesso Administrativo</h3>
-                    <div class="form-group">
-                        <label>Email Administrativo</label>
-                        <input type="email" id="admin-email" placeholder="admin@email.com" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                    </div>
-                    <div class="form-group">
-                        <label>Senha</label>
-                        <input type="password" id="admin-password" placeholder="Sua senha" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                    </div>
-                    <div style="margin-top: 20px;">
-                        <button class="btn btn-primary" onclick="verifyAdminCredentials()" style="width: 100%; padding: 12px;">
-                            <i class="fas fa-sign-in-alt"></i> Acessar Painel Admin
-                        </button>
-                    </div>
-                    <div style="margin-top: 15px; font-size: 12px; color: #666;">
-                        <p><strong>Credenciais padrão:</strong></p>
-                        <p>Email: intimomixbr@gmail.com</p>
-                        <p>Senha: Admin123!</p>
-                    </div>
-                </div>
-            `;
-            
-            // Crear modal temporal para admin access
-            const tempModal = document.createElement('div');
-            tempModal.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: white;
-                padding: 0;
-                border-radius: 12px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-                z-index: 1004;
-                width: 90%;
-                max-width: 400px;
-                max-height: 90vh;
-                overflow-y: auto;
-            `;
-            
-            const tempOverlay = document.createElement('div');
-            tempOverlay.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.5);
-                z-index: 1003;
-            `;
-            
-            tempModal.innerHTML = `
-                <div class="modal-header">
-                    <h3><i class="fas fa-lock"></i> Acesso Restrito</h3>
-                    <button class="btn btn-secondary" onclick="closeTempModal()" style="background: transparent; border: none; font-size: 18px;">✕</button>
-                </div>
-                ${adminModal}
-            `;
-            
-            tempOverlay.onclick = closeTempModal;
-            
-            document.body.appendChild(tempOverlay);
-            document.body.appendChild(tempModal);
-            
-            window.closeTempModal = function() {
-                document.body.removeChild(tempOverlay);
-                document.body.removeChild(tempModal);
-            };
-            
-            window.verifyAdminCredentials = function() {
-                const email = document.getElementById('admin-email').value;
-                const password = document.getElementById('admin-password').value;
-                
-                const adminUser = adminUsers.find(user => user.email === email && user.password === password);
-                if (adminUser) {
-                    currentUser = {
-                        id: 'admin',
-                        email: adminUser.email,
-                        name: adminUser.name,
-                        role: 'admin',
-                        loginTime: new Date().toISOString()
-                    };
-                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                    closeTempModal();
-                    showAdminPanel();
-                    showToast('Acesso administrativo concedido!', 'success');
-                    
-                    // Mostrar panel admin automáticamente
-                    setTimeout(() => {
-                        adminPanel.scrollIntoView({ behavior: 'smooth' });
-                    }, 500);
-                    
-                } else {
-                    showToast('Credenciais administrativas inválidas.', 'error');
-                }
-            };
-        }
-
-        // NFe Generation for MEI
-        function generateNFe() {
-            if (!currentUser || currentUser.role !== 'admin') {
-                showToast('Acesso restrito para administradores', 'error');
-                return;
-            }
-
-            const pendingOrders = orders.filter(order => order.nfe.status === 'pending');
-            
-            if (pendingOrders.length === 0) {
-                showToast('Nenhum pedido pendente de NFe', 'info');
-                return;
-            }
-
-            // Simular geração de NFe para MEI
-            pendingOrders.forEach(order => {
-                order.nfe.status = 'issued';
-                order.nfe.issueDate = new Date().toISOString();
-                order.nfe.pdfUrl = `https://nfe.vibracoesintimas.com.br/${order.nfe.number}.pdf`;
-                
-                addNotification('NFe Gerada', `NFe ${order.nfe.number} emitida com sucesso`, 'success');
-            });
-
-            localStorage.setItem('orders', JSON.stringify(orders));
-            showToast(`${pendingOrders.length} NFe(s) geradas com sucesso!`, 'success');
-        }
-
-        // Info System - Conteúdo legal baseado nas leis brasileiras
-        function showInfo(type) {
-            const infoContent = {
-                contact: {
-                    title: '📞 Contato e Suporte',
-                    content: `
-                        <h3>Central de Atendimento</h3>
-                        <p><strong>📧 Email:</strong> intimomixbr@gmail.com</p>
-                        <p><strong>📱 WhatsApp:</strong> (11) 99999-9999</p>
-                        <p><strong>🕒 Horário de Atendimento:</strong></p>
-                        <p>Segunda a Sexta: 9h às 18h</p>
-                        <p>Sábados: 9h às 13h</p>
-                        <p><strong>📍 Endereço:</strong> São Paulo - SP</p>
-                        <p><strong>📋 CNPJ:</strong> 63.575.463/0001-00</p>
-                        
-                        <h4 style="margin-top: 20px;">Canais de Atendimento</h4>
-                        <p>• <strong>Chat Online:</strong> Atendimento instantâneo</p>
-                        <p>• <strong>Email:</strong> Resposta em até 24h</p>
-                        <p>• <strong>WhatsApp:</strong> Atendimento prioritário</p>
-                    `
-                },
-                delivery: {
-                    title: '🚚 Política de Entregas e Prazos',
-                    content: `
-                        <h3>Nossa Política de Entregas</h3>
-                        
-                        <h4>📦 Transportadoras Parceiras</h4>
-                        <p><strong>Correios:</strong></p>
-                        <p>• PAC: 5-8 dias úteis • R$ 15,90</p>
-                        <p>• SEDEX: 2-3 dias úteis • R$ 25,90</p>
-                        
-                        <p><strong>Jadlog:</strong></p>
-                        <p>• Econômico: 3-5 dias úteis • R$ 18,90</p>
-                        
-                        <h4>🎁 Frete Grátis</h4>
-                        <p>• Acima de R$ 199 para todo Brasil</p>
-                        <p>• Válido para PAC ou Jadlog Econômico</p>
-                        
-                        <h4>📋 Regras de Envio</h4>
-                        <p>• Enviamos em até 2 dias úteis após confirmação do pagamento</p>
-                        <p>• Embalagem 100% discreta e neutra</p>
-                        <p>• Código de rastreio enviado por email e WhatsApp</p>
-                        <p>• Não realizamos entregas aos finais de semana e feriados</p>
-                        
-                        <h4>📍 Áreas de Entrega</h4>
-                        <p>• Entregamos para todo território nacional</p>
-                        <p>• Regiões metropolitanas: prazos menores</p>
-                        <p>• Interior: prazos conforme transportadora</p>
-                    `
-                },
-                returns: {
-                    title: '🔄 Política de Trocas e Devoluções',
-                    content: `
-                        <h3>Direito de Arrependimento</h3>
-                        <p>De acordo com o <strong>Artigo 49 do Código de Defesa do Consumidor</strong>, você tem até 7 dias corridos para desistir da compra.</p>
-                        
-                        <h4>📅 Prazos para Trocas</h4>
-                        <p>• <strong>Arrependimento:</strong> 7 dias corridos</p>
-                        <p>• <strong>Defeitos:</strong> 30 dias corridos</p>
-                        <p>• <strong>Produto errado:</strong> 7 dias úteis</p>
-                        
-                        <h4>✅ Condições para Troca/Devolução</h4>
-                        <p>• Produto na embalagem original intacta</p>
-                        <p>• Manual e acessórios incluídos</p>
-                        <p>• Nota fiscal do pedido</p>
-                        <p>• Produto não utilizado</p>
-                        <p>• Lacres de segurança preservados</p>
-                        
-                        <h4>🚫 Não Aceitamos Devolução</h4>
-                        <p>• Produtos de higiene íntima (abertos)</p>
-                        <p>• Produtos sem embalagem original</p>
-                        <p>• Itens danificados por uso inadequado</p>
-                        
-                        <h4>🔁 Processo de Troca</h4>
-                        <p>1. Entre em contato por email ou WhatsApp</p>
-                        <p>2. Enviaremos etiqueta de retorno</p>
-                        <p>3. Reembolso em até 5 dias úteis após recebimento</p>
-                    `
-                },
-                faq: {
-                    title: '❓ Perguntas Frequentes - FAQ',
-                    content: `
-                        <h3>Dúvidas Comuns</h3>
-                        
-                        <h4>👤 Cadastro e Conta</h4>
-                        <p><strong>Preciso ter 18 anos?</strong> Sim, é obrigatório ter 18 anos ou mais para comprar.</p>
-                        <p><strong>Meus dados são seguros?</strong> Sim, seguimos a LGPD para proteger suas informações.</p>
-                        
-                        <h4>📦 Produtos e Entregas</h4>
-                        <p><strong>A embalagem é discreta?</strong> Sim, totalmente neutra sem identificação do conteúdo.</p>
-                        <p><strong>Como rastrear meu pedido?</strong> Enviamos código de rastreio por email e WhatsApp.</p>
-                        
-                        <h4>💳 Pagamentos</h4>
-                        <p><strong>Quais formas de pagamento?</strong> PIX, MercadoPago, PagSeguro, cartão crédito/débito.</p>
-                        <p><strong>Parcelamento sem juros?</strong> Sim, em até 12x no cartão para compras acima de R$ 100.</p>
-                        
-                        <h4>🔧 Produtos e Garantia</h4>
-                        <p><strong>Tem garantia?</strong> Sim, 3 meses contra defeitos de fabricação.</p>
-                        <p><strong>Como limpar os produtos?</strong> Água, sabão neutro e secagem natural.</p>
-                    `
-                },
-                terms: {
-                    title: '📄 Termos e Condições de Uso',
-                    content: `
-                        <h3>Termos de Uso - Vibrações Íntimas</h3>
-                        
-                        <h4>1. Aceitação dos Termos</h4>
-                        <p>Ao acessar e usar este site, você concorda com estes termos e condições na íntegra.</p>
-                        
-                        <h4>2. Idade Mínima</h4>
-                        <p>• É necessário ter 18 anos ou mais para realizar compras</p>
-                        <p>• Reservamo-nos o direito de cancelar pedidos que não cumpram esta condição</p>
-                        
-                        <h4>3. Produtos e Serviços</h4>
-                        <p>• Todos os produtos são para uso pessoal adulto</p>
-                        <p>• Imagens meramente ilustrativas</p>
-                        <p>• Preços sujeitos a alteração sem aviso prévio</p>
-                        
-                        <h4>4. Privacidade e Segurança</h4>
-                        <p>• Seus dados são protegidos conforme Lei 13.709/2018 (LGPD)</p>
-                        <p>• Não compartilhamos informações com terceiros</p>
-                        <p>• Embalagem 100% discreta garantida</p>
-                        
-                        <h4>5. Propriedade Intelectual</h4>
-                        <p>• Todo conteúdo do site é propriedade da Vibrações Íntimas</p>
-                        <p>• Proibida a reprodução sem autorização</p>
-                        
-                        <h4>6. Legislação Aplicável</h4>
-                        <p>Estes termos são regidos pelas leis brasileiras, especialmente o Código de Defesa do Consumidor.</p>
-                    `
-                },
-                privacy: {
-                    title: '🔒 Política de Privacidade - LGPD',
-                    content: `
-                        <h3>Política de Privacidade - LGPD</h3>
-                        
-                        <h4>1. Coleta de Dados</h4>
-                        <p>Coletamos apenas dados necessários para:</p>
-                        <p>• Processamento de pedidos</p>
-                        <p>• Entrega dos produtos</p>
-                        <p>• Emissão de notas fiscais</p>
-                        <p>• Comunicação sobre pedidos</p>
-                        
-                        <h4>2. Uso das Informações</h4>
-                        <p>• Processar e entregar seus pedidos</p>
-                        <p>• Enviar atualizações sobre pedidos</p>
-                        <p>• Melhorar nossos serviços</p>
-                        <p>• Cumprir obrigações legais</p>
-                        
-                        <h4>3. Compartilhamento de Dados</h4>
-                        <p>Seus dados são compartilhados apenas com:</p>
-                        <p>• Empresas de transporte (Correios, Jadlog)</p>
-                        <p>• Processadores de pagamento (MercadoPago, PagSeguro)</p>
-                        <p>• Autoridades fiscais (para emissão de NFe)</p>
-                        
-                        <h4>4. Segurança dos Dados</h4>
-                        <p>• Utilizamos criptografia SSL</p>
-                        <p>• Dados armazenados de forma segura</p>
-                        <p>• Acesso restrito a funcionários autorizados</p>
-                        
-                        <h4>5. Seus Direitos</h4>
-                        <p>Você tem direito a:</p>
-                        <p>• Acessar seus dados pessoais</p>
-                        <p>• Corrigir dados incompletos ou errados</p>
-                        <p>• Solicitar exclusão de dados</p>
-                        <p>• Revogar consentimentos</p>
-                        
-                        <h4>6. Contato do Encarregado</h4>
-                        <p>Dúvidas sobre proteção de dados:</p>
-                        <p>Email: intimomixbr@gmail.com</p>
-                    `
-                },
-                cookies: {
-                    title: '🍪 Política de Cookies',
-                    content: `
-                        <h3>Política de Cookies</h3>
-                        
-                        <h4>O que são Cookies?</h4>
-                        <p>Cookies são pequenos arquivos armazenados no seu dispositivo que melhoram sua experiência de navegação.</p>
-                        
-                        <h4>Cookies que Utilizamos</h4>
-                        <p><strong>Cookies Essenciais:</strong></p>
-                        <p>• Manter você logado no site</p>
-                        <p>• Manter itens no carrinho de compras</p>
-                        <p>• Garantir segurança do site</p>
-                        
-                        <p><strong>Cookies de Desempenho:</strong></p>
-                        <p>• Entender como você usa o site</p>
-                        <p>• Melhorar nossos serviços</p>
-                        
-                        <h4>Gerenciamento de Cookies</h4>
-                        <p>Você pode controlar cookies através das configurações do seu navegador. No entanto, alguns recursos do site podem não funcionar corretamente sem cookies essenciais.</p>
-                    `
-                },
-                legal: {
-                    title: '⚖️ Aviso Legal',
-                    content: `
-                        <h3>Aviso Legal</h3>
-                        
-                        <h4>Identificação da Empresa</h4>
-                        <p><strong>Razão Social:</strong> Jorge Eliecer Morales Ramirez - MEI</p>
-                        <p><strong>CNPJ:</strong> 63.575.463/0001-00</p>
-                        <p><strong>Nome Fantasia:</strong> Vibrações Íntimas</p>
-                        <p><strong>Atividade:</strong> Comércio varejista de artigos eróticos e sensuais</p>
-                        
-                        <h4>Informações Fiscais</h4>
-                        <p>• MEI registrado na Prefeitura de São Paulo</p>
-                        <p>• Emissão de Nota Fiscal Eletrônica</p>
-                        <p>• Enquadramento: Anexo I da Lei Complementar 123/2006</p>
-                        
-                        <h4>Restrições de Uso</h4>
-                        <p>• Venda exclusiva para maiores de 18 anos</p>
-                        <p>• Uso pessoal dos produtos</p>
-                        <p>• Proibida revenda sem autorização</p>
-                        
-                        <h4>Disposições Finais</h4>
-                        <p>Este site opera em conformidade com a legislação brasileira, especialmente:</p>
-                        <p>• Código de Defesa do Consumidor (Lei 8.078/90)</p>
-                        <p>• Marco Civil da Internet (Lei 12.965/14)</p>
-                        <p>• LGPD (Lei 13.709/18)</p>
-                    `
-                }
-            };
-
-            const info = infoContent[type];
-            if (info) {
-                // Crear modal para mostrar la información
-                const infoModal = document.createElement('div');
-                infoModal.style.cssText = `
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background: white;
-                    padding: 0;
-                    border-radius: 12px;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-                    z-index: 1004;
-                    width: 90%;
-                    max-width: 600px;
-                    max-height: 80vh;
-                    overflow-y: auto;
-                `;
-                
-                const infoOverlay = document.createElement('div');
-                infoOverlay.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0,0,0,0.5);
-                    z-index: 1003;
-                `;
-                
-                infoModal.innerHTML = `
-                    <div class="modal-header">
-                        <h3>${info.title}</h3>
-                        <button class="btn btn-secondary" onclick="closeInfoModal()" style="background: transparent; border: none; font-size: 18px;">✕</button>
-                    </div>
-                    <div class="modal-content">
-                        ${info.content}
-                    </div>
-                `;
-                
-                infoOverlay.onclick = closeInfoModal;
-                
-                document.body.appendChild(infoOverlay);
-                document.body.appendChild(infoModal);
-                
-                window.closeInfoModal = function() {
-                    document.body.removeChild(infoOverlay);
-                    document.body.removeChild(infoModal);
-                };
-            }
-        }
-
-        // Resto de las funciones auxiliares...
-        // [Todas las demás funciones permanecen iguales...]
-
-        // Utility Functions
-        function saveProducts() {
-            localStorage.setItem('products', JSON.stringify(products));
-        }
-
-        function saveCart() {
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        function formatAddress(address) {
-            return `${address.logradouro}, ${address.numero}${address.complemento ? ' - ' + address.complemento : ''} - ${address.bairro}, ${address.cidade} - ${address.estado}, CEP: ${address.cep}`;
-        }
-
-        function addChatMessage(sender, message) {
-            const messageElement = document.createElement('div');
-            messageElement.className = `chat-message ${sender}-message`;
-            messageElement.style.marginBottom = '10px';
-            messageElement.style.padding = '10px';
-            messageElement.style.borderRadius = '10px';
-            messageElement.style.background = sender === 'user' ? '#e3f2fd' : '#f5f5f5';
-            messageElement.style.marginLeft = sender === 'user' ? '20%' : '0';
-            messageElement.style.marginRight = sender === 'user' ? '0' : '20%';
-            
-            messageElement.innerHTML = `<strong>${sender === 'user' ? 'Você' : 'Assistente'}:</strong> ${message}`;
-            
-            chatbotMessages.appendChild(messageElement);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-
-        function addNotification(title, message, type = 'info') {
-            const notification = {
-                id: 'NOT' + Date.now(),
-                title: title,
-                message: message,
-                type: type,
-                date: new Date().toISOString(),
-                read: false
-            };
-            
-            notifications.unshift(notification);
-            localStorage.setItem('notifications', JSON.stringify(notifications));
-            updateNotificationCount();
-        }
-
-        function updateNotificationCount() {
-            const unreadCount = notifications.filter(n => !n.read).length;
-            notificationCount.textContent = unreadCount;
-            notificationCount.style.display = unreadCount > 0 ? 'flex' : 'none';
-        }
-
-        // [Todas las demás funciones de gestión permanecen iguales...]
     </script>
 </body>
 </html>
